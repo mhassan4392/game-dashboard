@@ -1,0 +1,178 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* marquee content */
+
+.marquee-content {
+  overflow: hidden;
+  margin: 0;
+  line-height: 40px;
+  font-size: 0.7rem;
+  animation: marquee-content 20s linear infinite;
+}
+@keyframes marquee-content {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+.marquee-content:hover {
+  animation-play-state: paused;
+}
+
+/* navbar link */
+
+.navbar-link:last-child span {
+  border: 0;
+}
+
+/* settings menu */
+.szh-menu-button {
+  background: none !important;
+  border: none !important;
+}
+
+.szh-menu-container ul {
+  /* color: white; */
+  left: -127px !important;
+  /* top: 10px !important; */
+  right: 0;
+  width: 170px !important;
+  border-radius: 2px !important;
+  border: solid 1px #2d4264 !important;
+  /* background-color: #0a111c !important; */
+
+  @apply bg-dark-dark !border border-primary rounded-sm text-[#b8d0ed];
+}
+
+.szh-menu__item {
+  padding: 3px !important;
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+  font-size: 12px !important;
+  @apply my-2 px-3;
+}
+
+.szh-menu__item--hover {
+  background: theme("colors.dark.light") !important;
+}
+.szh-menu__submenu ul {
+  left: 167.5px !important;
+  top: 0px !important;
+}
+
+/* scrollbar */
+
+.scrollbar::-webkit-scrollbar,
+.right-sidebar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb,
+.right-sidebar::-webkit-scrollbar-thumb {
+  @apply bg-secondary bg-opacity-25;
+}
+
+.slider {
+  @apply !bg-primary h-1.5;
+}
+
+/* .slider::-moz-range-thumb, */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  @apply !bg-white h-3 w-3 rounded-full;
+}
+
+/* Tabs */
+.tab-active {
+  position: relative;
+  color: theme("colors.primary");
+}
+
+.tab-active::after {
+  content: " ";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 4px;
+  background-image: linear-gradient(
+    to right,
+    theme("colors.secondary"),
+    theme("colors.primary")
+  );
+}
+
+/* hand animations */
+
+.hand-image {
+  animation: hand;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+}
+
+.hand-button {
+  animation: handbutton;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate-reverse;
+}
+
+@keyframes handbutton {
+  0% {
+    background: none;
+  }
+  75% {
+    color: white;
+    background-image: linear-gradient(
+      to right,
+      theme("colors.primary"),
+      theme("colors.secondary")
+    );
+  }
+  100% {
+    color: white;
+    background-image: linear-gradient(
+      to right,
+      theme("colors.primary"),
+      theme("colors.secondary")
+    );
+  }
+}
+
+@keyframes hand {
+  0% {
+    transform: translateY(70px);
+  }
+  50% {
+    transform: translateY(0px);
+  }
+}
+
+/* rules page */
+.rules-page h2 {
+  @apply text-lg font-bold;
+}
+
+.rules-page ol li {
+  /* list-style-type:decimal */
+  @apply list-decimal text-sm px-3 list-outside my-2;
+}
+
+.rules-page ol li::marker {
+  /* color: red; */
+  padding-left: 20px;
+  background-image: linear-gradient(to right theme("colors.primary"));
+  @apply bg-dark-light p-2 rounded-full;
+}
+
+.rules-page ol li ol li {
+  @apply list-[lower-alpha];
+}

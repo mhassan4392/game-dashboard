@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <defs>
+        <style>
+            .cls-1{fill:#a5c3dc}.cls-3{fill:#555a6e}.cls-4{fill:#463c4b}.cls-5{fill:#00d2d2}.cls-6{fill:#ff6e91}
+        </style>
+    </defs>
+    <g id="Group_808" data-name="Group 808" transform="translate(-29 -140)">
+        <g id="Page-1" transform="translate(26 143)">
+            <g id="GC-v4-Filter-Competition" transform="translate(-19 -226)">
+                <g id="game-controller" transform="translate(22 226)">
+                    <path id="Path" d="M0 7.467v7.283a3.984 3.984 0 0 0 6.8 2.817l3.8-3.8a2.276 2.276 0 0 0 .667-1.61v-4.69z" class="cls-1" transform="translate(0 -.734)"/>
+                    <path id="Path-2" d="M26.2 7.467v7.283a3.984 3.984 0 0 1-6.8 2.817l-3.8-3.8a2.276 2.276 0 0 1-.667-1.61v-4.69z" class="cls-1" data-name="Path" transform="translate(-2.201 -.734)"/>
+                    <path id="Path-3" fill="#d7e6f0" d="M18.4.933H5.6A5.672 5.672 0 0 0 0 6.675v6.363a3.438 3.438 0 0 0 3.394 3.48 3.352 3.352 0 0 0 2.4-1.019l2.343-2.4.006-.006a2.15 2.15 0 0 1 1.541-.674h4.632a2.15 2.15 0 0 1 1.541.674l.006.006 2.343 2.4a3.352 3.352 0 0 0 2.4 1.019A3.438 3.438 0 0 0 24 13.039V6.675A5.672 5.672 0 0 0 18.4.933z" data-name="Path" transform="translate(0 -.129)"/>
+                    <path id="Path-4" d="M15.32 3.348h-3.668a.8.8 0 0 1-.764-.55L10.267.933h6.439L16.084 2.8a.8.8 0 0 1-.764.548z" class="cls-1" data-name="Path" transform="translate(-1.486 -.129)"/>
+                    <circle id="Oval" cx="2.012" cy="2.012" r="2.012" class="cls-1" transform="translate(6.392 7.399)"/>
+                    <path id="Path-5" d="M10.817 10.006h-.6V9.4a.4.4 0 0 0-.4-.4h-.4a.4.4 0 0 0-.4.4v.6H8.4a.4.4 0 0 0-.4.4v.4a.4.4 0 0 0 .4.4H9v.6a.4.4 0 0 0 .4.4h.4a.4.4 0 0 0 .4-.4v-.6h.6a.4.4 0 0 0 .4-.4v-.4a.4.4 0 0 0-.383-.394z" class="cls-3" data-name="Path" transform="translate(-1.149 -1.082)"/>
+                    <circle id="Oval-2" cx="2.012" cy="2.012" r="2.012" class="cls-4" data-name="Oval" transform="translate(12.785 7.399)"/>
+                    <circle id="Oval-3" cx="1.207" cy="1.207" r="1.207" class="cls-3" data-name="Oval" transform="translate(13.591 8.203)"/>
+                    <g id="Group" transform="translate(2.414 3.305)">
+                        <ellipse id="Oval-4" cx="2.012" cy="1.987" class="cls-4" data-name="Oval" rx="2.012" ry="1.987"/>
+                        <ellipse id="Oval-5" cx="1.207" cy="1.192" class="cls-3" data-name="Oval" rx="1.207" ry="1.192" transform="translate(.805 .795)"/>
+                    </g>
+                    <g id="Group-2" data-name="Group" transform="translate(16.699 3.26)">
+                        <circle id="Oval-6" cx=".862" cy=".862" r=".862" class="cls-5" data-name="Oval" transform="translate(1.61)"/>
+                        <circle id="Oval-7" cx=".862" cy=".862" r=".862" class="cls-5" data-name="Oval" transform="translate(1.61 3.186)"/>
+                        <circle id="Oval-8" cx=".862" cy=".862" r=".862" class="cls-6" data-name="Oval" transform="translate(0 1.593)"/>
+                        <circle id="Oval-9" cx=".862" cy=".862" r=".862" class="cls-6" data-name="Oval" transform="translate(3.219 1.593)"/>
+                    </g>
+                    <g id="Group-3" data-name="Group" transform="translate(9.528 4.859)">
+                        <circle id="Oval-10" cx=".862" cy=".862" r=".862" class="cls-1" data-name="Oval"/>
+                        <circle id="Oval-11" cx=".862" cy=".862" r=".862" class="cls-1" data-name="Oval" transform="translate(3.219)"/>
+                    </g>
+                    <path id="Path-6" d="M8.948 0h-1.61a.8.8 0 0 0-.8.8h3.215a.8.8 0 0 0-.805-.8z" class="cls-3" data-name="Path" transform="translate(-.939)"/>
+                    <path id="Path-7" d="M20.148 0h-1.61a.8.8 0 0 0-.8.8h3.219a.8.8 0 0 0-.809-.8z" class="cls-3" data-name="Path" transform="translate(-2.547)"/>
+                </g>
+            </g>
+        </g>
+        <path id="Rectangle_536" fill="none" d="M0 0H24V24H0z" data-name="Rectangle 536" transform="translate(29 140)"/>
+    </g>
+</svg>
