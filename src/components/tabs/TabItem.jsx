@@ -10,18 +10,20 @@ const TabItem = ({ children, className, tab, defaultTab, ...rest }) => {
     }
   }, [tab, defaultTab]);
   return (
-    <AnimatePresence>
+    // <AnimatePresence>
+    <>
       {currentTab == tab && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+        <div
+          // initial={{ opacity: 0 }}
+          // animate={{ opacity: 1 }}
+          // exit={{ opacity: 0 }}
           className={`${className ? className : ""}`}
         >
           {children}
-        </motion.div>
+        </div>
       )}
-    </AnimatePresence>
+    </>
+    // </AnimatePresence>
   );
 };
 

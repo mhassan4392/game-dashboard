@@ -4,27 +4,23 @@
 
 /* marquee content */
 
-.marquee-content {
+.notification-content {
   overflow: hidden;
   margin: 0;
   line-height: 40px;
   font-size: 0.7rem;
-  animation: marquee-content 20s linear infinite;
+  animation: notification-content 40s linear infinite;
 }
-@keyframes marquee-content {
-  0% {
-    transform: translateX(100%);
-  }
+@keyframes notification-content {
   100% {
     transform: translateX(-100%);
   }
 }
-.marquee-content:hover {
+.notification-content:hover {
   animation-play-state: paused;
 }
 
 /* navbar link */
-
 .navbar-link:last-child span {
   border: 0;
 }

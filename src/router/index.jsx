@@ -1,4 +1,4 @@
-import { Route, Routes, BrowserRouter } from "react-router-dom";
+import { Route, Routes, BrowserRouter, Navigate } from "react-router-dom";
 
 // layouts
 import Layout from "../layouts/layout";
@@ -19,6 +19,7 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
+          <Route index element={<Navigate to="/events" />} replace />
           <Route path="/events" element={<EventLayout />}>
             <Route index element={<Events />} />
             <Route path="/events/:id" element={<Event />} />
