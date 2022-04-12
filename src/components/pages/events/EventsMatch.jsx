@@ -9,13 +9,14 @@ import EventMenu from "../../layout/mobile/EventMenu";
 
 import { useNavigate } from "react-router-dom";
 
-import fullConfig from "../../../theme";
+// import fullConfig from "../../../theme";
 
 const EventsMatch = () => {
   const [eventMenu, setEventMenu] = useState(false);
   const navigate = useNavigate();
   const handleClick = () => {
-    const lgWidth = Number(fullConfig.theme.screens.lg.replace("px", ""));
+    // const lgWidth = Number(fullConfig.theme.screens.lg.replace("px", ""));
+    const lgWidth = 1024;
     const bodyWidth = document.body.clientWidth;
     if (bodyWidth < lgWidth) {
       setEventMenu(true);

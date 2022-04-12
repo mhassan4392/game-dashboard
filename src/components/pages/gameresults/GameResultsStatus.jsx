@@ -9,14 +9,15 @@ import { AiOutlinePlaySquare } from "react-icons/ai";
 
 import { useNavigate } from "react-router-dom";
 
-import fullConfig from "../../../theme";
+// import fullConfig from "../../../theme";
 import GameResultMenu from "../../layout/mobile/GameResultMenu";
 
 const GameResultsStatus = () => {
   const [gameResultMenu, setGameResultMenu] = useState(false);
   const navigate = useNavigate();
   const handleClick = () => {
-    const lgWidth = Number(fullConfig.theme.screens.lg.replace("px", ""));
+    // const lgWidth = Number(fullConfig.theme.screens.lg.replace("px", ""));
+    const lgWidth = 1024;
     const bodyWidth = document.body.clientWidth;
     if (bodyWidth < lgWidth) {
       setGameResultMenu(true);
