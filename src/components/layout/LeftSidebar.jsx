@@ -35,24 +35,26 @@ const LeftSidebar = () => {
     { title: "Polo", total_games: 25, logo: kog },
   ];
   return (
-    <div className="bg-dark-light overflow-auto h-[83vh] scrollbar left-sidebar">
-      {games.map((game) => (
-        <div
-          key={game.title}
-          className={`flex items-center justify-between cursor-pointer hover:bg-gray-800 hover:bg-opacity-75 py-4 px-2 transition-all duration-200 ${
-            game.selected
-              ? "bg-gradient-to-r from-primary to-secondary text-white bg-opacity-75"
-              : ""
-          }`}
-        >
-          <div className="flex items-center space-x-2">
-            <img className="w-5 h-5" src={game.logo} alt="" />
-            <p className="truncate text-sm">{game.title}</p>
+    <>
+      <div className="bg-dark-light overflow-auto h-[83vh] scrollbar left-sidebar">
+        {games.map((game) => (
+          <div
+            key={game.title}
+            className={`flex items-center justify-between cursor-pointer hover:bg-gray-800 hover:bg-opacity-75 py-4 px-2 transition-all duration-200 ${
+              game.selected
+                ? "bg-gradient-to-r from-primary to-secondary text-white bg-opacity-75"
+                : ""
+            }`}
+          >
+            <div className="flex items-center space-x-2">
+              <img className="w-5 h-5" src={game.logo} alt="" />
+              <p className="truncate text-sm">{game.title}</p>
+            </div>
+            <div className="text-xs">({game.total_games})</div>
           </div>
-          <div className="text-xs">({game.total_games})</div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    </>
   );
 };
 

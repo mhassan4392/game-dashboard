@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { TabsContext } from "./TabsContext";
 const TabButton = ({
   children,
@@ -15,6 +15,7 @@ const TabButton = ({
       className={`${className ? className : ""} ${
         tab == tab_ ? activeClass : ""
       }`}
+      {...rest}
     >
       {typeof children == "function" ? children() : children}
     </As>

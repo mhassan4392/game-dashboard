@@ -2,21 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-/* marquee content */
+/* banner content */
 
-.notification-content {
+.banner-content {
   overflow: hidden;
-  margin: 0;
-  line-height: 40px;
-  font-size: 0.7rem;
-  animation: notification-content 40s linear infinite;
+  animation: banner-content 40s linear infinite;
 }
-@keyframes notification-content {
+@keyframes banner-content {
   100% {
     transform: translateX(-100%);
   }
 }
-.notification-content:hover {
+.banner-content:hover {
   animation-play-state: paused;
 }
 
@@ -26,12 +23,12 @@
 }
 
 /* settings menu */
-.szh-menu-button {
+.browser-menu .szh-menu-button {
   background: none !important;
   border: none !important;
 }
 
-.szh-menu-container ul {
+.browser-menu .szh-menu-container ul {
   /* color: white; */
   left: -127px !important;
   /* top: 10px !important; */
@@ -44,7 +41,7 @@
   @apply bg-dark-dark !border border-primary rounded-sm text-[#b8d0ed];
 }
 
-.szh-menu__item {
+.browser-menu .szh-menu__item {
   padding: 3px !important;
   padding-left: 10px !important;
   padding-right: 10px !important;
@@ -52,23 +49,58 @@
   @apply my-2 px-3;
 }
 
-.szh-menu__item--hover {
+.browser-menu .szh-menu__item--hover {
   background: theme("colors.dark.light") !important;
 }
-.szh-menu__submenu ul {
+
+.browser-menu .szh-menu__submenu ul {
   left: 167.5px !important;
   top: 0px !important;
 }
 
-/* scrollbar */
+.mobile-menu .szh-menu-container ul {
+  right: 0;
+  margin: auto !important;
+  width: 98vw !important;
+  /* border-radius: 2px !important; */
+  /* border: solid 1px #2d4264 !important; */
+  /* background-color: #0a111c !important; */
 
-.scrollbar::-webkit-scrollbar,
-.right-sidebar::-webkit-scrollbar {
-  width: 4px;
+  @apply bg-dark-dark !border border-primary rounded-sm text-[#b8d0ed];
 }
 
-.scrollbar::-webkit-scrollbar-thumb,
-.right-sidebar::-webkit-scrollbar-thumb {
+.mobile-menu .szh-menu__item {
+  @apply my-2;
+}
+
+.mobile-menu .szh-menu__item--hover {
+  background: none;
+  /* cursor: alias; */
+}
+
+/* scrollbar */
+
+.scrollbar {
+  @apply overflow-y-auto overflow-x-hidden;
+}
+
+.scrollbar-x {
+  @apply overflow-x-auto overflow-y-hidden flex-grow;
+}
+
+.scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-secondary bg-opacity-25;
+}
+
+.scrollbar-x::-webkit-scrollbar {
+  width: 3px;
+}
+
+.scrollbar-x::-webkit-scrollbar-thumb {
   @apply bg-secondary bg-opacity-25;
 }
 

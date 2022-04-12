@@ -31,22 +31,6 @@ const EventLayout = () => {
             <span>Early</span>
             <span>(25)</span>
           </TabButton>
-          <TabButton
-            activeClass="tab-active"
-            className="px-3 py-4 mx-2 text-sm flex flex-col items-center"
-            tab="combo"
-          >
-            <span>Combo</span>
-            <span>(15)</span>
-          </TabButton>
-          <TabButton
-            activeClass="tab-active"
-            className="px-3 py-4 mx-2 text-sm flex flex-col items-center"
-            tab="outright"
-          >
-            <span>Outright</span>
-            <span>(11)</span>
-          </TabButton>
         </TabsButtons>
 
         <Outlet />

@@ -99,7 +99,7 @@ const GameResultStatus = () => {
             {[...Array(20)].map((ar, i) => (
               <div
                 key={i}
-                className="flex items-center justify-between py-2 px-4 border-b border-opacity-20 border-secondary space-x-4"
+                className="flex flex-col lg:flex-row items-center justify-between py-2 px-4 border-b border-opacity-20 border-secondary space-x-4"
               >
                 <div className="text-xs text-yellow-500 basis-1/6">
                   Awaiting Result
@@ -121,48 +121,6 @@ const GameResultStatus = () => {
                 </div>
               </div>
             ))}
-
-            <div className="flex items-center justify-between py-2 px-4 border-b border-opacity-20 border-secondary space-x-4">
-              <div className="text-xs text-yellow-500 basis-1/6">
-                Awaiting Result
-              </div>
-              <div className="basis-1/6 flex justify-center">
-                <div className="border border-secondary border-opacity-50 w-24 flex items-center justify-center h-10 bg-dark-light ">
-                  <GiTrophyCup className="text-lg text-black" />
-                </div>
-              </div>
-              <div className="text-sm flex items-center basis-3/6 justify-between space-x-10 text-center">
-                <div>+15</div>
-                <div>Point Handicap</div>
-                <div>+16</div>
-              </div>
-              <div className="basis-1/6 flex justify-center">
-                <div className="border border-secondary border-opacity-50 w-24 flex items-center justify-center h-10 bg-dark-light ">
-                  <GiTrophyCup className="text-lg text-black" />
-                </div>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between py-2 px-4 border-b border-opacity-20 border-secondary space-x-4">
-              <div className="text-xs text-yellow-500 basis-1/6">
-                Awaiting Result
-              </div>
-              <div className="basis-1/6 flex justify-center">
-                <div className="border border-secondary border-opacity-50 w-24 flex items-center justify-center h-10 bg-dark-light ">
-                  <GiTrophyCup className="text-lg text-black" />
-                </div>
-              </div>
-              <div className="text-sm flex items-center basis-3/6 justify-between space-x-10 text-center">
-                <div>Over 15</div>
-                <div>HOME TEAM TOTAL POINT OVER/UNDER</div>
-                <div>Over 16</div>
-              </div>
-              <div className="basis-1/6 flex justify-center">
-                <div className="border border-secondary border-opacity-50 w-24 flex items-center justify-center h-10 bg-dark-light ">
-                  <GiTrophyCup className="text-lg text-black" />
-                </div>
-              </div>
-            </div>
           </TabItem>
           <TabItem tab="firsthalf" className="bg-dark">
             <div className="flex items-center justify-between py-2 px-4 border-b border-opacity-20 border-secondary space-x-4">
@@ -197,48 +155,6 @@ const GameResultStatus = () => {
                 <div>+15</div>
                 <div>Point Handicap</div>
                 <div>+16</div>
-              </div>
-              <div className="basis-1/6 flex justify-center">
-                <div className="border border-secondary border-opacity-50 w-24 flex items-center justify-center h-10 bg-dark-light ">
-                  <GiTrophyCup className="text-lg text-black" />
-                </div>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between py-2 px-4 border-b border-opacity-20 border-secondary space-x-4">
-              <div className="text-xs text-yellow-500 basis-1/6">
-                Awaiting Result
-              </div>
-              <div className="basis-1/6 flex justify-center">
-                <div className="border border-secondary border-opacity-50 w-24 flex items-center justify-center h-10 bg-dark-light ">
-                  <GiTrophyCup className="text-lg text-black" />
-                </div>
-              </div>
-              <div className="text-sm flex items-center basis-3/6 justify-between space-x-10 text-center">
-                <div>+15</div>
-                <div>Point Handicap</div>
-                <div>+16</div>
-              </div>
-              <div className="basis-1/6 flex justify-center">
-                <div className="border border-secondary border-opacity-50 w-24 flex items-center justify-center h-10 bg-dark-light ">
-                  <GiTrophyCup className="text-lg text-black" />
-                </div>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between py-2 px-4 border-b border-opacity-20 border-secondary space-x-4">
-              <div className="text-xs text-yellow-500 basis-1/6">
-                Awaiting Result
-              </div>
-              <div className="basis-1/6 flex justify-center">
-                <div className="border border-secondary border-opacity-50 w-24 flex items-center justify-center h-10 bg-dark-light ">
-                  <GiTrophyCup className="text-lg text-black" />
-                </div>
-              </div>
-              <div className="text-sm flex items-center basis-3/6 justify-between space-x-10 text-center">
-                <div>Over 15</div>
-                <div>HOME TEAM TOTAL POINT OVER/UNDER</div>
-                <div>Over 16</div>
               </div>
               <div className="basis-1/6 flex justify-center">
                 <div className="border border-secondary border-opacity-50 w-24 flex items-center justify-center h-10 bg-dark-light ">
