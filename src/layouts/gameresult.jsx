@@ -5,7 +5,7 @@ import { Tabs, TabsButtons, TabButton } from "../components/tabs";
 const GameResultLayout = () => {
   return (
     <div className="bg-black h-full">
-      <Tabs className="h-full flex flex-col">
+      <Tabs className="h-full">
         <TabsButtons className="flex items-center bg-dark-light px-4 mb-1">
           <TabButton
             activeClass="tab-active"
@@ -32,7 +32,9 @@ const GameResultLayout = () => {
             <span>(15)</span>
           </TabButton>
         </TabsButtons>
-        <Outlet />
+        <div className="h-full flex flex-col">
+          <Outlet />
+        </div>
       </Tabs>
     </div>
   );

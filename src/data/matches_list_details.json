@@ -1,0 +1,176 @@
+{
+  "code": 1,
+  "v": "",
+  "info": [
+    {
+      "Stage": 1,
+      "Items": [
+        {
+          "BetName": "0",
+          "Status": 1,
+          "Items": [
+            { "Id": 1143, "Name": "13", "Status": 1, "Odds": 1.95 },
+            { "Id": 1144, "Name": "14", "Status": 1, "Odds": 1.95 }
+          ]
+        },
+        {
+          "BetName": "1",
+          "Status": 1,
+          "Items": [
+            { "Id": 1145, "Name": "11", "Status": 1, "Odds": 1.95 },
+            { "Id": 1146, "Name": "12", "Status": 1, "Odds": 1.95 }
+          ]
+        },
+        {
+          "BetName": "4",
+          "Status": 1,
+          "Items": [
+            { "Id": 1147, "Name": "15", "Status": 1, "Odds": 1.95 },
+            { "Id": 1148, "Name": "16", "Status": 1, "Odds": 1.95 }
+          ]
+        },
+        {
+          "BetName": "2",
+          "Status": 1,
+          "Items": [
+            { "Id": 1149, "Name": "0", "Status": 1, "Odds": 9.5 },
+            { "Id": 1150, "Name": "1", "Status": 1, "Odds": 9.5 },
+            { "Id": 1151, "Name": "2", "Status": 1, "Odds": 9.5 },
+            { "Id": 1152, "Name": "3", "Status": 1, "Odds": 9.5 },
+            { "Id": 1153, "Name": "4", "Status": 1, "Odds": 9.5 },
+            { "Id": 1154, "Name": "5", "Status": 1, "Odds": 9.5 },
+            { "Id": 1155, "Name": "6", "Status": 1, "Odds": 9.5 },
+            { "Id": 1156, "Name": "7", "Status": 1, "Odds": 9.5 },
+            { "Id": 1157, "Name": "8", "Status": 1, "Odds": 9.5 },
+            { "Id": 1158, "Name": "9", "Status": 1, "Odds": 9.5 }
+          ]
+        },
+        {
+          "BetName": "0",
+          "Status": 1,
+          "Items": [
+            { "Id": 1175, "Name": "13", "Status": 1, "Odds": 1.95 },
+            { "Id": 1176, "Name": "14", "Status": 1, "Odds": 1.95 }
+          ]
+        },
+        {
+          "BetName": "1",
+          "Status": 1,
+          "Items": [
+            { "Id": 1177, "Name": "11", "Status": 1, "Odds": 1.95 },
+            { "Id": 1178, "Name": "12", "Status": 1, "Odds": 1.95 }
+          ]
+        },
+        {
+          "BetName": "4",
+          "Status": 1,
+          "Items": [
+            { "Id": 1179, "Name": "15", "Status": 1, "Odds": 1.95 },
+            { "Id": 1180, "Name": "16", "Status": 1, "Odds": 1.95 }
+          ]
+        },
+        {
+          "BetName": "2",
+          "Status": 1,
+          "Items": [
+            { "Id": 1181, "Name": "0", "Status": 1, "Odds": 9.5 },
+            { "Id": 1182, "Name": "1", "Status": 1, "Odds": 9.5 },
+            { "Id": 1183, "Name": "2", "Status": 1, "Odds": 9.5 },
+            { "Id": 1184, "Name": "3", "Status": 1, "Odds": 9.5 },
+            { "Id": 1185, "Name": "4", "Status": 1, "Odds": 9.5 },
+            { "Id": 1186, "Name": "5", "Status": 1, "Odds": 9.5 },
+            { "Id": 1187, "Name": "6", "Status": 1, "Odds": 9.5 },
+            { "Id": 1188, "Name": "7", "Status": 1, "Odds": 9.5 },
+            { "Id": 1189, "Name": "8", "Status": 1, "Odds": 9.5 },
+            { "Id": 1190, "Name": "9", "Status": 1, "Odds": 9.5 }
+          ]
+        }
+      ]
+    },
+    {
+      "Stage": 2,
+      "Items": [
+        {
+          "BetName": "0",
+          "Status": 1,
+          "Items": [
+            { "Id": 1159, "Name": "13", "Status": 1, "Odds": 1.95 },
+            { "Id": 1160, "Name": "14", "Status": 1, "Odds": 1.95 }
+          ]
+        },
+        {
+          "BetName": "1",
+          "Status": 1,
+          "Items": [
+            { "Id": 1161, "Name": "11", "Status": 1, "Odds": 1.95 },
+            { "Id": 1162, "Name": "12", "Status": 1, "Odds": 1.95 }
+          ]
+        },
+        {
+          "BetName": "4",
+          "Status": 1,
+          "Items": [
+            { "Id": 1163, "Name": "15", "Status": 1, "Odds": 1.95 },
+            { "Id": 1164, "Name": "16", "Status": 1, "Odds": 1.95 }
+          ]
+        },
+        {
+          "BetName": "2",
+          "Status": 1,
+          "Items": [
+            { "Id": 1165, "Name": "0", "Status": 1, "Odds": 9.5 },
+            { "Id": 1166, "Name": "1", "Status": 1, "Odds": 9.5 },
+            { "Id": 1167, "Name": "2", "Status": 1, "Odds": 9.5 },
+            { "Id": 1168, "Name": "3", "Status": 1, "Odds": 9.5 },
+            { "Id": 1169, "Name": "4", "Status": 1, "Odds": 9.5 },
+            { "Id": 1170, "Name": "5", "Status": 1, "Odds": 9.5 },
+            { "Id": 1171, "Name": "6", "Status": 1, "Odds": 9.5 },
+            { "Id": 1172, "Name": "7", "Status": 1, "Odds": 9.5 },
+            { "Id": 1173, "Name": "8", "Status": 1, "Odds": 9.5 },
+            { "Id": 1174, "Name": "9", "Status": 1, "Odds": 9.5 }
+          ]
+        },
+        {
+          "BetName": "0",
+          "Status": 1,
+          "Items": [
+            { "Id": 1191, "Name": "13", "Status": 1, "Odds": 1.95 },
+            { "Id": 1192, "Name": "14", "Status": 1, "Odds": 1.95 }
+          ]
+        },
+        {
+          "BetName": "1",
+          "Status": 1,
+          "Items": [
+            { "Id": 1193, "Name": "11", "Status": 1, "Odds": 1.95 },
+            { "Id": 1194, "Name": "12", "Status": 1, "Odds": 1.95 }
+          ]
+        },
+        {
+          "BetName": "4",
+          "Status": 1,
+          "Items": [
+            { "Id": 1195, "Name": "15", "Status": 1, "Odds": 1.95 },
+            { "Id": 1196, "Name": "16", "Status": 1, "Odds": 1.95 }
+          ]
+        },
+        {
+          "BetName": "2",
+          "Status": 1,
+          "Items": [
+            { "Id": 1197, "Name": "0", "Status": 1, "Odds": 9.5 },
+            { "Id": 1198, "Name": "1", "Status": 1, "Odds": 9.5 },
+            { "Id": 1199, "Name": "2", "Status": 1, "Odds": 9.5 },
+            { "Id": 1200, "Name": "3", "Status": 1, "Odds": 9.5 },
+            { "Id": 1201, "Name": "4", "Status": 1, "Odds": 9.5 },
+            { "Id": 1202, "Name": "5", "Status": 1, "Odds": 9.5 },
+            { "Id": 1203, "Name": "6", "Status": 1, "Odds": 9.5 },
+            { "Id": 1204, "Name": "7", "Status": 1, "Odds": 9.5 },
+            { "Id": 1205, "Name": "8", "Status": 1, "Odds": 9.5 },
+            { "Id": 1206, "Name": "9", "Status": 1, "Odds": 9.5 }
+          ]
+        }
+      ]
+    }
+  ]
+}

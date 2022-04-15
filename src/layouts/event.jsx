@@ -5,11 +5,11 @@ import { Tabs, TabsButtons, TabButton } from "../components/tabs";
 const EventLayout = () => {
   return (
     <div className="bg-black h-full">
-      <Tabs className="h-full flex flex-col">
-        <TabsButtons className="flex items-center bg-dark-light px-4 mb-1">
+      <Tabs className="h-full">
+        <TabsButtons className="flex items-center bg-dark-light px-4 mb-1 scrollbar-x">
           <TabButton
             activeClass="tab-active"
-            className="px-3 py-4 mx-2 text-sm flex flex-col items-center"
+            className="px-3 py-4 mx-2 text-sm items-center flex flex-col"
             tab="today"
           >
             <span>Today</span>
@@ -17,7 +17,7 @@ const EventLayout = () => {
           </TabButton>
           <TabButton
             activeClass="tab-active"
-            className="px-3 py-4 mx-2 text-sm flex flex-col items-center"
+            className="px-3 py-4 mx-2 text-sm items-center flex flex-col"
             tab="inplay"
           >
             <span>InPlay</span>
@@ -25,7 +25,7 @@ const EventLayout = () => {
           </TabButton>
           <TabButton
             activeClass="tab-active"
-            className="px-3 py-4 mx-2 text-sm flex flex-col items-center"
+            className="px-3 py-4 mx-2 text-sm items-center flex flex-col"
             tab="early"
           >
             <span>Early</span>
@@ -33,7 +33,9 @@ const EventLayout = () => {
           </TabButton>
         </TabsButtons>
 
-        <Outlet />
+        <div className="h-full flex flex-col">
+          <Outlet />
+        </div>
       </Tabs>
     </div>
   );

@@ -29,28 +29,21 @@
 }
 
 .browser-menu .szh-menu-container ul {
-  /* color: white; */
   left: -127px !important;
-  /* top: 10px !important; */
   right: 0;
   width: 170px !important;
   border-radius: 2px !important;
   border: solid 1px #2d4264 !important;
-  /* background-color: #0a111c !important; */
 
   @apply bg-dark-dark !border border-primary rounded-sm text-[#b8d0ed];
 }
 
 .browser-menu .szh-menu__item {
-  padding: 3px !important;
-  padding-left: 10px !important;
-  padding-right: 10px !important;
-  font-size: 12px !important;
-  @apply my-2 px-3;
+  @apply my-2 px-3 text-xs;
 }
 
 .browser-menu .szh-menu__item--hover {
-  background: theme("colors.dark.light") !important;
+  background: theme("colors.dark.light");
 }
 
 .browser-menu .szh-menu__submenu ul {
@@ -59,13 +52,8 @@
 }
 
 .mobile-menu .szh-menu-container ul {
-  right: 0;
   margin: auto !important;
   width: 98vw !important;
-  /* border-radius: 2px !important; */
-  /* border: solid 1px #2d4264 !important; */
-  /* background-color: #0a111c !important; */
-
   @apply bg-dark-dark !border border-primary rounded-sm text-[#b8d0ed];
 }
 
@@ -85,34 +73,53 @@
 }
 
 .scrollbar-x {
-  @apply overflow-x-auto overflow-y-hidden flex-grow;
+  @apply overflow-x-auto overflow-y-hidden;
 }
 
 .scrollbar::-webkit-scrollbar {
-  width: 6px;
+  width: 2px;
 }
 
 .scrollbar::-webkit-scrollbar-thumb {
   @apply bg-secondary bg-opacity-25;
 }
 
+.scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+
 .scrollbar-x::-webkit-scrollbar {
-  width: 3px;
+  height: 5px;
 }
 
 .scrollbar-x::-webkit-scrollbar-thumb {
   @apply bg-secondary bg-opacity-25;
 }
-
-.slider {
-  @apply !bg-primary h-1.5;
-}
-
 /* .slider::-moz-range-thumb, */
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  @apply !bg-white h-3 w-3 rounded-full;
+/* .slider {
+  @apply !bg-primary h-1.5;
+} */
+
+input[type="range"] {
+  appearance: none;
+  @apply rounded-full h-1.5 cursor-pointer;
 }
+
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  overflow: visible;
+  @apply !bg-white w-3 h-3 rounded-full cursor-pointer;
+}
+
+/* input[type="range"]::-webkit-slider-runnable-track {
+  appearance: none;
+  border-radius: 10px;
+  @apply bg-primary w-full h-1.5 !rounded-full cursor-pointer;
+} */
+/* input[type="range"]:focus::-webkit-slider-runnable-track {
+  @apply bg-secondary;
+} */
+/* 
 
 /* Tabs */
 .tab-active {
