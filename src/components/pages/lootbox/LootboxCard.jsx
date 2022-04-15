@@ -21,7 +21,10 @@ const LootboxCard = ({
     >
       <img className="absolute right-3 top-0" src={cornerImage} alt="" />
       <img className="w-4/5" src={centerImage} />
-      <div className="absolute bottom-3 bg-yellow-500 w-4/5 h-8 rounded-full flex items-center justify-center text-md font-bold text-white shadow-inner shadow-red-500">
+      <div
+        style={{ boxShadow: "0 3px 0 0 #b1570a" }}
+        className="absolute bottom-3 lootbox-number-widget w-4/5 h-8 rounded-full flex items-center justify-center text-md font-bold text-white shadow-inner shadow-red-500"
+      >
         {numbers}
       </div>
       {hovered && (

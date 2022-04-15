@@ -18,7 +18,7 @@ import Checkbox from "../../Checkbox";
 
 const SettingsMenu = () => {
   const [resultAnimation, setResultAnimation] = useState(true);
-  const [gameSound, setGameSound] = useState(0);
+  const [gameSound, setGameSound] = useState(60);
   const [effectsSound, setEffectsSound] = useState(0);
 
   return (
@@ -63,7 +63,7 @@ const SettingsMenu = () => {
         </MenuItem>
         <MenuItem
           onClick={(e) => (e.keepOpen = true)}
-          className="hover:bg-transparent hover:cursor-default !mb-0"
+          className="hover:bg-transparent hover:cursor-default !mb-0 text-[11px]"
         >
           Game Sound
         </MenuItem>
@@ -82,7 +82,7 @@ const SettingsMenu = () => {
         </MenuItem>
         <MenuItem
           onClick={(e) => (e.keepOpen = true)}
-          className="hover:bg-transparent hover:cursor-default !mb-0"
+          className="hover:bg-transparent hover:cursor-default !mb-0 text-[11px]"
         >
           Effects Sound
         </MenuItem>
