@@ -5,11 +5,11 @@ import { Tabs, TabsButtons, TabButton } from "../components/tabs";
 const EventLayout = () => {
   return (
     <div className="bg-black h-full">
-      <Tabs className="h-full flex flex-col">
-        <TabsButtons className="flex items-center bg-dark-light px-4 mb-1 scrollbar-x">
+      <Tabs className="h-full">
+        <TabsButtons className="flex items-center bg-dark-light px-4 mb-1">
           <TabButton
             activeClass="tab-active"
-            className="px-3 py-4 mx-2 text-sm items-center flex flex-col"
+            className="px-3 py-4 mx-2 text-sm flex flex-col items-center"
             tab="today"
           >
             <span>Today</span>
@@ -17,23 +17,22 @@ const EventLayout = () => {
           </TabButton>
           <TabButton
             activeClass="tab-active"
-            className="px-3 py-4 mx-2 text-sm items-center flex flex-col"
-            tab="inplay"
+            className="px-3 py-4 mx-2 text-sm flex flex-col items-center"
+            tab="yesterday"
           >
-            <span>InPlay</span>
+            <span>Yesterday</span>
             <span>(22)</span>
           </TabButton>
           <TabButton
             activeClass="tab-active"
-            className="px-3 py-4 mx-2 text-sm items-center flex flex-col"
-            tab="early"
+            className="px-3 py-4 mx-2 text-sm flex flex-col items-center"
+            tab="daybefore"
           >
-            <span>Early</span>
-            <span>(25)</span>
+            <span>Day Before</span>
+            <span>(15)</span>
           </TabButton>
         </TabsButtons>
-
-        <div className="h-full grow flex flex-col">
+        <div className="h-full flex flex-col">
           <Outlet />
         </div>
       </Tabs>
