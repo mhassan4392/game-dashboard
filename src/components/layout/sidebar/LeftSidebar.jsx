@@ -1,14 +1,14 @@
-import allGames from "../../assets/images/games/all-games.svg";
-import basketball from "../../assets/images/games/basketball.png";
-import csgo from "../../assets/images/games/csgo.png";
-import dota2 from "../../assets/images/games/dota2.png";
-import fifa from "../../assets/images/games/fifa.png";
-import kog from "../../assets/images/games/kog.png";
-import lol from "../../assets/images/games/lol.png";
-import mllogo from "../../assets/images/games/ML_logo.png";
-import nba2k18 from "../../assets/images/games/nba2k18.png";
-import rainbowsix from "../../assets/images/games/rainbowsix.png";
-import startcraft2 from "../../assets/images/games/starcraft2.png";
+import allGames from "@/assets/images/games/all-games.svg";
+import basketball from "@/assets/images/games/basketball.png";
+import csgo from "@/assets/images/games/csgo.png";
+import dota2 from "@/assets/images/games/dota2.png";
+import fifa from "@/assets/images/games/fifa.png";
+import kog from "@/assets/images/games/kog.png";
+import lol from "@/assets/images/games/lol.png";
+import mllogo from "@/assets/images/games/ML_logo.png";
+import nba2k18 from "@/assets/images/games/nba2k18.png";
+import rainbowsix from "@/assets/images/games/rainbowsix.png";
+import startcraft2 from "@/assets/images/games/starcraft2.png";
 
 const LeftSidebar = () => {
   const games = [
@@ -36,7 +36,7 @@ const LeftSidebar = () => {
   ];
   return (
     <>
-      <div className="bg-dark-light overflow-auto h-[83vh] scrollbar left-sidebar">
+      <div className="bg-dark-light overflow-y-auto scrollbar h-full left-sidebar">
         {games.map((game) => (
           <div
             key={game.title}

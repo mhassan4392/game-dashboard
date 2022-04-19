@@ -2,7 +2,7 @@ import { useRef, useEffect, useState } from "react";
 import { FaBullhorn } from "react-icons/fa";
 import { format } from "date-fns";
 
-const Banner = () => {
+const BrowserBanner = () => {
   // reference for announcement container
   const ref = useRef(null);
 
@@ -47,8 +47,8 @@ const Banner = () => {
             be taken as one (1). We apologize for any inconvenience caused.
           </p>
         </div>
-        <div className="hidden lg:block">
-          <div className="min-w-max bg-dark-light h-full flex items-center justify-center p-5 text-sm font-semibold">
+        <div className="hidden lg:block bg-dark-light h-full">
+          <div className="min-w-max bg-dark-light h-full flex items-center justify-center px-5 text-sm font-semibold">
             <span className="mr-4">{date}</span>
             <span className="border-l border-l-secondary border-opacity-25 pl-4">
               {clock}
@@ -60,4 +60,4 @@ const Banner = () => {
   );
 };
 
-export default Banner;
+export default BrowserBanner;

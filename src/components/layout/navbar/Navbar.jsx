@@ -1,9 +1,9 @@
-import BrowserNavbar from "./browser";
-import MobileNavbar from "./mobile";
+import BrowserNavbar from "./BrowserNavbar";
+import MobileNavbar from "./MobileNavbar";
 
 const Navbar = () => {
   return (
-    <div className="h-[6vh] lg:h-[11vh] mb-2">
+    <div>
       <BrowserNavbar />
       <MobileNavbar />
     </div>

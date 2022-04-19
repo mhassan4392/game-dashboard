@@ -5,7 +5,7 @@ import { Tabs, TabsButtons, TabButton } from "../components/tabs";
 const EventLayout = () => {
   return (
     <div className="bg-black h-full">
-      <Tabs className="h-full">
+      <Tabs className="h-full flex flex-col">
         <TabsButtons className="flex items-center bg-dark-light px-4 mb-1 scrollbar-x">
           <TabButton
             activeClass="tab-active"
@@ -33,7 +33,7 @@ const EventLayout = () => {
           </TabButton>
         </TabsButtons>
 
-        <div className="h-full flex flex-col">
+        <div className="h-full grow flex flex-col">
           <Outlet />
         </div>
       </Tabs>

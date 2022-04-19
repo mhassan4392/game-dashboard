@@ -13,8 +13,8 @@ import {
   BsVolumeDownFill,
   BsVolumeMuteFill,
 } from "react-icons/bs";
-import Range from "../../Range";
-import Checkbox from "../../Checkbox";
+import Range from "../../Range/Range";
+import Checkbox from "../../Checkbox/Checkbox";
 
 const SettingsMenu = () => {
   const [resultAnimation, setResultAnimation] = useState(true);

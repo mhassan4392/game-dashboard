@@ -1,10 +1,17 @@
-import { TabButton, TabItem, Tabs, TabsButtons, TabsItems } from "../tabs";
+import {
+  TabButton,
+  TabItem,
+  Tabs,
+  TabsButtons,
+  TabsItems,
+} from "@/components/tabs";
 
-import EmptyBet from "../EmptyBet";
+import EmptyBet from "@/components/bet/EmptyBet";
 
 const RightSidebar = () => {
   return (
-    <div className="bg-dark overflow-y-auto overflow-x-hidden h-[88vh] lg:h-[83vh] scrollbar">
+    // relative and z-10 class for mobile banner
+    <div className="bg-dark overflow-y-auto overflow-x-hidden relative z-10 md:z-0 h-full scrollbar">
       <Tabs className="h-full flex flex-col">
         <TabsButtons className="flex items-center bg-dark-light mb-2">
           <TabButton

@@ -1,4 +1,4 @@
-import hand from "../assets/images/hand.png";
+import hand from "../../assets/images/hand.png";
 
 const EmptyBet = () => {
   return (

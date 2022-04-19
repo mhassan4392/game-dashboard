@@ -1,4 +1,4 @@
-import MobileModel from "./MobileModal";
+import MobileModel from "@/components/layout/modals/MobileModal";
 
 const RulesMenu = ({ open, onClose }) => {
   return (

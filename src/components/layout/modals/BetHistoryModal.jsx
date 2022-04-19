@@ -1,13 +1,16 @@
 import MobileModel from "./MobileModal";
-import { Tabs, TabsButtons, TabButton, TabsItems, TabItem } from "../../tabs";
-// import GameResultsStatus from "../../pages/gameresults/GameResultsStatus";
-// import { AiOutlineAppstore } from "react-icons/ai";
+import {
+  Tabs,
+  TabsButtons,
+  TabButton,
+  TabsItems,
+  TabItem,
+} from "@/components/tabs";
 
-import EmptyBet from "../../EmptyBet";
+import EmptyBet from "@/components/bet/EmptyBet";
 
 const BetHistoryMenu = ({ open, onClose }) => {
   return (
-    // <div>
     <Tabs className="h-full flex flex-col">
       <MobileModel
         label="Game Results"
@@ -80,7 +83,7 @@ const BetHistoryMenu = ({ open, onClose }) => {
         </TabsItems>
       </MobileModel>
     </Tabs>
-    // </div>
+    // </div>?
   );
 };
 

@@ -1,7 +1,7 @@
-import Modal from "../../modal/Modal";
+import Modal from "@/components/modal/Modal";
 import { FaTimes } from "react-icons/fa";
 
-const LanguageMenu = ({ open, onClose }) => {
+const CurrencyMenu = ({ open, onClose }) => {
   return (
     <Modal
       open={open}
@@ -11,7 +11,7 @@ const LanguageMenu = ({ open, onClose }) => {
       overlayOpacity={0.7}
     >
       <Modal.Header className="bg-dark-light py-3 relative">
-        <h2 className="text-center">Select Language</h2>
+        <h2 className="text-center">Select Odds</h2>
         <span
           className="absolute right-4 top-4 text-primary cursor-pointer"
           onClick={onClose}
@@ -22,16 +22,22 @@ const LanguageMenu = ({ open, onClose }) => {
       <Modal.Body className="px-0">
         <div>
           <div
-            className="text-sm text-center py-4 cursor-pointer"
-            onClick={onClose}
-          >
-            Chinese
-          </div>
-          <div
             className="text-sm text-center py-4 bg-secondary bg-opacity-10 text-primary cursor-pointer"
             onClick={onClose}
           >
-            Eng
+            Euro
+          </div>
+          <div
+            className="text-sm text-center py-4 cursor-pointer"
+            onClick={onClose}
+          >
+            Indo
+          </div>
+          <div
+            className="text-sm text-center py-4 cursor-pointer"
+            onClick={onClose}
+          >
+            Hongkong
           </div>
         </div>
       </Modal.Body>
@@ -39,4 +45,4 @@ const LanguageMenu = ({ open, onClose }) => {
   );
 };
 
-export default LanguageMenu;
+export default CurrencyMenu;

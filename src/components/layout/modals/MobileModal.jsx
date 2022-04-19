@@ -1,4 +1,4 @@
-import Modal from "../../modal/Modal";
+import Modal from "@/components/modal/Modal";
 
 import { AiOutlineLeft } from "react-icons/ai";
 
@@ -16,7 +16,7 @@ const MobileModel = ({
     <Modal
       open={open}
       fullScreen
-      className="rounded-none !bg-dark"
+      className="rounded-none !bg-dark relative overflow-hidden"
       overlay={false}
       {...rest}
     >

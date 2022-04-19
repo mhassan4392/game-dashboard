@@ -1,9 +1,9 @@
 import { FaWallet } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
-import "./index.scss";
-import Banner from "../../Banner";
-import SettingsMenu from "./SettingsMenu";
+import "./BrowserNavbar.scss";
+import Banner from "../../banner/BrowserBanner";
+import SettingsMenu from "./BrowserSettingsMenu";
 
 const BrowserNavbar = () => {
   //   links
@@ -16,7 +16,7 @@ const BrowserNavbar = () => {
   ];
 
   return (
-    <div className="hidden lg:block">
+    <div className="hidden lg:block max-w-[1400px] mx-auto">
       {/* Top Navbar */}
       <Banner />
 
