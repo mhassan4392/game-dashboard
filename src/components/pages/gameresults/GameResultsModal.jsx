@@ -9,6 +9,7 @@ const GameResultsModal = ({ open, onClose }) => {
         <MobileModel
           label="Game Results"
           onBackClick={onClose}
+          modalBodyClass="p-0"
           open={open}
           header={() => <GameResultsModalHeader />}
         >
