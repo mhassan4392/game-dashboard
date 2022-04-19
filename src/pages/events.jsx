@@ -36,7 +36,6 @@ const Events = () => {
               {[...Array(20)].map((ar, i) => (
                 <EventsWidget key={i} />
               ))}
-              <EventsWidget />
             </div>
           )}
         </TabItem>

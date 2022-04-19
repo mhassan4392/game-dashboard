@@ -31,7 +31,7 @@ const GameResultWidget = () => {
           <div className="text-[#d8d852]">Awaiting Result</div>
         </div>
         <div className="flex items-center justify-between">
-          <div className="border border-[#2d4264] shadow-lg shadow-dark-light flex items-center justify-between bg-dark-light basis-[45%] py-1 px-2 rounded">
+          <div className="border border-[#2d4264] shadow-lg shadow-[#142131] flex items-center justify-between bg-[#142131] basis-[45%] py-1 px-2 rounded">
             <div>
               <div className="truncate">Team One</div>
               <div>+5</div>
@@ -41,7 +41,7 @@ const GameResultWidget = () => {
             </div>
           </div>
 
-          <div className="border border-[#2d4264] shadow-lg shadow-dark-light flex items-center justify-between bg-dark-light basis-[45%] py-1 px-2 rounded">
+          <div className="border border-[#2d4264] shadow-lg shadow-[#142131] flex items-center justify-between bg-[#142131] basis-[45%] py-1 px-2 rounded">
             <div className="text-white text-sm">
               <GiTrophyCup className="text-black" />
             </div>

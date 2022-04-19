@@ -35,7 +35,11 @@ const Event = () => {
           </TabButton>
         </TabsButtons>
         <TabsItems className="overflow-auto scrollbar grow">
-          <TabItem defaultTab tab="match" className="bg-dark">
+          <TabItem
+            defaultTab
+            tab="match"
+            className="bg-[#2d799b] bg-opacity-25 md:bg-dark"
+          >
             {[...Array(20)].map((ar, i) => (
               <EventWidget />
             ))}

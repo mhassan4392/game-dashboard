@@ -34,7 +34,7 @@ const EventWidget = ({ ...rest }) => {
           <div className="text-[#25f09a]">Open</div>
         </div>
         <div className="flex items-center justify-between">
-          <div className="border border-[#2d4264] shadow-lg shadow-dark-light flex items-center justify-between bg-dark-light basis-[45%] py-1 px-2 rounded">
+          <div className="border border-[#2d4264] shadow-lg shadow-[#142131] flex items-center justify-between bg-[#142131] basis-[45%] py-1 px-2 rounded">
             <div>
               <div className="truncate">Team One</div>
               <div>+5</div>
@@ -42,7 +42,7 @@ const EventWidget = ({ ...rest }) => {
             <div className="text-white text-sm">1.28</div>
           </div>
 
-          <div className="border border-[#2d4264] shadow-lg shadow-dark-light flex items-center justify-between bg-dark-light basis-[45%] py-1 px-2 rounded">
+          <div className="border border-[#2d4264] shadow-lg shadow-[#142131] flex items-center justify-between bg-[#142131] basis-[45%] py-1 px-2 rounded">
             <div className="text-white text-sm">1.28</div>
             <div className="text-right">
               <div className="truncate">Team Two</div>
