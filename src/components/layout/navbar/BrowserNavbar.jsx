@@ -2,8 +2,8 @@ import { FaWallet } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
 import "./BrowserNavbar.scss";
-import Banner from "../../banner/BrowserBanner";
-import SettingsMenu from "./BrowserSettingsMenu";
+import Banner from "@/components/banner/BrowserBanner";
+import BrowserSettingsMenu from "./BrowserSettingsMenu";
 
 const BrowserNavbar = () => {
   //   links
@@ -38,7 +38,8 @@ const BrowserNavbar = () => {
             ))}
           </div>
 
-          <SettingsMenu />
+          {/* Settings Menu */}
+          <BrowserSettingsMenu />
         </div>
 
         <div className="w-44 flex border border-secondary mx-3 rounded">

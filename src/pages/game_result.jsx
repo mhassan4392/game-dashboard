@@ -1,11 +1,3 @@
-import { AiFillLock } from "react-icons/ai";
-import { BsFillPlayFill, BsX } from "react-icons/bs";
-import { GiTrophyCup } from "react-icons/gi";
-import eventgame from "@/assets/images/eventgame.png";
-import play from "@/assets/images/play.png";
-import fire from "@/assets/images/fire.gif";
-import teamonelogo from "@/assets/images/teamonelogo.png";
-import teamtwologo from "@/assets/images/teamtwologo.png";
 import {
   TabButton,
   TabItem,
@@ -13,9 +5,8 @@ import {
   TabsButtons,
   TabsItems,
 } from "@/components/tabs";
-
 import GameResultWidget from "@/components/pages/gameresults/GameResultWidget";
-import GameResultHeader from "../components/pages/gameresults/GameResultHeader";
+import GameResultHeader from "@/components/pages/gameresults/GameResultHeader";
 
 const GameResult = () => {
   return (

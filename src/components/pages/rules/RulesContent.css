@@ -1,0 +1,19 @@
+.rules-page h2 {
+  @apply text-lg font-bold;
+}
+
+.rules-page ol li {
+  /* list-style-type:decimal */
+  @apply list-decimal text-sm px-3 list-outside my-2;
+}
+
+.rules-page ol li::marker {
+  /* color: red; */
+  padding-left: 20px;
+  background-image: linear-gradient(to right theme("colors.primary"));
+  @apply bg-dark-light p-2 rounded-full;
+}
+
+.rules-page ol li ol li {
+  @apply list-[lower-alpha];
+}

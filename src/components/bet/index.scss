@@ -1,0 +1,46 @@
+.hand-image {
+  animation: hand;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+}
+
+.hand-button {
+  animation: handbutton;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate-reverse;
+}
+
+@keyframes handbutton {
+  0% {
+    background: none;
+  }
+  75% {
+    color: white;
+    background-image: linear-gradient(
+      to right,
+      theme("colors.primary"),
+      theme("colors.secondary")
+    );
+  }
+  100% {
+    color: white;
+    background-image: linear-gradient(
+      to right,
+      theme("colors.primary"),
+      theme("colors.secondary")
+    );
+  }
+}
+
+@keyframes hand {
+  0% {
+    transform: translateY(70px);
+  }
+  50% {
+    transform: translateY(0px);
+  }
+}

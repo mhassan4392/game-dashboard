@@ -1,5 +1,4 @@
 import MobileModel from "@/components/layout/modals/MobileModal";
-
 import { TabItem, Tabs, TabsItems } from "@/components/tabs";
 import EventWidget from "@/components/pages/events/EventWidget";
 import EventModalHeader from "@/components/pages/events/EventModalHeader";

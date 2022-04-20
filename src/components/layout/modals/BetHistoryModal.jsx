@@ -6,7 +6,6 @@ import {
   TabsItems,
   TabItem,
 } from "@/components/tabs";
-
 import EmptyBet from "@/components/bet/EmptyBet";
 
 const BetHistoryMenu = ({ open, onClose }) => {
@@ -83,7 +82,6 @@ const BetHistoryMenu = ({ open, onClose }) => {
         </TabsItems>
       </MobileModel>
     </Tabs>
-    // </div>?
   );
 };
 

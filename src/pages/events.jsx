@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
-import Spinner from "../components/Spinner/Spinner";
-import { TabsItems, TabItem } from "../components/tabs";
-import banner from "../assets/images/banner.jpg";
+import Spinner from "@/components/Spinner/Spinner";
+import { TabsItems, TabItem } from "@/components/tabs";
+import banner from "@/assets/images/banner.jpg";
+import EventsWidget from "@/components/pages/events/EventsWidget";
+import MobileBanner from "@/components/banner/MobileBanner";
 
-import EventsWidget from "../components/pages/events/EventsWidget";
-import MobileBanner from "../components/banner/MobileBanner";
 const Events = () => {
+  // loading
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     const timeout = setTimeout(() => {
       setLoading(false);

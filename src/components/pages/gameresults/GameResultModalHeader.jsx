@@ -18,7 +18,6 @@ const GameResultModalHeader = () => {
           </p>
         </div>
         <div className="flex text-sm items-center justify-end space-x-2 py-3 basis-1/4">
-          {/* <div>20:48</div> */}
           <span className="bg-red-500 px-1 py-0.5 text-white rounded-sm text-[10px]">
             INPLAY
           </span>

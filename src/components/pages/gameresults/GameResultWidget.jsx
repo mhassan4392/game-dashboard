@@ -1,4 +1,3 @@
-// icons
 import { GiTrophyCup } from "react-icons/gi";
 
 const GameResultWidget = () => {

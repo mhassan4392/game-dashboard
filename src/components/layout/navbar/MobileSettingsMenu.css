@@ -1,0 +1,13 @@
+.mobile-menu .szh-menu-container ul {
+  margin: auto !important;
+  width: 98vw !important;
+  @apply bg-dark-dark !border border-primary rounded-sm text-[#b8d0ed];
+}
+
+.mobile-menu .szh-menu__item {
+  @apply my-2;
+}
+
+.mobile-menu .szh-menu__item--hover {
+  background: none;
+}

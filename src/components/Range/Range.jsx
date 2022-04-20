@@ -1,10 +1,11 @@
+import "./index.css";
+
 const Range = ({
   value = 0,
   onChange = () => {},
   min = 0,
   max = 100,
   className = "",
-  ...rest
 }) => {
   return (
     <input
@@ -17,7 +18,7 @@ const Range = ({
       max={max}
       value={value}
       onChange={(e) => onChange(e.target.value)}
-      className={`slider ${className}`.trim()}
+      className={`range-slider ${className}`.trim()}
       id="mySlider"
     />
   );

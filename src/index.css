@@ -2,72 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* banner content */
-
-.banner-content {
-  overflow: hidden;
-  animation: banner-content 40s linear infinite;
-}
-@keyframes banner-content {
-  100% {
-    transform: translateX(-100%);
-  }
-}
-.banner-content:hover {
-  animation-play-state: paused;
-}
-
-/* navbar link */
-.navbar-link:last-child span {
-  border: 0;
-}
-
-/* settings menu */
-.browser-menu .szh-menu-button {
-  background: none !important;
-  border: none !important;
-}
-
-.browser-menu .szh-menu-container ul {
-  left: -127px !important;
-  right: 0;
-  width: 170px !important;
-  border-radius: 2px !important;
-  border: solid 1px #2d4264 !important;
-
-  @apply bg-dark-dark !border border-primary rounded-sm text-[#b8d0ed];
-}
-
-.browser-menu .szh-menu__item {
-  @apply my-2 px-3 text-xs;
-}
-
-.browser-menu .szh-menu__item--hover {
-  background: theme("colors.dark.light");
-}
-
-.browser-menu .szh-menu__submenu ul {
-  left: 167.5px !important;
-  top: 0px !important;
-}
-
-.mobile-menu .szh-menu-container ul {
-  margin: auto !important;
-  width: 98vw !important;
-  @apply bg-dark-dark !border border-primary rounded-sm text-[#b8d0ed];
-}
-
-.mobile-menu .szh-menu__item {
-  @apply my-2;
-}
-
-.mobile-menu .szh-menu__item--hover {
-  background: none;
-  /* cursor: alias; */
-}
-
 /* scrollbar */
-
 .scrollbar {
   @apply overflow-y-auto overflow-x-hidden;
 }
@@ -95,31 +30,6 @@
 .scrollbar-x::-webkit-scrollbar-thumb {
   @apply bg-secondary bg-opacity-25;
 }
-/* .slider::-moz-range-thumb, */
-/* .slider {
-  @apply !bg-primary h-1.5;
-} */
-
-input[type="range"] {
-  appearance: none;
-  @apply rounded-full h-1.5 cursor-pointer;
-}
-
-input[type="range"]::-webkit-slider-thumb {
-  appearance: none;
-  overflow: visible;
-  @apply !bg-white w-3 h-3 rounded-full cursor-pointer;
-}
-
-/* input[type="range"]::-webkit-slider-runnable-track {
-  appearance: none;
-  border-radius: 10px;
-  @apply bg-primary w-full h-1.5 !rounded-full cursor-pointer;
-} */
-/* input[type="range"]:focus::-webkit-slider-runnable-track {
-  @apply bg-secondary;
-} */
-/* 
 
 /* Tabs */
 .tab-active {
@@ -140,80 +50,4 @@ input[type="range"]::-webkit-slider-thumb {
     theme("colors.secondary"),
     theme("colors.primary")
   );
-}
-
-/* hand animations */
-
-.hand-image {
-  animation: hand;
-  animation-duration: 2s;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-  animation-direction: alternate-reverse;
-}
-
-.hand-button {
-  animation: handbutton;
-  animation-duration: 2s;
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
-  animation-direction: alternate-reverse;
-}
-
-@keyframes handbutton {
-  0% {
-    background: none;
-  }
-  75% {
-    color: white;
-    background-image: linear-gradient(
-      to right,
-      theme("colors.primary"),
-      theme("colors.secondary")
-    );
-  }
-  100% {
-    color: white;
-    background-image: linear-gradient(
-      to right,
-      theme("colors.primary"),
-      theme("colors.secondary")
-    );
-  }
-}
-
-@keyframes hand {
-  0% {
-    transform: translateY(70px);
-  }
-  50% {
-    transform: translateY(0px);
-  }
-}
-
-/* rules page */
-.rules-page h2 {
-  @apply text-lg font-bold;
-}
-
-.rules-page ol li {
-  /* list-style-type:decimal */
-  @apply list-decimal text-sm px-3 list-outside my-2;
-}
-
-.rules-page ol li::marker {
-  /* color: red; */
-  padding-left: 20px;
-  background-image: linear-gradient(to right theme("colors.primary"));
-  @apply bg-dark-light p-2 rounded-full;
-}
-
-.rules-page ol li ol li {
-  @apply list-[lower-alpha];
-}
-
-/* lootbox */
-
-.lootbox-number-widget {
-  background-image: linear-gradient(90deg, #f4bb00, #ffe765 50%, #ff9d00);
 }

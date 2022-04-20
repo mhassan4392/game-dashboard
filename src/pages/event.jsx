@@ -1,4 +1,3 @@
-// tabs component
 import {
   TabButton,
   TabItem,
@@ -6,8 +5,6 @@ import {
   TabsButtons,
   TabsItems,
 } from "@/components/tabs";
-
-// single event widget
 import EventWidget from "@/components/pages/events/EventWidget";
 import EventHeader from "@/components/pages/events/EventHeader";
 

@@ -1,12 +1,11 @@
 import MobileModel from "@/components/layout/modals/MobileModal";
-
 import { TabItem, Tabs, TabsItems } from "@/components/tabs";
 import GameResultWidget from "./GameResultWidget";
 import GameResultModalHeader from "./GameResultModalHeader";
 
 const GameResultModal = ({ open, onClose }) => {
   return (
-    <div className="">
+    <div>
       <Tabs>
         <MobileModel
           onBackClick={onClose}

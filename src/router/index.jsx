@@ -1,18 +1,18 @@
 import { Route, Routes, BrowserRouter, Navigate } from "react-router-dom";
 
 // layouts
-import Layout from "../layouts/layout";
-import EventLayout from "../layouts/event";
-import GameResultLayout from "../layouts/gameresult";
+import Layout from "@/layouts/layout";
+import EventLayout from "@/layouts/event";
+import GameResultLayout from "@/layouts/gameresult";
 
 // pages
-import Events from "../pages/events";
-import Event from "../pages/event";
-import GameResults from "../pages/game_results";
-import GameResult from "../pages/game_result";
-import Rules from "../pages/rules";
-import Announcement from "../pages/announcement";
-import Lootbox from "../pages/lootbox";
+import Events from "@/pages/events";
+import Event from "@/pages/event";
+import GameResults from "@/pages/game_results";
+import GameResult from "@/pages/game_result";
+import Rules from "@/pages/rules";
+import Announcement from "@/pages/announcement";
+import Lootbox from "@/pages/lootbox";
 
 const Router = () => {
   return (

@@ -5,7 +5,6 @@ import {
   SubMenu,
   MenuDivider,
 } from "@szhsin/react-menu";
-
 import { useState } from "react";
 import { FaCog } from "react-icons/fa";
 import {
@@ -13,8 +12,9 @@ import {
   BsVolumeDownFill,
   BsVolumeMuteFill,
 } from "react-icons/bs";
-import Range from "../../Range/Range";
-import Checkbox from "../../Checkbox/Checkbox";
+import Range from "@/components/Range/Range";
+import Checkbox from "@/components/Checkbox/Checkbox";
+import "./BrowserSettingsMenu.css";
 
 const SettingsMenu = () => {
   const [resultAnimation, setResultAnimation] = useState(true);

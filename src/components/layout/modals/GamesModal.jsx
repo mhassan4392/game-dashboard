@@ -12,6 +12,7 @@ import startcraft2 from "@/assets/images/games/starcraft2.png";
 import MobileModel from "./MobileModal";
 
 const GamesMenu = ({ open = false, onClose }) => {
+  // links
   const games = [
     { title: "All Games", total_games: 234, logo: allGames, selected: true },
     { title: "CS:GO", total_games: 24, logo: csgo },
@@ -35,6 +36,7 @@ const GamesMenu = ({ open = false, onClose }) => {
     { title: "Weight lifting", total_games: 36, logo: startcraft2 },
     { title: "Polo", total_games: 25, logo: kog },
   ];
+
   return (
     <div>
       <MobileModel

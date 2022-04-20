@@ -1,8 +1,12 @@
 import { useRef } from "react";
+
 const Checkbox = ({ value = false, onChange = () => {} }) => {
+  // referenct for hidden input
   const input = useRef(null);
+
   return (
     <>
+      {/* hidden input */}
       <input
         type="checkbox"
         className="hidden"
@@ -10,6 +14,8 @@ const Checkbox = ({ value = false, onChange = () => {} }) => {
         onChange={(e) => onChange(!value)}
         ref={input}
       />
+
+      {/* designed input */}
       <div
         onClick={() => input.current?.click()}
         className={`w-7 h-4 rounded-full relative flex items-center transition-all duration-500 cursor-pointer ${

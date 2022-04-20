@@ -1,4 +1,5 @@
-import hand from "../../assets/images/hand.png";
+import hand from "@/assets/images/hand.png";
+import "./index.scss";
 
 const EmptyBet = () => {
   return (

@@ -1,6 +1,4 @@
-// icons
 import { BsFillPlayFill, BsX } from "react-icons/bs";
-// assets
 import eventgame from "@/assets/images/eventgame.png";
 import fire from "@/assets/images/fire.gif";
 import teamonelogo from "@/assets/images/teamonelogo.png";

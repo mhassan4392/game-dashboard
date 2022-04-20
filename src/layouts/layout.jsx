@@ -3,14 +3,15 @@ import LeftSidebar from "@/components/layout/sidebar/LeftSidebar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer";
 import RightSidebar from "@/components/layout/sidebar/RightSidebar";
-
 import { useLocation } from "react-router";
 
 const Layout = () => {
   const location = useLocation();
+
   const showSidebars =
     location.pathname.includes("events") ||
     location.pathname.includes("game-results");
+
   return (
     <div className="h-screen space-y-2 flex flex-col justify-between">
       {/* Navbar */}

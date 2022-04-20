@@ -1,6 +1,8 @@
+import "./RulesContent.css";
+
 const RulesContent = () => {
   return (
-    <>
+    <div className="rules-page">
       <h2 className="my-5">Esports General Rules</h2>
       <ol className="px-5">
         <li>
@@ -197,7 +199,7 @@ const RulesContent = () => {
           cancelled.
         </li>
       </ol>
-    </>
+    </div>
   );
 };
 

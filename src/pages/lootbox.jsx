@@ -1,7 +1,7 @@
-import lootboxImage from "../assets/images/lootboxImage.png";
-import lootboxCenterImage from "../assets/images/lootboxCenterImage.png";
-import lootboxCornerImage from "../assets/images/lootboxCornerImage.svg";
-import LootboxCard from "../components/pages/lootbox/LootboxCard";
+import lootboxImage from "@/assets/images/lootboxImage.png";
+import lootboxCenterImage from "@/assets/images/lootboxCenterImage.png";
+import lootboxCornerImage from "@/assets/images/lootboxCornerImage.svg";
+import LootboxCard from "@/components/pages/lootbox/LootboxCard";
 
 const Lootbox = () => {
   return (

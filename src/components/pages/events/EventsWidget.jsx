@@ -1,16 +1,17 @@
 import { useState } from "react";
 import { AiOutlinePlaySquare } from "react-icons/ai";
-import eventgame from "../../../assets/images/eventgame.png";
-import fire from "../../../assets/images/fire.gif";
-import teamonelogo from "../../../assets/images/teamonelogo.png";
-import teamtwologo from "../../../assets/images/teamtwologo.png";
+import eventgame from "@/assets/images/eventgame.png";
+import fire from "@/assets/images/fire.gif";
+import teamonelogo from "@/assets/images/teamonelogo.png";
+import teamtwologo from "@/assets/images/teamtwologo.png";
 import EventModal from "./EventModal";
-
 import { useNavigate } from "react-router-dom";
 
 const EventsWidget = ({ ...rest }) => {
   const [eventModal, setEventModal] = useState(false);
+
   const navigate = useNavigate();
+
   const handleClick = () => {
     const lgWidth = 1024;
     const bodyWidth = document.body.clientWidth;

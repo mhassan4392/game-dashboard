@@ -1,15 +1,17 @@
 import { useRef } from "react";
-
 import { FaBullhorn } from "react-icons/fa";
+import "./index.scss";
 
 const MobileBanner = () => {
-  // reference for announcement container
+  // reference for banner container
   const ref = useRef(null);
   return (
     <div className="flex justify-between items-center h-8 lg:h-10 w-full">
+      {/* Horn Icon */}
       <div className="bg-dark-light px-4 h-full flex items-center justify-center z-[1] overflow-hidden">
         <FaBullhorn className="text-primary" />
       </div>
+      {/* Banner Text */}
       <div className="grow h-full relative flex items-center" ref={ref}>
         <p
           className="bg-transparent text-xs lg:sm banner-content min-w-max text-right absolute -z-0"

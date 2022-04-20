@@ -1,8 +1,8 @@
-import RulesContent from "../components/pages/rules/RulesContent";
+import RulesContent from "@/components/pages/rules/RulesContent";
 
 const Rules = () => {
   return (
-    <div className="p-4 scrollbar overflow-auto h-full rules-page">
+    <div className="p-4 scrollbar overflow-auto h-full">
       <RulesContent />
     </div>
   );

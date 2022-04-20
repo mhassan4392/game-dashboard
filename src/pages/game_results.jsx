@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
-
-import GameResultsWidget from "../components/pages/gameresults/GameResultsWidget";
-import Spinner from "../components/Spinner/Spinner";
-import { TabsItems, TabItem } from "../components/tabs";
+import GameResultsWidget from "@/components/pages/gameresults/GameResultsWidget";
+import Spinner from "@/components/Spinner/Spinner";
+import { TabsItems, TabItem } from "@/components/tabs";
 const GameResults = () => {
+  // loading
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     const timeout = setTimeout(() => {
       setLoading(false);
@@ -13,6 +12,7 @@ const GameResults = () => {
 
     () => clearTimeout(timeout);
   }, []);
+
   return (
     <TabsItems className="flex-grow flex flex-col overflow-auto scrollbar">
       <TabItem defaultTab tab="today" className="h-full">

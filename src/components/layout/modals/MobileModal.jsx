@@ -1,5 +1,4 @@
 import Modal from "@/components/modal/Modal";
-
 import { AiOutlineLeft } from "react-icons/ai";
 
 const MobileModel = ({

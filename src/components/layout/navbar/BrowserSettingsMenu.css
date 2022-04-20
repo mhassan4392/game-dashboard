@@ -1,0 +1,27 @@
+.browser-menu .szh-menu-button {
+  background: none !important;
+  border: none !important;
+}
+
+.browser-menu .szh-menu-container ul {
+  left: -127px !important;
+  right: 0;
+  width: 170px !important;
+  border-radius: 2px !important;
+  border: solid 1px #2d4264 !important;
+
+  @apply bg-dark-dark !border border-primary rounded-sm text-[#b8d0ed];
+}
+
+.browser-menu .szh-menu__item {
+  @apply my-2 px-3 text-xs;
+}
+
+.browser-menu .szh-menu__item--hover {
+  background: theme("colors.dark.light");
+}
+
+.browser-menu .szh-menu__submenu ul {
+  left: 167.5px !important;
+  top: 0px !important;
+}

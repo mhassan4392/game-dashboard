@@ -2,6 +2,7 @@ import MobileModel from "@/components/layout/modals/MobileModal";
 import { Tabs, TabsItems, TabItem } from "@/components/tabs";
 import GameResultsWidget from "./GameResultsWidget";
 import GameResultsModalHeader from "./GameResultsModalHeader";
+
 const GameResultsModal = ({ open, onClose }) => {
   return (
     <div>

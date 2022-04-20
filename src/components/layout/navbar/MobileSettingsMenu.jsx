@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import {
   AiOutlineUser,
   AiOutlineRight,
@@ -8,24 +7,18 @@ import {
   AiOutlineOrderedList,
   AiOutlineFlag,
 } from "react-icons/ai";
-
 import { BiMenuAltLeft } from "react-icons/bi";
-
 import { GiTrophyCup } from "react-icons/gi";
-
 import { MdLanguage } from "react-icons/md";
-
 import { Link } from "react-router-dom";
-
 import { Menu, MenuItem, MenuButton, MenuDivider } from "@szhsin/react-menu";
-
 import RulesModal from "@/components/pages/rules/RulesModal";
 import GameResultsModal from "@/components/pages/gameresults/GameResultsModal";
-import CurrencyModal from "../modals/CurrencyModal";
-import LanguageModal from "../modals/LanguageModal";
-import GamesModal from "../modals/GamesModal";
-
-import BetHistoryModal from "../modals/BetHistoryModal";
+import CurrencyModal from "@/components/layout/modals/CurrencyModal";
+import LanguageModal from "@/components/layout/modals/LanguageModal";
+import GamesModal from "@/components/layout/modals/GamesModal";
+import BetHistoryModal from "@/components/layout/modals/BetHistoryModal";
+import "./MobileSettingsMenu.css";
 
 const MobileSettingsMenu = () => {
   const [gamesModal, setGamesModal] = useState(false);
@@ -130,6 +123,7 @@ const MobileSettingsMenu = () => {
         </Menu>
       </div>
 
+      {/* Modals */}
       <GamesModal open={gamesModal} onClose={() => setGamesModal(false)} />
       <RulesModal open={rulesModal} onClose={() => setRulesModal(false)} />
       <CurrencyModal

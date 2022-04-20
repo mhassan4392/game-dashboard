@@ -10,6 +10,7 @@ import nba2k18 from "@/assets/images/games/nba2k18.png";
 import rainbowsix from "@/assets/images/games/rainbowsix.png";
 import startcraft2 from "@/assets/images/games/starcraft2.png";
 
+// links
 const LeftSidebar = () => {
   const games = [
     { title: "All Games", total_games: 234, logo: allGames, selected: true },

@@ -1,9 +1,7 @@
 import { useState } from "react";
-// tabs component
 import { TabsButtons, TabButton } from "@/components/tabs";
-// icons
 import { AiOutlineAppstore } from "react-icons/ai";
-import GamesMenu from "../../layout/modals/GamesModal";
+import GamesMenu from "@/components/layout/modals/GamesModal";
 
 const GameResultsModalHeader = () => {
   const [gamesModal, setGamesModal] = useState(false);

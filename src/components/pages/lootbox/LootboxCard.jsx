@@ -1,12 +1,7 @@
 import { useState } from "react";
+import "./LootboxCard.css";
 
-const LootboxCard = ({
-  image,
-  cornerImage,
-  centerImage,
-  numbers,
-  className,
-}) => {
+const LootboxCard = ({ image, cornerImage, centerImage, numbers }) => {
   const [hovered, setHovered] = useState(false);
   return (
     <div

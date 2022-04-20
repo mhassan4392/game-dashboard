@@ -1,20 +1,17 @@
 import { useState } from "react";
-// assets
 import eventgame from "@/assets/images/eventgame.png";
 import fire from "@/assets/images/fire.gif";
 import teamonelogo from "@/assets/images/teamonelogo.png";
 import teamtwologo from "@/assets/images/teamtwologo.png";
 import { AiOutlinePlaySquare } from "react-icons/ai";
-
-// navigation
 import { useNavigate } from "react-router-dom";
-
-// Modal for small screens
 import GameResultModal from "./GameResultModal";
 
 const GameResultsStatus = () => {
   const [gameResultModal, setGameResultModal] = useState(false);
+
   const navigate = useNavigate();
+
   const handleClick = () => {
     const lgWidth = 1024;
     const bodyWidth = document.body.clientWidth;

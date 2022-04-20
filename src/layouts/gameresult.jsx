@@ -1,6 +1,5 @@
 import { Outlet } from "react-router";
-
-import { Tabs, TabsButtons, TabButton } from "../components/tabs";
+import { Tabs, TabsButtons, TabButton } from "@/components/tabs";
 
 const GameResultLayout = () => {
   return (

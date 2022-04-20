@@ -5,7 +5,6 @@ import {
   TabsButtons,
   TabsItems,
 } from "@/components/tabs";
-
 import EmptyBet from "@/components/bet/EmptyBet";
 
 const RightSidebar = () => {

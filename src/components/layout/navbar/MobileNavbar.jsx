@@ -3,10 +3,8 @@ import { AiOutlineAppstore } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
 import EventsIcon from "./EventsIcon";
 import LootboxIcon from "./LootboxIcon";
-
 import MobileSettingsMenu from "./MobileSettingsMenu";
-
-import GamesModal from "../modals/GamesModal";
+import GamesModal from "@/components/layout/modals/GamesModal";
 
 const MobileNavbar = () => {
   const [gamesModal, setGamesModal] = useState(false);
