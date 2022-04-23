@@ -9,7 +9,6 @@ const GameResults = () => {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     setLoading(true);
-    console.log("hello");
     const timeout = setTimeout(() => {
       setLoading(false);
     }, 1000);
