@@ -3,13 +3,17 @@ import eventgame from "@/assets/images/eventgame.png";
 import fire from "@/assets/images/fire.gif";
 import teamonelogo from "@/assets/images/teamonelogo.png";
 import teamtwologo from "@/assets/images/teamtwologo.png";
+import { Link } from "react-router-dom";
 
 const EventHeader = () => {
   return (
     <div className="bg-secondary bg-opacity-25 flex flex-col md:flex-row justify-between items-start px-4 w-full relative">
-      <div className="absolute right-0 top-0 p-2 bg-dark-light hover:bg-gradient-to-r from-primary to-secondary text-primary hover:text-white cursor-pointer transition-all duration-200">
+      <Link
+        to="/events"
+        className="absolute right-0 top-0 p-2 bg-dark-light hover:bg-gradient-to-r from-primary to-secondary text-primary hover:text-white cursor-pointer transition-all duration-200"
+      >
         <BsX className="text-xl" />
-      </div>
+      </Link>
 
       <div className="flex text-sm items-center space-x-2 py-3 basis-1/4">
         <div>

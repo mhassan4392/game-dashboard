@@ -5,7 +5,7 @@ import teamonelogo from "@/assets/images/teamonelogo.png";
 import teamtwologo from "@/assets/images/teamtwologo.png";
 import { TabButton, TabsButtons } from "@/components/tabs";
 
-const EventModalHeader = () => {
+const EventModalHeader = ({ onXClick }) => {
   return (
     <>
       <div className="flex items-center justify-between px-4">
@@ -31,7 +31,10 @@ const EventModalHeader = () => {
       </div>
 
       <div className="bg-secondary bg-opacity-25 flex flex-col md:flex-row justify-between items-start px-2 md:px-8 py-4 w-full relative">
-        <div className="absolute right-0 top-0 p-2 bg-dark-light hover:bg-gradient-to-r from-primary to-secondary text-primary hover:text-white cursor-pointer transition-all duration-200">
+        <div
+          className="absolute right-0 top-0 p-2 bg-dark-light hover:bg-gradient-to-r from-primary to-secondary text-primary hover:text-white cursor-pointer transition-all duration-200"
+          onClick={onXClick}
+        >
           <BsX className="text-xl" />
         </div>
 

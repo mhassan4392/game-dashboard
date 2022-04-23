@@ -12,7 +12,7 @@ const EventModal = ({ open, onClose }) => {
           open={open}
           modalBodyClass="overflow-hidden p-0 bg-[#2d799b] bg-opacity-25 md:bg-dark"
           modalHeaderClass="p-0"
-          header={() => <EventModalHeader />}
+          header={() => <EventModalHeader onXClick={onClose} />}
         >
           <TabsItems className="overflow-auto scrollbar flex-grow">
             <TabItem defaultTab tab="match" className="py-2">
