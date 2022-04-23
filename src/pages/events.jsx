@@ -20,7 +20,7 @@ const Events = () => {
     () => clearTimeout(timeout);
   }, [tab]);
 
-  const items = [{ tab: "today" }, { tab: "early" }, { tab: "inplay" }];
+  const items = [{ tab: "today" }, { tab: "yesterday" }, { tab: "daybefore" }];
 
   return (
     <>
@@ -31,21 +31,23 @@ const Events = () => {
         <img src={banner} className="h-16 w-full" alt="" />
       </div>
       <TabsItems className="flex-grow h-full scrollbar overflow-y-auto overflow-x-hidden">
+        {loading && (
+          <div className="h-full flex items-center justify-center">
+            <Spinner />
+          </div>
+        )}
         {items.map((item) => (
-          <TabItem tab={item.tab} className="h-full">
-            {loading && (
-              <div className="h-full flex items-center justify-center">
-                <Spinner />
-              </div>
-            )}
+          <>
             {!loading && (
-              <div>
-                {[...Array(20)].map((ar, i) => (
-                  <EventsWidget key={i} />
-                ))}
-              </div>
+              <TabItem tab={item.tab} className="h-full">
+                <div>
+                  {[...Array(20)].map((ar, i) => (
+                    <EventsWidget key={i} />
+                  ))}
+                </div>
+              </TabItem>
             )}
-          </TabItem>
+          </>
         ))}
       </TabsItems>
     </>
