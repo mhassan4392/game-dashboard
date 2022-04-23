@@ -15,7 +15,7 @@ const GameResults = () => {
 
   return (
     <TabsItems className="flex-grow flex flex-col overflow-auto scrollbar">
-      <TabItem defaultTab tab="today" className="h-full">
+      <TabItem tab="today" className="h-full">
         {!loading && (
           <div>
             {[...Array(20)].map((ar, i) => (

@@ -1,9 +1,15 @@
+import TabsContainer from "./TabsContainer";
 import { TabsProvider, TabsContext } from "./TabsContext";
 
-const Tabs = ({ children, className, tab, ...rest }) => {
+const Tabs = ({ ...rest }) => {
   return (
+    // <TabsProvider>
+    //   <div className={`${className ? className : ""}`}>
+    //     {typeof children == "function" ? children() : children}
+    //   </div>
+    // </TabsProvider>
     <TabsProvider>
-      <div className={`${className ? className : ""}`}>{children}</div>
+      <TabsContainer {...rest}></TabsContainer>
     </TabsProvider>
   );
 };

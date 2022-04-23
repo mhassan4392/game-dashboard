@@ -4,17 +4,23 @@ import { TabsItems, TabItem } from "@/components/tabs";
 import banner from "@/assets/images/banner.jpg";
 import EventsWidget from "@/components/pages/events/EventsWidget";
 import MobileBanner from "@/components/banner/MobileBanner";
+import { useOutletContext } from "react-router-dom";
 
 const Events = () => {
+  const { tab } = useOutletContext();
   // loading
   const [loading, setLoading] = useState(true);
   useEffect(() => {
+    setLoading(true);
+    console.log("hello");
     const timeout = setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 1000);
 
     () => clearTimeout(timeout);
-  }, []);
+  }, [tab]);
+
+  const items = [{ tab: "today" }, { tab: "early" }, { tab: "inplay" }];
 
   return (
     <>
@@ -25,22 +31,22 @@ const Events = () => {
         <img src={banner} className="h-16 w-full" alt="" />
       </div>
       <TabsItems className="flex-grow h-full scrollbar overflow-y-auto overflow-x-hidden">
-        <TabItem defaultTab tab="today" className="h-full">
-          {loading && (
-            <div className="h-full flex items-center justify-center">
-              <Spinner />
-            </div>
-          )}
-          {!loading && (
-            <div>
-              {[...Array(20)].map((ar, i) => (
-                <EventsWidget key={i} />
-              ))}
-            </div>
-          )}
-        </TabItem>
-        <TabItem tab="early">Early</TabItem>
-        <TabItem tab="inplay">InPlay</TabItem>
+        {items.map((item) => (
+          <TabItem tab={item.tab} className="h-full">
+            {loading && (
+              <div className="h-full flex items-center justify-center">
+                <Spinner />
+              </div>
+            )}
+            {!loading && (
+              <div>
+                {[...Array(20)].map((ar, i) => (
+                  <EventsWidget key={i} />
+                ))}
+              </div>
+            )}
+          </TabItem>
+        ))}
       </TabsItems>
     </>
   );
