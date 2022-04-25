@@ -3,6 +3,8 @@ import { FaBullhorn } from "react-icons/fa";
 import { format } from "date-fns";
 import "./index.scss";
 
+import Axios from "@/utils/axios";
+
 const BrowserBanner = () => {
   // reference for banner container
   const ref = useRef(null);
@@ -18,6 +20,12 @@ const BrowserBanner = () => {
       setClock(format(new Date(), "HH:mm:ss"));
     }, 1000);
     return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    Axios({ url: "/api/ox/getmsg", method: "POST" }).then((res) =>
+      console.log(res)
+    );
   }, []);
   return (
     <>
