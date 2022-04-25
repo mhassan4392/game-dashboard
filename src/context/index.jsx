@@ -1,6 +1,6 @@
-import { UseSiteConfigProvider } from "./useSiteConfig";
+import { SettingsProvider } from "./settings";
 const ContextStore = ({ children }) => {
-  return <UseSiteConfigProvider>{children}</UseSiteConfigProvider>;
+  return <SettingsProvider>{children}</SettingsProvider>;
 };
 
 export default ContextStore;

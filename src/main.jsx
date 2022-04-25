@@ -5,9 +5,17 @@ import App from "./App";
 
 import "@szhsin/react-menu/dist/index.css";
 
+import ContextStore from "./context";
+
+import { BrowserRouter, HashRouter } from "react-router-dom";
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <HashRouter>
+      <ContextStore>
+        <App />
+      </ContextStore>
+    </HashRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );

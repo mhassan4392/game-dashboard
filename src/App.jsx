@@ -1,17 +1,23 @@
-import { useEffect } from "react";
+import { useContext } from "react";
+
+import { Helmet } from "react-helmet";
 
 import Router from "./router";
-import Axios from "@/utils/axios";
-import ContextStore from "./context";
+
+import { SettingsContext } from "./context/settings";
 
 const App = () => {
-  useEffect(() => {
-    Axios({ url: "/api/ox/getconfig" }).then((res) => console.log(res));
-  }, []);
+  const { config } = useContext(SettingsContext);
+
   return (
-    <ContextStore>
+    <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{config.SiteName}</title>
+        <link rel="icon" href={config.Ico} />
+      </Helmet>
       <Router />
-    </ContextStore>
+    </>
   );
 };
 
