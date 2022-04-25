@@ -19,14 +19,6 @@ const BrowserBanner = () => {
     }, 1000);
     return () => clearInterval(interval);
   }, []);
-
-  useEffect(() => {
-    const response = fetch("/api/ox/getmsg", {
-      method: "POST",
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
-  }, []);
   return (
     <>
       <div className="flex justify-between items-center h-8 lg:h-10 w-full">
