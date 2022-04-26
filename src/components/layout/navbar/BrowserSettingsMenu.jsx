@@ -48,7 +48,7 @@ const SettingsMenu = () => {
         <MenuDivider className="!bg-primary !bg-opacity-20 !mx-2" />
         <MenuItem
           onClick={(e) => (e.keepOpen = true)}
-          className="hover:bg-transparent hover:cursor-default"
+          className="hover:!bg-transparent hover:cursor-default"
         >
           <div className="flex items-center w-full text-[11px] justify-between">
             <span>
@@ -63,13 +63,13 @@ const SettingsMenu = () => {
         </MenuItem>
         <MenuItem
           onClick={(e) => (e.keepOpen = true)}
-          className="hover:bg-transparent hover:cursor-default !mb-0 text-[11px]"
+          className="hover:!bg-transparent hover:cursor-default !mb-0 text-[11px]"
         >
           Game Sound
         </MenuItem>
         <MenuItem
           onClick={(e) => (e.keepOpen = true)}
-          className="flex items-center justify-between hover:bg-transparent hover:cursor-default !mt-0"
+          className="flex items-center justify-between hover:!bg-transparent hover:cursor-default !mt-0"
         >
           <div className="w-10 h-4 flex items-center">
             {gameSound > 50 && <BsFillVolumeUpFill className="!text-xl" />}
@@ -82,13 +82,13 @@ const SettingsMenu = () => {
         </MenuItem>
         <MenuItem
           onClick={(e) => (e.keepOpen = true)}
-          className="hover:bg-transparent hover:cursor-default !mb-0 text-[11px]"
+          className="hover:!bg-transparent hover:cursor-default !mb-0 text-[11px]"
         >
           Effects Sound
         </MenuItem>
         <MenuItem
           onClick={(e) => (e.keepOpen = true)}
-          className="flex items-center justify-between hover:bg-transparent cursor-default !mt-0"
+          className="flex items-center justify-between hover:!bg-transparent cursor-default !mt-0"
         >
           <div className="w-10 h-4 flex items-center">
             {effectsSound > 50 && <BsFillVolumeUpFill className="!text-xl" />}

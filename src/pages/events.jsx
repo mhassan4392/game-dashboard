@@ -36,17 +36,19 @@ const Events = () => {
           </div>
         )}
         {items.map((item) => (
-          <>
+          <div key={item.tab}>
             {!loading && (
-              <TabItem tab={item.tab} className="h-full">
+              <TabItem tab={item.tab}>
                 <div>
                   {[...Array(20)].map((ar, i) => (
-                    <EventsWidget key={i} />
+                    <div key={i}>
+                      <EventsWidget />
+                    </div>
                   ))}
                 </div>
               </TabItem>
             )}
-          </>
+          </div>
         ))}
       </TabsItems>
     </>

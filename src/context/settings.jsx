@@ -14,6 +14,9 @@ export const SettingsProvider = ({ children }) => {
   });
   const [user, setUser] = useState(null);
 
+  // loading
+  const [loading, setLoading] = useState(true);
+
   // query params
   const [searchParams] = useSearchParams();
   const paramName = searchParams.get("name") || "aaron";
@@ -22,8 +25,8 @@ export const SettingsProvider = ({ children }) => {
 
   useEffect(() => {
     // set lan and name
-    setName(searchParams.get("name"));
-    setLan(searchParams.get("lan"));
+    setName(paramName);
+    setLan(paramLan);
     // launch settings
     const launch = async () => {
       // get key
@@ -33,7 +36,7 @@ export const SettingsProvider = ({ children }) => {
       setKey(res.data.info.KEY);
       // set axios default headers
       Axios.defaults.headers.common["Authorization"] = res.data.info.KEY;
-      Axios.defaults.headers.common["Lan"] = lan;
+      Axios.defaults.headers.common["Lan"] = paramLan;
 
       // get site configs
       const configRes = await Axios({ url: "/api/ox/getconfig" });
@@ -46,12 +49,15 @@ export const SettingsProvider = ({ children }) => {
       // get lan
       const lanRes = await Axios({ url: `/api/ox/getlan?lan=${paramLan}` });
       setLan(lanRes.data.info);
+
+      // set loading to false
+      setLoading(false);
     };
 
     launch().catch((err) => console.log(err.message));
   }, []);
   return (
-    <SettingsContext.Provider value={{ name, key, lan, config, user }}>
+    <SettingsContext.Provider value={{ name, key, lan, config, user, loading }}>
       {children}
     </SettingsContext.Provider>
   );

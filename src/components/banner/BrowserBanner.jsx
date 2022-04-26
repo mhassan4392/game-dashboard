@@ -23,7 +23,7 @@ const BrowserBanner = () => {
   }, []);
 
   useEffect(() => {
-    Axios({ url: "/api/ox/getmsg", method: "POST" }).then((res) =>
+    Axios({ url: "/api/ox/getmsgs", method: "POST" }).then((res) =>
       console.log(res)
     );
   }, []);

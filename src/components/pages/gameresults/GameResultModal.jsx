@@ -17,7 +17,9 @@ const GameResultModal = ({ open, onClose }) => {
           <TabsItems className="overflow-auto scrollbar flex-grow">
             <TabItem defaultTab tab="match" className="py-2">
               {[...Array(20)].map((ar, i) => (
-                <GameResultWidget />
+                <div key={i}>
+                  <GameResultWidget />
+                </div>
               ))}
             </TabItem>
             <TabItem tab="firsthalf" className="bg-dark"></TabItem>

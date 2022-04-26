@@ -1,4 +1,4 @@
-import "./index.scss";
+import "./Spinner.scss";
 const Loader = () => {
   return <div className="lds-dual-ring"></div>;
 };

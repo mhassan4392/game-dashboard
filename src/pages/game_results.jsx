@@ -26,17 +26,19 @@ const GameResults = () => {
         </div>
       )}
       {items.map((item) => (
-        <>
+        <div key={item.tab}>
           {!loading && (
             <TabItem tab={item.tab} className="h-full">
               <div>
                 {[...Array(20)].map((ar, i) => (
-                  <GameResultsWidget key={i} />
+                  <div key={i}>
+                    <GameResultsWidget />
+                  </div>
                 ))}
               </div>
             </TabItem>
           )}
-        </>
+        </div>
       ))}
     </TabsItems>
   );
