@@ -21,8 +21,8 @@ const App = () => {
     <>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>{config.SiteName}</title>
-        <link rel="icon" href={config.Ico} />
+        <title>{config?.SiteName}</title>
+        <link rel="icon" href={config?.Ico} />
       </Helmet>
       <Router />
     </>

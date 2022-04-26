@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { SettingsContext } from "@/context/settings";
 import {
   AiOutlineUser,
   AiOutlineRight,
@@ -27,6 +28,8 @@ const MobileSettingsMenu = () => {
   const [languageModal, setLanguageModal] = useState(false);
   const [gameResultsModal, setGameResultsModal] = useState(false);
   const [betHistoryModal, setBetHistoryModal] = useState(false);
+
+  const { user } = useContext(SettingsContext);
   return (
     <>
       <div className="mobile-menu text-sm">
@@ -42,7 +45,7 @@ const MobileSettingsMenu = () => {
           <MenuItem onClick={(e) => (e.keepOpen = true)}>
             <div className="flex items-center w-full">
               <AiOutlineUser className="mr-2 text-primary" />
-              <span className="text-primary">OL8AARON1990</span>
+              <span className="text-primary">{user?.Name}</span>
             </div>
           </MenuItem>
           <MenuDivider className="!bg-primary !bg-opacity-20 !mx-2" />

@@ -50,6 +50,7 @@ export const SettingsProvider = ({ children }) => {
 
       // get lan
       const lanRes = await Axios({ url: `/api/ox/getlan?lan=${paramLan}` });
+      console.log(lanRes);
       setLan(lanRes.data.info);
 
       // set loading to false
