@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { FaWallet } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
@@ -5,7 +6,10 @@ import "./BrowserNavbar.scss";
 import Banner from "@/components/banner/BrowserBanner";
 import BrowserSettingsMenu from "./BrowserSettingsMenu";
 
+import { SettingsContext } from "@/context/settings";
+
 const BrowserNavbar = () => {
+  const { user } = useContext(SettingsContext);
   //   links
   const links = [
     { title: "MATCHES", path: "/events", active: "events" },
@@ -47,8 +51,8 @@ const BrowserNavbar = () => {
             <FaWallet />
           </div>
           <div className="flex flex-col py-1">
-            <span className="text-[12px]">OL8AARON1990</span>
-            <span className="text-[13px] text-primary">¥ 0.00</span>
+            <span className="text-[12px]">{user?.Name}</span>
+            <span className="text-[13px] text-primary">¥ {user?.Balance}</span>
           </div>
         </div>
       </div>

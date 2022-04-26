@@ -16,7 +16,7 @@ const Events = () => {
       setLoading(false);
     }, 1000);
 
-    () => clearTimeout(timeout);
+    return () => clearTimeout(timeout);
   }, [tab]);
 
   const items = [{ tab: "today" }, { tab: "yesterday" }, { tab: "daybefore" }];
