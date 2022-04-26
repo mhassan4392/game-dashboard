@@ -22,11 +22,11 @@ const BrowserBanner = () => {
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    Axios({ url: "/api/ox/getmsgs", method: "POST" }).then((res) =>
-      console.log(res)
-    );
-  }, []);
+  // useEffect(() => {
+  //   Axios({ url: "/api/ox/getmsgs", method: "POST" }).then((res) =>
+  //     console.log(res)
+  //   );
+  // }, []);
   return (
     <>
       <div className="flex justify-between items-center h-8 lg:h-10 w-full">
