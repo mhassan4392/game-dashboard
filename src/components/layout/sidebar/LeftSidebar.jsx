@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react";
+import Axios from "@/utils/axios";
+
 import allGames from "@/assets/images/games/all-games.svg";
 import basketball from "@/assets/images/games/basketball.png";
 import csgo from "@/assets/images/games/csgo.png";
@@ -12,6 +15,12 @@ import startcraft2 from "@/assets/images/games/starcraft2.png";
 
 // links
 const LeftSidebar = () => {
+  const [allGames, setAllGames] = useState({});
+  useEffect(() => {
+    Axios({ url: "/api/ox/getcata", method: "POST" }).then((res) => {
+      setAllGames(res?.data?.info);
+    });
+  }, []);
   const games = [
     { title: "All Games", total_games: 234, logo: allGames, selected: true },
     { title: "CS:GO", total_games: 24, logo: csgo },
@@ -38,20 +47,20 @@ const LeftSidebar = () => {
   return (
     <>
       <div className="bg-dark-light overflow-y-auto scrollbar h-full left-sidebar">
-        {games.map((game) => (
+        {Object.keys(allGames).map((game, i) => (
           <div
-            key={game.title}
+            key={i}
             className={`flex items-center justify-between cursor-pointer hover:bg-gray-800 hover:bg-opacity-75 py-4 px-2 transition-all duration-200 ${
-              game.selected
+              game == "CN"
                 ? "bg-gradient-to-r from-primary to-secondary text-white bg-opacity-75"
                 : ""
             }`}
           >
             <div className="flex items-center space-x-2">
-              <img className="w-5 h-5" src={game.logo} alt="" />
-              <p className="truncate text-sm">{game.title}</p>
+              {/* <img className="w-5 h-5" src={game.logo} alt="" /> */}
+              <p className="truncate text-sm">{game}</p>
             </div>
-            <div className="text-xs">({game.total_games})</div>
+            <div className="text-xs">({i})</div>
           </div>
         ))}
       </div>
