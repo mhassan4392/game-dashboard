@@ -12,9 +12,7 @@ const App = () => {
   const { config } = useContext(SettingsContext);
 
   useEffect(() => {
-    Axios({ url: "/api/ox/getminutes", method: "POST" }).then((res) =>
-      console.log(res)
-    );
+    Axios({ url: "/api/ox/getminutes", method: "POST" }).then((res) => {});
   }, []);
 
   return (

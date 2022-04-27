@@ -19,7 +19,7 @@ const LeftSidebar = () => {
   const [v, setV] = useState(null);
   useEffect(() => {
     Axios({ url: "/api/ox/getcata", method: "POST" }).then((res) => {
-      console.log(res);
+      // console.log(res);
       setAllGames(res?.data?.info || {});
       setV(res?.data?.v || null);
     });

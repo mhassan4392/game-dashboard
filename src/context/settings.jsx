@@ -40,7 +40,7 @@ export const SettingsProvider = ({ children }) => {
 
       // get site configs
       const configRes = await Axios({ url: "/api/ox/getconfig" });
-      console.log(configRes);
+      // console.log(configRes);
       setConfig(configRes.data.info);
 
       // get user info
@@ -50,7 +50,7 @@ export const SettingsProvider = ({ children }) => {
 
       // get lan
       const lanRes = await Axios({ url: `/api/ox/getlan?lan=${paramLan}` });
-      // console.log(lanRes);
+      console.log("request to /api/ox/getlan", lanRes);
       setLan(lanRes.data.info);
 
       // set loading to false
