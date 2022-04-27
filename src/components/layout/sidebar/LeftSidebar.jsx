@@ -16,9 +16,12 @@ import startcraft2 from "@/assets/images/games/starcraft2.png";
 // links
 const LeftSidebar = () => {
   const [allGames, setAllGames] = useState({});
+  const [v, setV] = useState(null);
   useEffect(() => {
     Axios({ url: "/api/ox/getcata", method: "POST" }).then((res) => {
-      setAllGames(res?.data?.info);
+      console.log(res);
+      setAllGames(res?.data?.info || {});
+      setV(res?.data?.v || null);
     });
   }, []);
   const games = [
@@ -49,7 +52,7 @@ const LeftSidebar = () => {
       <div className="bg-dark-light overflow-y-auto scrollbar h-full left-sidebar">
         {Object.keys(allGames).map((game, i) => (
           <div
-            key={i}
+            key={game}
             className={`flex items-center justify-between cursor-pointer hover:bg-gray-800 hover:bg-opacity-75 py-4 px-2 transition-all duration-200 ${
               game == "CN"
                 ? "bg-gradient-to-r from-primary to-secondary text-white bg-opacity-75"
@@ -60,7 +63,7 @@ const LeftSidebar = () => {
               {/* <img className="w-5 h-5" src={game.logo} alt="" /> */}
               <p className="truncate text-sm">{game}</p>
             </div>
-            <div className="text-xs">({i})</div>
+            <div className="text-xs">{allGames[game]}</div>
           </div>
         ))}
       </div>
