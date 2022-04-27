@@ -18,7 +18,7 @@ const GameResultsModalHeader = () => {
   return (
     <>
       <GamesMenu open={gamesModal} onClose={() => setGamesModal(false)} />
-      <TabsButtons className="flex items-end scrollbar-x bg-dark-light justify-around mb-1 flex-nowrap overflow-x-auto">
+      <TabsButtons className="flex items-end scrollbar-x bg-dark-light px-2 mb-1 flex-nowrap w-screen sm:w-full">
         {tabs.map((tab, i) => (
           <TabButton
             tab={tab.title}

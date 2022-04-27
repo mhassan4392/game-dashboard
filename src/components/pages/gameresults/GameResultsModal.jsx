@@ -20,6 +20,7 @@ const GameResultsModal = ({ open, onClose }) => {
           label="Game Results"
           onBackClick={onClose}
           modalBodyClass="p-0"
+          modalHeaderClass="p-0"
           open={open}
           header={() => <GameResultsModalHeader />}
         >
