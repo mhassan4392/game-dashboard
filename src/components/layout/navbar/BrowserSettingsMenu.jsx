@@ -1,3 +1,4 @@
+import { useState, useContext } from "react";
 import {
   Menu,
   MenuItem,
@@ -5,7 +6,6 @@ import {
   SubMenu,
   MenuDivider,
 } from "@szhsin/react-menu";
-import { useState } from "react";
 import { FaCog } from "react-icons/fa";
 import {
   BsFillVolumeUpFill,
@@ -16,7 +16,10 @@ import Range from "@/components/Range/Range";
 import Checkbox from "@/components/Checkbox/Checkbox";
 import "./BrowserSettingsMenu.css";
 
+import { LanguageContext } from "@/context/language";
+
 const SettingsMenu = () => {
+  const { translations } = useContext(LanguageContext);
   const [resultAnimation, setResultAnimation] = useState(true);
   const [gameSound, setGameSound] = useState(60);
   const [effectsSound, setEffectsSound] = useState(0);
@@ -42,8 +45,8 @@ const SettingsMenu = () => {
           <MenuItem>HONGKONG</MenuItem>
         </SubMenu>
         <SubMenu label="EN">
-          <MenuItem>中文</MenuItem>
-          <MenuItem>ENG</MenuItem>
+          <MenuItem>{translations.Lan[0]}</MenuItem>
+          <MenuItem>{translations.Lan[1]}</MenuItem>
         </SubMenu>
         <MenuDivider className="!bg-primary !bg-opacity-20 !mx-2" />
         <MenuItem

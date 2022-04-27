@@ -1,52 +1,54 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Axios from "@/utils/axios";
 
-import allGames from "@/assets/images/games/all-games.svg";
-import basketball from "@/assets/images/games/basketball.png";
-import csgo from "@/assets/images/games/csgo.png";
-import dota2 from "@/assets/images/games/dota2.png";
-import fifa from "@/assets/images/games/fifa.png";
-import kog from "@/assets/images/games/kog.png";
-import lol from "@/assets/images/games/lol.png";
-import mllogo from "@/assets/images/games/ML_logo.png";
-import nba2k18 from "@/assets/images/games/nba2k18.png";
-import rainbowsix from "@/assets/images/games/rainbowsix.png";
-import startcraft2 from "@/assets/images/games/starcraft2.png";
+import { LanguageContext } from "@/context/language";
+
+// images
+import CN from "@/assets/images/country/flags/svg/cn.svg";
+import DE from "@/assets/images/country/flags/svg/de.svg";
+import FR from "@/assets/images/country/flags/svg/fr.svg";
+import HK from "@/assets/images/country/flags/svg/hk.svg";
+import ID from "@/assets/images/country/flags/svg/id.svg";
+import IT from "@/assets/images/country/flags/svg/it.svg";
+import JP from "@/assets/images/country/flags/svg/jp.svg";
+import KR from "@/assets/images/country/flags/svg/kr.svg";
+import MY from "@/assets/images/country/flags/svg/my.svg";
+import RU from "@/assets/images/country/flags/svg/ru.svg";
+import SG from "@/assets/images/country/flags/svg/sg.svg";
+import TH from "@/assets/images/country/flags/svg/th.svg";
+import US from "@/assets/images/country/flags/svg/us.svg";
+const images = {
+  CN,
+  DE,
+  FR,
+  HK,
+  ID,
+  IT,
+  JP,
+  KR,
+  MY,
+  RU,
+  SG,
+  TH,
+  US,
+};
 
 // links
 const LeftSidebar = () => {
+  const { translations } = useContext(LanguageContext);
+
   const [allGames, setAllGames] = useState({});
   const [v, setV] = useState(null);
   useEffect(() => {
-    Axios({ url: "/api/ox/getcata", method: "POST" }).then((res) => {
-      // console.log(res);
-      setAllGames(res?.data?.info || {});
-      setV(res?.data?.v || null);
-    });
+    Axios({ url: "/api/ox/getcata", method: "POST", data: { v } }).then(
+      (res) => {
+        // console.log(res);
+        setAllGames(res?.data?.info || {});
+        setV(res?.data?.v || null);
+      }
+    );
   }, []);
-  const games = [
-    { title: "All Games", total_games: 234, logo: allGames, selected: true },
-    { title: "CS:GO", total_games: 24, logo: csgo },
-    { title: "Dota 2", total_games: 12, logo: dota2 },
-    { title: "League of legends", total_games: 23, logo: lol },
-    { title: "Basketball", total_games: 14, logo: basketball },
-    { title: "Fifa", total_games: 28, logo: fifa },
-    { title: "NBA 2K", total_games: 15, logo: nba2k18 },
-    { title: "Mobile legend", total_games: 24, logo: mllogo },
-    { title: "Rainbow six", total_games: 21, logo: rainbowsix },
-    { title: "Starcraft ||", total_games: 36, logo: startcraft2 },
-    { title: "King of glory", total_games: 25, logo: kog },
-    { title: "Cricket", total_games: 24, logo: csgo },
-    { title: "Footbal", total_games: 12, logo: dota2 },
-    { title: "Hockey", total_games: 23, logo: lol },
-    { title: "Tannis", total_games: 14, logo: basketball },
-    { title: "Badminton", total_games: 28, logo: fifa },
-    { title: "Swimming", total_games: 15, logo: nba2k18 },
-    { title: "Running", total_games: 24, logo: mllogo },
-    { title: "Crossfit", total_games: 21, logo: rainbowsix },
-    { title: "Weight lifting", total_games: 36, logo: startcraft2 },
-    { title: "Polo", total_games: 25, logo: kog },
-  ];
+
   return (
     <>
       <div className="bg-dark-light overflow-y-auto scrollbar h-full left-sidebar">
@@ -60,8 +62,8 @@ const LeftSidebar = () => {
             }`}
           >
             <div className="flex items-center space-x-2">
-              {/* <img className="w-5 h-5" src={game.logo} alt="" /> */}
-              <p className="truncate text-sm">{game}</p>
+              <img className="w-5 h-5" src={images[game]} alt="" />
+              <p className="truncate text-sm">{translations.CY[game] || ""}</p>
             </div>
             <div className="text-xs">{allGames[game]}</div>
           </div>

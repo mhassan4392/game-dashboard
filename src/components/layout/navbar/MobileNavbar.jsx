@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { AiOutlineAppstore } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
 import EventsIcon from "./EventsIcon";
@@ -6,14 +6,18 @@ import LootboxIcon from "./LootboxIcon";
 import MobileSettingsMenu from "./MobileSettingsMenu";
 import GamesModal from "@/components/layout/modals/GamesModal";
 
+import { UserContext } from "@/context/user";
+
 const MobileNavbar = () => {
   const [gamesModal, setGamesModal] = useState(false);
+
+  const { user } = useContext(UserContext);
   return (
     <>
       <div className="lg:hidden flex items-center justify-between bg-dark-light h-full py-2">
         <div className="flex items-center px-2">
           <MobileSettingsMenu />
-          <div className="text-sm text-primary ml-3">¥ 0.00</div>
+          <div className="text-sm text-primary ml-3">¥ {user?.Balance}</div>
         </div>
         <div className="flex items-center">
           <div className="flex items-center bg-dark rounded-full overflow-hidden">

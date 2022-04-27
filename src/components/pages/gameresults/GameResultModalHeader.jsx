@@ -1,11 +1,18 @@
+import { useState, useContext } from "react";
 import { BsFillPlayFill, BsX } from "react-icons/bs";
 import eventgame from "@/assets/images/eventgame.png";
 import fire from "@/assets/images/fire.gif";
 import teamonelogo from "@/assets/images/teamonelogo.png";
 import teamtwologo from "@/assets/images/teamtwologo.png";
 import { TabButton, TabsButtons } from "@/components/tabs";
-
+import { LanguageContext } from "@/context/language";
 const GameResultModalHeader = ({ onXClick }) => {
+  const [tabs] = useState([
+    { id: 0, title: "match" },
+    { id: 1, title: "first" },
+    { id: 2, title: "second" },
+  ]);
+  const { translations } = useContext(LanguageContext);
   return (
     <>
       <div className="flex items-center justify-between px-4">
@@ -70,20 +77,15 @@ const GameResultModalHeader = ({ onXClick }) => {
       </div>
       {/* </div> */}
       <TabsButtons className="flex items-center bg-dark-light mb-1">
-        <TabButton
-          activeClass="tab-active"
-          className="px-3 py-3 text-sm flex flex-col items-center"
-          tab="match"
-        >
-          Match (2)
-        </TabButton>
-        <TabButton
-          activeClass="tab-active"
-          className="px-3 py-3 text-sm flex flex-col items-center"
-          tab="firsthalf"
-        >
-          First Half (2)
-        </TabButton>
+        {tabs.map((tab) => (
+          <TabButton
+            activeClass="tab-active"
+            className="px-3 py-3 text-sm flex flex-col items-center"
+            tab={tab.title}
+          >
+            {translations.Stage[tab.id]}
+          </TabButton>
+        ))}
       </TabsButtons>
     </>
   );

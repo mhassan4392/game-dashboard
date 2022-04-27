@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import Modal from "@/components/modal/Modal";
 import { FaTimes } from "react-icons/fa";
 
+import { LanguageContext } from "@/context/language";
+
 const LanguageMenu = ({ open, onClose }) => {
+  const { translations } = useContext(LanguageContext);
   return (
     <Modal
       open={open}
@@ -25,13 +29,13 @@ const LanguageMenu = ({ open, onClose }) => {
             className="text-sm text-center py-4 cursor-pointer"
             onClick={onClose}
           >
-            Chinese
+            {translations.Lan[0]}
           </div>
           <div
             className="text-sm text-center py-4 bg-secondary bg-opacity-10 text-primary cursor-pointer"
             onClick={onClose}
           >
-            Eng
+            {translations.Lan[1]}
           </div>
         </div>
       </Modal.Body>

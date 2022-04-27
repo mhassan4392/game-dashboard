@@ -20,6 +20,14 @@ const Events = () => {
   }, [tab]);
 
   const items = [{ tab: "today" }, { tab: "yesterday" }, { tab: "daybefore" }];
+  const [tabs] = useState([
+    { id: 0, title: "today" },
+    { id: 1, title: "early" },
+    { id: 2, title: "minutes" },
+    { id: 3, title: "jackpot" },
+    { id: 4, title: "outright" },
+    ,
+  ]);
 
   return (
     <>
@@ -35,17 +43,17 @@ const Events = () => {
             <Spinner />
           </div>
         )}
-        {items.map((item) => (
-          <div key={item.tab}>
+        {tabs.map((tab) => (
+          <div key={tab.id}>
             {!loading && (
-              <TabItem tab={item.tab}>
-                <div>
+              <TabItem tab={tab.title}>
+                <>
                   {[...Array(20)].map((ar, i) => (
                     <div key={i}>
                       <EventsWidget />
                     </div>
                   ))}
-                </div>
+                </>
               </TabItem>
             )}
           </div>

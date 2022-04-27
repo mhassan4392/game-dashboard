@@ -1,5 +1,4 @@
 import { useState, useContext } from "react";
-import { SettingsContext } from "@/context/settings";
 import {
   AiOutlineUser,
   AiOutlineRight,
@@ -20,6 +19,7 @@ import LanguageModal from "@/components/layout/modals/LanguageModal";
 import GamesModal from "@/components/layout/modals/GamesModal";
 import BetHistoryModal from "@/components/layout/modals/BetHistoryModal";
 import "./MobileSettingsMenu.css";
+import { UserContext } from "../../../context/user";
 
 const MobileSettingsMenu = () => {
   const [gamesModal, setGamesModal] = useState(false);
@@ -29,7 +29,7 @@ const MobileSettingsMenu = () => {
   const [gameResultsModal, setGameResultsModal] = useState(false);
   const [betHistoryModal, setBetHistoryModal] = useState(false);
 
-  const { user } = useContext(SettingsContext);
+  const { user } = useContext(UserContext);
   return (
     <>
       <div className="mobile-menu text-sm">

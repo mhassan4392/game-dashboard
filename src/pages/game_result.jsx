@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Spinner from "@/components/Spinner/Spinner";
 import {
   TabButton,
@@ -9,8 +9,15 @@ import {
 } from "@/components/tabs";
 import GameResultWidget from "@/components/pages/gameresults/GameResultWidget";
 import GameResultHeader from "@/components/pages/gameresults/GameResultHeader";
+import { LanguageContext } from "@/context/language";
 
 const GameResult = () => {
+  const { translations } = useContext(LanguageContext);
+  const [tabs] = useState([
+    { id: 0, title: "match" },
+    { id: 1, title: "first" },
+    { id: 2, title: "second" },
+  ]);
   // loading
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -29,20 +36,15 @@ const GameResult = () => {
       <Tabs className="mt-1 flex-grow flex flex-col overflow-hidden">
         {!loading && (
           <TabsButtons className="flex items-center bg-dark-light mb-1">
-            <TabButton
-              activeClass="tab-active"
-              className="px-3 py-3 text-sm flex flex-col items-center"
-              tab="match"
-            >
-              Match (2)
-            </TabButton>
-            <TabButton
-              activeClass="tab-active"
-              className="px-3 py-3 text-sm flex flex-col items-center"
-              tab="firsthalf"
-            >
-              First Half (2)
-            </TabButton>
+            {tabs.map((tab) => (
+              <TabButton
+                activeClass="tab-active"
+                className="px-3 py-3 text-sm flex flex-col items-center"
+                tab={tab.title}
+              >
+                {translations.Stage[tab.id]}
+              </TabButton>
+            ))}
           </TabsButtons>
         )}
         <TabsItems className="overflow-auto scrollbar flex-grow">
@@ -53,24 +55,19 @@ const GameResult = () => {
           )}
           {!loading && (
             <>
-              <TabItem
-                defaultTab
-                tab="match"
-                className="bg-[#2d799b] bg-opacity-25 md:bg-dark"
-              >
-                {[...Array(20)].map((ar, i) => (
-                  <div key={i}>
-                    <GameResultWidget />
-                  </div>
-                ))}
-              </TabItem>
-              <TabItem tab="firsthalf" className="bg-dark">
-                {[...Array(20)].map((ar, i) => (
-                  <div key={i}>
-                    <GameResultWidget />
-                  </div>
-                ))}
-              </TabItem>
+              {tabs.map((tab) => (
+                <TabItem
+                  key={tab.id}
+                  tab={tab.title}
+                  className="bg-[#2d799b] bg-opacity-25 md:bg-dark"
+                >
+                  {[...Array(20)].map((ar, i) => (
+                    <div key={i}>
+                      <GameResultWidget />
+                    </div>
+                  ))}
+                </TabItem>
+              ))}
             </>
           )}
         </TabsItems>

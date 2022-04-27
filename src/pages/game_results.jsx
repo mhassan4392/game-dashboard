@@ -16,7 +16,14 @@ const GameResults = () => {
     return () => clearTimeout(timeout);
   }, [tab]);
 
-  const items = [{ tab: "today" }, { tab: "yesterday" }, { tab: "daybefore" }];
+  const [tabs] = useState([
+    { id: 0, title: "today" },
+    { id: 1, title: "early" },
+    { id: 2, title: "minutes" },
+    { id: 3, title: "jackpot" },
+    { id: 4, title: "outright" },
+    ,
+  ]);
 
   return (
     <TabsItems className="flex-grow flex flex-col overflow-auto scrollbar">
@@ -25,17 +32,17 @@ const GameResults = () => {
           <Spinner />
         </div>
       )}
-      {items.map((item) => (
-        <div key={item.tab}>
+      {tabs.map((tab) => (
+        <div key={tab.id}>
           {!loading && (
-            <TabItem tab={item.tab} className="h-full">
-              <div>
+            <TabItem tab={tab.title} className="h-full">
+              <>
                 {[...Array(20)].map((ar, i) => (
                   <div key={i}>
                     <GameResultsWidget />
                   </div>
                 ))}
-              </div>
+              </>
             </TabItem>
           )}
         </div>

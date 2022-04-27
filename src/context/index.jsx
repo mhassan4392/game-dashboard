@@ -1,6 +1,14 @@
+import { LanguageProvider } from "./language";
 import { SettingsProvider } from "./settings";
+import { UserProvider } from "./user";
 const ContextStore = ({ children }) => {
-  return <SettingsProvider>{children}</SettingsProvider>;
+  return (
+    <LanguageProvider>
+      <UserProvider>
+        <SettingsProvider>{children}</SettingsProvider>
+      </UserProvider>
+    </LanguageProvider>
+  );
 };
 
 export default ContextStore;

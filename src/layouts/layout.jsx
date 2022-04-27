@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { SettingsContext } from "@/context/settings";
 import { Outlet } from "react-router";
 import LeftSidebar from "@/components/layout/sidebar/LeftSidebar";
@@ -8,9 +8,27 @@ import RightSidebar from "@/components/layout/sidebar/RightSidebar";
 import { useLocation } from "react-router";
 import AuthLoading from "@/components/layout/AuthLoading";
 import { AnimatePresence, motion } from "framer-motion";
+import { UserContext } from "../context/user";
+import { LanguageContext } from "../context/language";
 
 const Layout = () => {
-  const { loading } = useContext(SettingsContext);
+  const { getLaunch, getConfig } = useContext(SettingsContext);
+  const { getUser } = useContext(UserContext);
+  const { getTranslations } = useContext(LanguageContext);
+  const [loading, setLoading] = useState(true);
+
+  const launch = async () => {
+    await getLaunch();
+    await getConfig();
+    await getUser();
+    await getTranslations();
+  };
+
+  useEffect(() => {
+    launch().then(() => {
+      setLoading(false);
+    });
+  }, []);
 
   const location = useLocation();
 

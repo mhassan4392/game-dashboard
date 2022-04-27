@@ -6,17 +6,20 @@ import "./BrowserNavbar.scss";
 import Banner from "@/components/banner/BrowserBanner";
 import BrowserSettingsMenu from "./BrowserSettingsMenu";
 
-import { SettingsContext } from "@/context/settings";
+import { UserContext } from "@/context/user";
+import { LanguageContext } from "@/context/language";
 
 const BrowserNavbar = () => {
-  const { user } = useContext(SettingsContext);
+  const { user } = useContext(UserContext);
+  const { translations } = useContext(LanguageContext);
+
   //   links
   const links = [
-    { title: "MATCHES", path: "/events", active: "events" },
-    { title: "GAME RESULTS", path: "/game-results", active: "game-results" },
-    { title: "RULES", path: "/rules", active: "rules" },
-    { title: "ANNOUNCEMENT", path: "/announcement", active: "announcement" },
-    { title: "LOOTBOX", path: "/lootbox", active: "lootbox" },
+    { id: 0, path: "/events", active: "events" },
+    { id: 1, path: "/game-results", active: "game-results" },
+    { id: 2, path: "/rules", active: "rules" },
+    { id: 3, path: "/announcement", active: "announcement" },
+    { id: 4, path: "/lootbox", active: "lootbox" },
   ];
 
   return (
@@ -36,7 +39,7 @@ const BrowserNavbar = () => {
               >
                 <span className="design"></span>
                 <span className="border-r border-secondary border-opacity-25 px-5 inline-block">
-                  {link.title}
+                  {translations.TopMenu[link.id]}
                 </span>
               </NavLink>
             ))}
