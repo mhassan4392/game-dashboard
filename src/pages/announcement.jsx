@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { LanguageContext } from "@/context/language";
 import Axios from "@/utils/axios";
 import Spinner from "@/components/Spinner/Spinner";
 import { AnimatePresence, motion } from "framer-motion";
@@ -6,12 +7,16 @@ const Announcement = () => {
   const [announcements, setAnnouncements] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  const { lan } = useContext(LanguageContext);
+
   useEffect(() => {
     setLoading(true);
-    Axios({ url: "/api/ox/get5msg", method: "POST" }).then((res) => {
-      setAnnouncements(res.data || []);
-      setLoading(false);
-    });
+    Axios({ url: "/api/ox/get5msg", method: "POST", data: { lan } }).then(
+      (res) => {
+        setAnnouncements(res.data || []);
+        setLoading(false);
+      }
+    );
   }, []);
   return (
     <AnimatePresence exitBeforeEnter>
