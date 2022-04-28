@@ -12,7 +12,7 @@ const GameResultModal = ({ open, onClose }) => {
   ]);
   return (
     <div>
-      <Tabs defaultTab="tab">
+      <Tabs defaultTab="match">
         <MobileModel
           onBackClick={onClose}
           open={open}
@@ -22,7 +22,7 @@ const GameResultModal = ({ open, onClose }) => {
         >
           <TabsItems className="overflow-auto scrollbar flex-grow">
             {tabs.map((tab) => (
-              <TabItem key={tab.id} defaultTab tab={tab.title} className="py-2">
+              <TabItem key={tab.id} tab={tab.title} className="py-2">
                 {[...Array(20)].map((ar, i) => (
                   <div key={i}>
                     <GameResultWidget />

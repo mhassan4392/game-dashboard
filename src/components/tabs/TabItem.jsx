@@ -14,6 +14,7 @@ const TabItem = ({ children, className, tab, defaultTab, ...rest }) => {
     <>
       {currentTab == tab && (
         <div
+          {...rest}
           // initial={{ opacity: 0 }}
           // animate={{ opacity: 1 }}
           // exit={{ opacity: 0 }}

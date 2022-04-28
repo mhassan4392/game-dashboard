@@ -33,7 +33,10 @@ const GameResult = () => {
       {/* Header */}
       {!loading && <GameResultHeader />}
 
-      <Tabs className="mt-1 flex-grow flex flex-col overflow-hidden">
+      <Tabs
+        defaultTab="match"
+        className="mt-1 flex-grow flex flex-col overflow-hidden"
+      >
         {!loading && (
           <TabsButtons className="flex items-center bg-dark-light mb-1">
             {tabs.map((tab) => (
@@ -41,6 +44,7 @@ const GameResult = () => {
                 activeClass="tab-active"
                 className="px-3 py-3 text-sm flex flex-col items-center"
                 tab={tab.title}
+                key={tab.id}
               >
                 {translations.Stage[tab.id]}
               </TabButton>

@@ -15,7 +15,7 @@ const GameResultsModal = ({ open, onClose }) => {
   ]);
   return (
     <div>
-      <Tabs defaultTab="match">
+      <Tabs defaultTab="today">
         <MobileModel
           label="Game Results"
           onBackClick={onClose}
@@ -34,8 +34,6 @@ const GameResultsModal = ({ open, onClose }) => {
                 ))}
               </TabItem>
             ))}
-            <TabItem tab="yesterday">Yesterday</TabItem>
-            <TabItem tab="daybefore">Day Before</TabItem>
           </TabsItems>
         </MobileModel>
       </Tabs>
