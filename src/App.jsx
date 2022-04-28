@@ -12,8 +12,8 @@ const App = () => {
   const { config } = useContext(SettingsContext);
 
   useEffect(() => {
-    Axios({ url: "/api/ox/get5msg", method: "POST" }).then((res) => {
-      // console.log(res);
+    Axios({ url: "/api/ox/getmsgs", method: "POST" }).then((res) => {
+      console.log(res);
     });
   }, []);
 

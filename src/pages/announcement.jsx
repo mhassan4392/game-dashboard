@@ -1,119 +1,56 @@
+import { useEffect, useState } from "react";
+import Axios from "@/utils/axios";
+import Spinner from "@/components/Spinner/Spinner";
+import { AnimatePresence, motion } from "framer-motion";
 const Announcement = () => {
+  const [announcements, setAnnouncements] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    Axios({ url: "/api/ox/get5msg", method: "POST" }).then((res) => {
+      setAnnouncements(res.data || []);
+      setLoading(false);
+    });
+  }, []);
   return (
-    <div className="p-4 scrollbar overflow-auto h-full">
-      <h2 className="my-5 text-white text-lg">Announcements</h2>
-      <hr className="opacity-25 my-4" />
-      <div>
-        <p className="text-sm">
-          2022 European Masters Spring, League of Legends, 2022-04-07 23:00:00
-          (Barça eSports vs Bifrost) All bets placed on MAP 2 WHICH ROLE GET THE
-          MAP MVP, will be considered VOID due to no official result after 24
-          hours from event time. Parlay calculation will be taken as one (1). We
-          apologize for any inconvenience caused.
-        </p>
-        <div className="mt-4 text-xs">2022-04-08 &nbsp; | &nbsp; 20:08:51</div>
-      </div>
-      <hr className="opacity-25 my-4" />
-      <div>
-        <p className="text-sm">
-          2022 European Masters Spring, League of Legends, 2022-04-07 23:00:00
-          (Barça eSports vs Bifrost) All bets placed on MAP 2 WHICH ROLE GET THE
-          MAP MVP, will be considered VOID due to no official result after 24
-          hours from event time. Parlay calculation will be taken as one (1). We
-          apologize for any inconvenience caused.
-        </p>
-        <div className="mt-4 text-xs">2022-04-08 | 20:08:51</div>
-      </div>
-      <hr className="opacity-25 my-4" />
-      <div>
-        <p className="text-sm">
-          2022 European Masters Spring, League of Legends, 2022-04-07 23:00:00
-          (Barça eSports vs Bifrost) All bets placed on MAP 2 WHICH ROLE GET THE
-          MAP MVP, will be considered VOID due to no official result after 24
-          hours from event time. Parlay calculation will be taken as one (1). We
-          apologize for any inconvenience caused.
-        </p>
-        <div className="mt-4 text-xs">2022-04-08 | 20:08:51</div>
-      </div>
-      <hr className="opacity-25 my-4" />
-      <div>
-        <p className="text-sm">
-          2022 European Masters Spring, League of Legends, 2022-04-07 23:00:00
-          (Barça eSports vs Bifrost) All bets placed on MAP 2 WHICH ROLE GET THE
-          MAP MVP, will be considered VOID due to no official result after 24
-          hours from event time. Parlay calculation will be taken as one (1). We
-          apologize for any inconvenience caused.
-        </p>
-        <div className="mt-4 text-xs">2022-04-08 | 20:08:51</div>
-      </div>
-      <hr className="opacity-25 my-4" />
-      <div>
-        <p className="text-sm">
-          2022 European Masters Spring, League of Legends, 2022-04-07 23:00:00
-          (Barça eSports vs Bifrost) All bets placed on MAP 2 WHICH ROLE GET THE
-          MAP MVP, will be considered VOID due to no official result after 24
-          hours from event time. Parlay calculation will be taken as one (1). We
-          apologize for any inconvenience caused.
-        </p>
-        <div className="mt-4 text-xs">2022-04-08 | 20:08:51</div>
-      </div>
-      <hr className="opacity-25 my-4" />
-      <div>
-        <p className="text-sm">
-          2022 European Masters Spring, League of Legends, 2022-04-07 23:00:00
-          (Barça eSports vs Bifrost) All bets placed on MAP 2 WHICH ROLE GET THE
-          MAP MVP, will be considered VOID due to no official result after 24
-          hours from event time. Parlay calculation will be taken as one (1). We
-          apologize for any inconvenience caused.
-        </p>
-        <div className="mt-4 text-xs">2022-04-08 | 20:08:51</div>
-      </div>
-      <hr className="opacity-25 my-4" />
-      <div>
-        <p className="text-sm">
-          2022 European Masters Spring, League of Legends, 2022-04-07 23:00:00
-          (Barça eSports vs Bifrost) All bets placed on MAP 2 WHICH ROLE GET THE
-          MAP MVP, will be considered VOID due to no official result after 24
-          hours from event time. Parlay calculation will be taken as one (1). We
-          apologize for any inconvenience caused.
-        </p>
-        <div className="mt-4 text-xs">2022-04-08 | 20:08:51</div>
-      </div>
-      <hr className="opacity-25 my-4" />
-      <div>
-        <p className="text-sm">
-          2022 European Masters Spring, League of Legends, 2022-04-07 23:00:00
-          (Barça eSports vs Bifrost) All bets placed on MAP 2 WHICH ROLE GET THE
-          MAP MVP, will be considered VOID due to no official result after 24
-          hours from event time. Parlay calculation will be taken as one (1). We
-          apologize for any inconvenience caused.
-        </p>
-        <div className="mt-4 text-xs">2022-04-08 | 20:08:51</div>
-      </div>
-      <hr className="opacity-25 my-4" />
-      <div>
-        <p className="text-sm">
-          2022 European Masters Spring, League of Legends, 2022-04-07 23:00:00
-          (Barça eSports vs Bifrost) All bets placed on MAP 2 WHICH ROLE GET THE
-          MAP MVP, will be considered VOID due to no official result after 24
-          hours from event time. Parlay calculation will be taken as one (1). We
-          apologize for any inconvenience caused.
-        </p>
-        <div className="mt-4 text-xs">2022-04-08 | 20:08:51</div>
-      </div>
-      <hr className="opacity-25 my-4" />
-      <div>
-        <p className="text-sm">
-          2022 European Masters Spring, League of Legends, 2022-04-07 23:00:00
-          (Barça eSports vs Bifrost) All bets placed on MAP 2 WHICH ROLE GET THE
-          MAP MVP, will be considered VOID due to no official result after 24
-          hours from event time. Parlay calculation will be taken as one (1). We
-          apologize for any inconvenience caused.
-        </p>
-        <div className="mt-4 text-xs">2022-04-08 | 20:08:51</div>
-      </div>
-      <hr className="opacity-25 my-4" />
-    </div>
+    <AnimatePresence exitBeforeEnter>
+      {loading && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          key="loading"
+          className="h-full flex items-center justify-center"
+        >
+          <Spinner />
+        </motion.div>
+      )}
+      {!loading && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          key="announcements"
+          className="p-4 scrollbar overflow-auto h-full"
+        >
+          <h2 className="my-5 text-white text-lg">Announcements</h2>
+          <hr className="opacity-25 my-4" />
+          {announcements.map((a, i) => (
+            <div key={i}>
+              <div>
+                <p className="text-sm">{a[1]}</p>
+                <div className="mt-4 text-xs">
+                  {a[0]}
+                  {/* &nbsp; | &nbsp; 20:08:51 */}
+                </div>
+              </div>
+              <hr className="opacity-25 my-4" />
+            </div>
+          ))}
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 
