@@ -19,7 +19,7 @@ import "./BrowserSettingsMenu.css";
 import { LanguageContext } from "@/context/language";
 
 const SettingsMenu = () => {
-  const { translations } = useContext(LanguageContext);
+  const { translations, lan, setLan } = useContext(LanguageContext);
   const [resultAnimation, setResultAnimation] = useState(true);
   const [gameSound, setGameSound] = useState(60);
   const [effectsSound, setEffectsSound] = useState(0);
@@ -44,9 +44,9 @@ const SettingsMenu = () => {
           <MenuItem>INDO</MenuItem>
           <MenuItem>HONGKONG</MenuItem>
         </SubMenu>
-        <SubMenu label="EN">
-          <MenuItem>{translations.Lan[0]}</MenuItem>
-          <MenuItem>{translations.Lan[1]}</MenuItem>
+        <SubMenu label={translations.Lan[lan]}>
+          <MenuItem onClick={() => setLan(0)}>{translations.Lan[0]}</MenuItem>
+          <MenuItem onClick={() => setLan(1)}>{translations.Lan[1]}</MenuItem>
         </SubMenu>
         <MenuDivider className="!bg-primary !bg-opacity-20 !mx-2" />
         <MenuItem

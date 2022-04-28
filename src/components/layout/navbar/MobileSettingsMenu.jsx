@@ -19,7 +19,8 @@ import LanguageModal from "@/components/layout/modals/LanguageModal";
 import GamesModal from "@/components/layout/modals/GamesModal";
 import BetHistoryModal from "@/components/layout/modals/BetHistoryModal";
 import "./MobileSettingsMenu.css";
-import { UserContext } from "../../../context/user";
+import { UserContext } from "@/context/user";
+import { LanguageContext } from "@/context/language";
 
 const MobileSettingsMenu = () => {
   const [gamesModal, setGamesModal] = useState(false);
@@ -30,6 +31,7 @@ const MobileSettingsMenu = () => {
   const [betHistoryModal, setBetHistoryModal] = useState(false);
 
   const { user } = useContext(UserContext);
+  const { translations, lan } = useContext(LanguageContext);
   return (
     <>
       <div className="mobile-menu text-sm">
@@ -67,7 +69,7 @@ const MobileSettingsMenu = () => {
             >
               <div className="flex items-center">
                 <AiOutlineThunderbolt className="mr-2 text-primary" />
-                <span>MATCHES</span>
+                <span>{translations.TopMenu[0]}</span>
               </div>
               <div>
                 <AiOutlineRight />
@@ -78,7 +80,7 @@ const MobileSettingsMenu = () => {
             <div className="flex items-center justify-between w-full">
               <div className="flex items-center">
                 <GiTrophyCup className="mr-2 text-primary" />
-                <span>GAME RESULTS</span>
+                <span>{translations.TopMenu[1]}</span>
               </div>
               <div>
                 <AiOutlineRight />
@@ -93,7 +95,7 @@ const MobileSettingsMenu = () => {
             <div className="flex items-center justify-between w-full">
               <div className="flex items-center">
                 <AiOutlineOrderedList className="mr-2 text-primary" />
-                <span>RULES</span>
+                <span>{translations.TopMenu[2]}</span>
               </div>
               <div>
                 <AiOutlineRight />
@@ -116,7 +118,7 @@ const MobileSettingsMenu = () => {
             <div className="flex items-center justify-between w-full">
               <div className="flex items-center">
                 <AiOutlineFlag className="mr-2 text-primary" />
-                <span>ENG</span>
+                <span>{translations.Lan[lan]}</span>
               </div>
               <div>
                 <AiOutlineRight />

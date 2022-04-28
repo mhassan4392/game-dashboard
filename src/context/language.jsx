@@ -6,17 +6,20 @@ export const LanguageContext = createContext({});
 
 export const LanguageProvider = ({ children }) => {
   const [searchParams] = useSearchParams();
-  const paramLan = searchParams.get("lan") || 1;
+  const paramLan = searchParams.get("lan") || localStorage.getItem("lan") || 1;
+  localStorage.setItem("lan", paramLan);
   const [lan, setLan] = useState(1);
   const [translations, setTranslations] = useState(translations2);
   const getTranslations = async () => {
     const res = await Axios({ url: `/api/ox/getlan?lan=${paramLan}` });
-    setLan(paramLan);
     setTranslations(res?.data);
+    console.log(res?.data);
   };
 
   return (
-    <LanguageContext.Provider value={{ lan, translations, getTranslations }}>
+    <LanguageContext.Provider
+      value={{ lan, translations, getTranslations, setLan }}
+    >
       {children}
     </LanguageContext.Provider>
   );

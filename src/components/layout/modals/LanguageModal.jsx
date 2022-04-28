@@ -1,11 +1,26 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Modal from "@/components/modal/Modal";
 import { FaTimes } from "react-icons/fa";
 
 import { LanguageContext } from "@/context/language";
 
 const LanguageMenu = ({ open, onClose }) => {
-  const { translations } = useContext(LanguageContext);
+  const [langs, setLangs] = useState([
+    {
+      id: 0,
+      title: "chinese",
+    },
+    {
+      id: 1,
+      title: "english",
+    },
+  ]);
+  const { translations, lan, setLan } = useContext(LanguageContext);
+
+  const handleClick = (id) => {
+    setLan(id);
+    onClose();
+  };
   return (
     <Modal
       open={open}
@@ -26,14 +41,18 @@ const LanguageMenu = ({ open, onClose }) => {
       <Modal.Body className="px-0">
         <div>
           <div
-            className="text-sm text-center py-4 cursor-pointer"
-            onClick={onClose}
+            className={`text-sm text-center py-4 cursor-pointer ${
+              lan == 0 ? "bg-secondary bg-opacity-10 text-primary" : ""
+            }`}
+            onClick={() => handleClick(0)}
           >
             {translations.Lan[0]}
           </div>
           <div
-            className="text-sm text-center py-4 bg-secondary bg-opacity-10 text-primary cursor-pointer"
-            onClick={onClose}
+            className={`text-sm text-center py-4 cursor-pointer ${
+              lan == 1 ? "bg-secondary bg-opacity-10 text-primary" : ""
+            }`}
+            onClick={() => handleClick(1)}
           >
             {translations.Lan[1]}
           </div>

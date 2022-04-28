@@ -1,8 +1,6 @@
 import { createContext, useState, useContext } from "react";
 import { useSearchParams } from "react-router-dom";
 import Axios from "@/utils/axios";
-import { LanguageContext } from "./language";
-import { UserContext } from "./user";
 export const SettingsContext = createContext({});
 
 export const SettingsProvider = ({ children }) => {
@@ -15,9 +13,15 @@ export const SettingsProvider = ({ children }) => {
 
   // query params
   const [searchParams] = useSearchParams();
-  const paramName = searchParams.get("name") || "aaron";
-  const paramKey = searchParams.get("key") || "abcdefgh";
-  const paramLan = searchParams.get("lan") || 1;
+  const paramName =
+    searchParams.get("name") || localStorage.getItem("name") || "aaron";
+  const paramKey =
+    searchParams.get("key") || localStorage.getItem("key") || "abcdefgh";
+  const paramLan = searchParams.get("lan") || localStorage.getItem("lan") || 1;
+
+  localStorage.setItem("lan", paramLan);
+  localStorage.setItem("key", paramKey);
+  localStorage.setItem("name", paramName);
 
   const getLaunch = async () => {
     const res = await Axios({
@@ -31,6 +35,7 @@ export const SettingsProvider = ({ children }) => {
 
   const getConfig = async () => {
     const configRes = await Axios({ url: "/api/ox/getconfig" });
+    // console.log(configRes.data.info);
     setConfig(configRes.data.info);
   };
 
