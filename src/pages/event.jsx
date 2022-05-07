@@ -45,6 +45,7 @@ const Event = () => {
                 activeClass="tab-active"
                 className="px-3 py-3 text-sm flex flex-col items-center"
                 tab={tab.title}
+                key={tab.title}
               >
                 {translations.Stage[tab.id]}
               </TabButton>

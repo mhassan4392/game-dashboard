@@ -15,12 +15,12 @@ import { getLan, setLan } from "@/store/features/language/lanSlice";
 import { getUser } from "@/store/features/user/userSlice";
 
 const Layout = () => {
-  const [searchParams] = useSearchParams();
-
   const { lan } = useSelector((state) => state.lan);
 
+  // get search params or from localstorage
+  const [searchParams] = useSearchParams();
   const pLan = searchParams.get("lan") || localStorage.getItem("lan") || 0;
-  const key = searchParams.get("key") || localStorage.getItem("key");
+  const key = searchParams.get("key") || localStorage.getItem("key") || null;
   const name = searchParams.get("name") || localStorage.getItem("name") || "";
 
   const dispatch = useDispatch();
