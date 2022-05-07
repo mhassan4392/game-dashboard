@@ -1,9 +1,9 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { Outlet } from "react-router";
 import { Tabs, TabsButtons, TabButton } from "@/components/tabs";
-import { LanguageContext } from "@/context/language";
+import { useSelector } from "react-redux";
 const EventLayout = () => {
-  const { translations } = useContext(LanguageContext);
+  const { translations } = useSelector((state) => state.lan);
   const [tabs] = useState([
     { id: 0, title: "today" },
     { id: 1, title: "early" },

@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import {
   AiOutlineUser,
   AiOutlineRight,
@@ -19,8 +19,7 @@ import LanguageModal from "@/components/layout/modals/LanguageModal";
 import GamesModal from "@/components/layout/modals/GamesModal";
 import BetHistoryModal from "@/components/layout/modals/BetHistoryModal";
 import "./MobileSettingsMenu.css";
-import { UserContext } from "@/context/user";
-import { LanguageContext } from "@/context/language";
+import { useSelector } from "react-redux";
 
 const MobileSettingsMenu = () => {
   const [gamesModal, setGamesModal] = useState(false);
@@ -30,8 +29,8 @@ const MobileSettingsMenu = () => {
   const [gameResultsModal, setGameResultsModal] = useState(false);
   const [betHistoryModal, setBetHistoryModal] = useState(false);
 
-  const { user } = useContext(UserContext);
-  const { translations, lan } = useContext(LanguageContext);
+  const { user } = useSelector((state) => state.user);
+  const { translations, lan } = useSelector((state) => state.lan);
   return (
     <>
       <div className="mobile-menu text-sm">

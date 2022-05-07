@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import GameResultsWidget from "@/components/pages/gameresults/GameResultsWidget";
-import Spinner from "@/components/Spinner/Spinner";
+import Spinner from "@/components/spinner/Spinner";
 import { TabsItems, TabItem } from "@/components/tabs";
 import { useOutletContext } from "react-router-dom";
 const GameResults = () => {

@@ -1,11 +1,11 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { TabsButtons, TabButton } from "@/components/tabs";
 import { AiOutlineAppstore } from "react-icons/ai";
 import GamesMenu from "@/components/layout/modals/GamesModal";
-import { LanguageContext } from "@/context/language";
+import { useSelector } from "react-redux";
 
 const GameResultsModalHeader = () => {
-  const { translations } = useContext(LanguageContext);
+  const { translations } = useSelector((state) => state.lan);
   const [tabs] = useState([
     { id: 0, title: "today" },
     { id: 1, title: "early" },

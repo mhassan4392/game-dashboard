@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import {
   Menu,
   MenuItem,
@@ -12,14 +12,16 @@ import {
   BsVolumeDownFill,
   BsVolumeMuteFill,
 } from "react-icons/bs";
-import Range from "@/components/Range/Range";
+import Range from "@/components/range/Range";
 import Checkbox from "@/components/Checkbox/Checkbox";
 import "./BrowserSettingsMenu.css";
 
-import { LanguageContext } from "@/context/language";
+import { useSelector, useDispatch } from "react-redux";
+import { setLan } from "@/store/features/language/lanSlice";
 
 const SettingsMenu = () => {
-  const { translations, lan, setLan } = useContext(LanguageContext);
+  const dispatch = useDispatch();
+  const { translations, lan } = useSelector((state) => state.lan);
   const [resultAnimation, setResultAnimation] = useState(true);
   const [gameSound, setGameSound] = useState(60);
   const [effectsSound, setEffectsSound] = useState(0);
@@ -45,8 +47,12 @@ const SettingsMenu = () => {
           <MenuItem>HONGKONG</MenuItem>
         </SubMenu>
         <SubMenu label={translations.Lan[lan]}>
-          <MenuItem onClick={() => setLan(0)}>{translations.Lan[0]}</MenuItem>
-          <MenuItem onClick={() => setLan(1)}>{translations.Lan[1]}</MenuItem>
+          <MenuItem onClick={() => dispatch(setLan(0))}>
+            {translations.Lan[0]}
+          </MenuItem>
+          <MenuItem onClick={() => dispatch(setLan(1))}>
+            {translations.Lan[1]}
+          </MenuItem>
         </SubMenu>
         <MenuDivider className="!bg-primary !bg-opacity-20 !mx-2" />
         <MenuItem

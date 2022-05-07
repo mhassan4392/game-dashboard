@@ -1,7 +1,7 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { Outlet } from "react-router";
 import { Tabs, TabsButtons, TabButton } from "@/components/tabs";
-import { LanguageContext } from "@/context/language";
+import { useSelector } from "react-redux";
 
 const GameResultLayout = () => {
   const [tabs] = useState([
@@ -12,7 +12,7 @@ const GameResultLayout = () => {
     { id: 4, title: "outright" },
     ,
   ]);
-  const { translations } = useContext(LanguageContext);
+  const { translations } = useSelector((state) => state.lan);
   return (
     <div className="bg-black h-full">
       <Tabs

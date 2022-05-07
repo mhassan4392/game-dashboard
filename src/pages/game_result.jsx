@@ -1,5 +1,5 @@
-import { useState, useEffect, useContext } from "react";
-import Spinner from "@/components/Spinner/Spinner";
+import { useState, useEffect } from "react";
+import Spinner from "@/components/spinner/Spinner";
 import {
   TabButton,
   TabItem,
@@ -9,10 +9,10 @@ import {
 } from "@/components/tabs";
 import GameResultWidget from "@/components/pages/gameresults/GameResultWidget";
 import GameResultHeader from "@/components/pages/gameresults/GameResultHeader";
-import { LanguageContext } from "@/context/language";
+import { useSelector } from "react-redux";
 
 const GameResult = () => {
-  const { translations } = useContext(LanguageContext);
+  const { translations } = useSelector((state) => state.lan);
   const [tabs] = useState([
     { id: 0, title: "match" },
     { id: 1, title: "first" },

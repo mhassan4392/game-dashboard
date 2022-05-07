@@ -1,5 +1,5 @@
-import { useState, useEffect, useContext } from "react";
-import Spinner from "@/components/Spinner/Spinner";
+import { useState, useEffect } from "react";
+import Spinner from "@/components/spinner/Spinner";
 import {
   TabButton,
   TabItem,
@@ -9,10 +9,10 @@ import {
 } from "@/components/tabs";
 import EventWidget from "@/components/pages/events/EventWidget";
 import EventHeader from "@/components/pages/events/EventHeader";
-import { LanguageContext } from "@/context/language";
+import { useSelector } from "react-redux";
 
 const Event = () => {
-  const { translations } = useContext(LanguageContext);
+  const { translations } = useSelector((state) => state.lan);
   // loading
   const [loading, setLoading] = useState(true);
   useEffect(() => {

@@ -1,18 +1,18 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { BsFillPlayFill, BsX } from "react-icons/bs";
 import eventgame from "@/assets/images/eventgame.png";
 import fire from "@/assets/images/fire.gif";
 import teamonelogo from "@/assets/images/teamonelogo.png";
 import teamtwologo from "@/assets/images/teamtwologo.png";
 import { TabButton, TabsButtons } from "@/components/tabs";
-import { LanguageContext } from "@/context/language";
+import { useSelector } from "react-redux";
 const GameResultModalHeader = ({ onXClick }) => {
   const [tabs] = useState([
     { id: 0, title: "match" },
     { id: 1, title: "first" },
     { id: 2, title: "second" },
   ]);
-  const { translations } = useContext(LanguageContext);
+  const { translations } = useSelector((state) => state.lan);
   return (
     <>
       <div className="flex items-center justify-between px-4">

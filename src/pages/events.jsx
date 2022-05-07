@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Spinner from "@/components/Spinner/Spinner";
+import Spinner from "@/components/spinner/Spinner";
 import { TabsItems, TabItem } from "@/components/tabs";
 import banner from "@/assets/images/banner.jpg";
 import EventsWidget from "@/components/pages/events/EventsWidget";

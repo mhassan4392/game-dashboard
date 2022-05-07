@@ -5,16 +5,17 @@ import App from "./App";
 
 import "@szhsin/react-menu/dist/index.css";
 
-import ContextStore from "./context";
-
 import { BrowserRouter, HashRouter } from "react-router-dom";
+
+import { Provider } from "react-redux";
+import store from "./store/app";
 
 ReactDOM.render(
   <React.StrictMode>
     <HashRouter>
-      <ContextStore>
+      <Provider store={store}>
         <App />
-      </ContextStore>
+      </Provider>
     </HashRouter>
   </React.StrictMode>,
   document.getElementById("root")

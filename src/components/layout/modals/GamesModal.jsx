@@ -1,9 +1,7 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import Axios from "@/utils/axios";
 
 import MobileModel from "./MobileModal";
-
-import { LanguageContext } from "@/context/language";
 
 // images
 import CN from "@/assets/images/country/flags/svg/cn.svg";
@@ -19,6 +17,7 @@ import RU from "@/assets/images/country/flags/svg/ru.svg";
 import SG from "@/assets/images/country/flags/svg/sg.svg";
 import TH from "@/assets/images/country/flags/svg/th.svg";
 import US from "@/assets/images/country/flags/svg/us.svg";
+import { useSelector } from "react-redux";
 const images = {
   CN,
   DE,
@@ -36,7 +35,7 @@ const images = {
 };
 
 const GamesMenu = ({ open = false, onClose }) => {
-  const { translations } = useContext(LanguageContext);
+  const { translations } = useSelector((state) => state.lan);
 
   const [allGames, setAllGames] = useState({});
   const [v, setV] = useState(null);

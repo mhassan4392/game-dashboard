@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { AiOutlineAppstore } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
 import EventsIcon from "./EventsIcon";
@@ -6,12 +6,12 @@ import LootboxIcon from "./LootboxIcon";
 import MobileSettingsMenu from "./MobileSettingsMenu";
 import GamesModal from "@/components/layout/modals/GamesModal";
 
-import { UserContext } from "@/context/user";
+import { useSelector } from "react-redux";
 
 const MobileNavbar = () => {
   const [gamesModal, setGamesModal] = useState(false);
 
-  const { user } = useContext(UserContext);
+  const { user } = useSelector((state) => state.user);
   return (
     <>
       <div className="lg:hidden flex items-center justify-between bg-dark-light h-full py-2">

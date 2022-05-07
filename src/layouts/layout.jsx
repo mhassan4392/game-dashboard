@@ -1,5 +1,4 @@
-import { useContext, useState, useEffect } from "react";
-import { SettingsContext } from "@/context/settings";
+import { useState, useEffect } from "react";
 import { Outlet } from "react-router";
 import LeftSidebar from "@/components/layout/sidebar/LeftSidebar";
 import Navbar from "@/components/layout/navbar/Navbar";
@@ -8,27 +7,30 @@ import RightSidebar from "@/components/layout/sidebar/RightSidebar";
 import { useLocation } from "react-router";
 import AuthLoading from "@/components/layout/AuthLoading";
 import { AnimatePresence, motion } from "framer-motion";
-import { UserContext } from "../context/user";
-import { LanguageContext } from "../context/language";
+
+import { useDispatch } from "react-redux";
+
+import { getConfig, getKey } from "@/store/features/config/configSlice";
+import { getLan } from "@/store/features/language/lanSlice";
+import { getUser } from "@/store/features/user/userSlice";
 
 const Layout = () => {
-  const { getLaunch, getConfig } = useContext(SettingsContext);
-  const { getUser } = useContext(UserContext);
-  const { getTranslations } = useContext(LanguageContext);
-  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
 
-  const launch = async () => {
-    await getLaunch();
-    await getConfig();
-    await getUser();
-    await getTranslations();
-  };
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     launch().then(() => {
       setLoading(false);
     });
   }, []);
+
+  const launch = async () => {
+    await dispatch(getKey());
+    await dispatch(getUser());
+    await dispatch(getConfig());
+    await dispatch(getLan());
+  };
 
   const location = useLocation();
 

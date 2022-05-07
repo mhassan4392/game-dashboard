@@ -2,9 +2,11 @@ import { useContext, useState } from "react";
 import Modal from "@/components/modal/Modal";
 import { FaTimes } from "react-icons/fa";
 
-import { LanguageContext } from "@/context/language";
+import { useDispatch, useSelector } from "react-redux";
+import { setLan } from "@/store/features/language/lanSlice";
 
 const LanguageMenu = ({ open, onClose }) => {
+  const dispatch = useDispatch();
   const [langs, setLangs] = useState([
     {
       id: 0,
@@ -15,10 +17,10 @@ const LanguageMenu = ({ open, onClose }) => {
       title: "english",
     },
   ]);
-  const { translations, lan, setLan } = useContext(LanguageContext);
+  const { translations, lan } = useSelector((state) => state.lan);
 
   const handleClick = (id) => {
-    setLan(id);
+    dispatch(setLan(id));
     onClose();
   };
   return (

@@ -1,4 +1,4 @@
-import AuthSpinner from "@/components/Spinner/AuthSpinner";
+import AuthSpinner from "@/components/spinner/AuthSpinner";
 const AuthLoading = () => {
   return (
     <div className="fixed z-10 inset-0 bg-dark-light flex items-center justify-center">

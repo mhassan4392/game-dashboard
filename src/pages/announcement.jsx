@@ -1,13 +1,13 @@
-import { useEffect, useState, useContext } from "react";
-import { LanguageContext } from "@/context/language";
+import { useEffect, useState } from "react";
 import Axios from "@/utils/axios";
-import Spinner from "@/components/Spinner/Spinner";
+import Spinner from "@/components/spinner/Spinner";
 import { AnimatePresence, motion } from "framer-motion";
+import { useSelector } from "react-redux";
 const Announcement = () => {
   const [announcements, setAnnouncements] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const { lan } = useContext(LanguageContext);
+  const { lan } = useSelector((state) => state.lan);
 
   useEffect(() => {
     setLoading(true);

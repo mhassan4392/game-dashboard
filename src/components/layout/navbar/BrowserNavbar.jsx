@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import { FaWallet } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
@@ -6,12 +5,11 @@ import "./BrowserNavbar.scss";
 import Banner from "@/components/banner/BrowserBanner";
 import BrowserSettingsMenu from "./BrowserSettingsMenu";
 
-import { UserContext } from "@/context/user";
-import { LanguageContext } from "@/context/language";
+import { useSelector } from "react-redux";
 
 const BrowserNavbar = () => {
-  const { user } = useContext(UserContext);
-  const { translations } = useContext(LanguageContext);
+  const { user } = useSelector((state) => state.user);
+  const { translations } = useSelector((state) => state.lan);
 
   //   links
   const links = [

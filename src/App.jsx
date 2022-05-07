@@ -1,22 +1,10 @@
-import { useContext, useEffect } from "react";
-
 import { Helmet } from "react-helmet";
-
 import Router from "./router";
 
-import { SettingsContext } from "./context/settings";
-
-import Axios from "@/utils/axios";
+import { useSelector } from "react-redux";
 
 const App = () => {
-  const { config } = useContext(SettingsContext);
-
-  useEffect(() => {
-    Axios({ url: "/api/ox/getmsgs", method: "POST" }).then((res) => {
-      console.log(res);
-    });
-  }, []);
-
+  const { config } = useSelector((state) => state.config);
   return (
     <>
       <Helmet>
