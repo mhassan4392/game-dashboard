@@ -8,7 +8,6 @@ export const getLan = createAsyncThunk(
     try {
       Axios.defaults.headers.common["Lan"] = lan;
       const res = await Axios({ url: `/api/ox/getlan?lan=${lan}` });
-      console.log(res);
       return res.data;
     } catch (error) {
       return rejectWithValue(error.message);

@@ -5,13 +5,10 @@ import Axios from "@/utils/axios";
 export const getKey = createAsyncThunk(
   "config/getKey",
   async ({ lan, key, name }, { rejectWithValue }) => {
-    console.log({ lan, key, name });
     try {
-      // console.log(lan, key, name);
       const res = await Axios({
         url: `/api/ox/launch?lan=${lan}&key=${key}&name=${name}`,
       });
-      console.log(res);
       Axios.defaults.headers.common["Authorization"] = res.data.info.KEY;
       return res.data.info.KEY;
     } catch (error) {
@@ -26,7 +23,6 @@ export const getConfig = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const res = await Axios({ url: "/api/ox/getConfig", data });
-      console.log(res);
       return res.data.info;
     } catch (error) {
       return rejectWithValue(error.message);

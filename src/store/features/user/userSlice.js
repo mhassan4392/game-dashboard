@@ -7,7 +7,6 @@ export const getUser = createAsyncThunk(
   async (_data, { rejectWithValue }) => {
     try {
       const res = await Axios({ url: "/api/ox/userinfo" });
-      console.log(res);
       return res.data.info;
     } catch (error) {
       return rejectWithValue(error.message);
