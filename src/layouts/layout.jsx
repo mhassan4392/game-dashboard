@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Outlet } from "react-router";
+import { Outlet, useSearchParams } from "react-router-dom";
 import LeftSidebar from "@/components/layout/sidebar/LeftSidebar";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -8,28 +8,41 @@ import { useLocation } from "react-router";
 import AuthLoading from "@/components/layout/AuthLoading";
 import { AnimatePresence, motion } from "framer-motion";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { getConfig, getKey } from "@/store/features/config/configSlice";
-import { getLan } from "@/store/features/language/lanSlice";
+import { getLan, setLan } from "@/store/features/language/lanSlice";
 import { getUser } from "@/store/features/user/userSlice";
 
 const Layout = () => {
+  const [searchParams] = useSearchParams();
+
+  const { lan } = useSelector((state) => state.lan);
+
+  const pLan = searchParams.get("lan") || localStorage.getItem("lan") || 0;
+  const key = searchParams.get("key") || localStorage.getItem("key");
+  const name = searchParams.get("name") || localStorage.getItem("name") || "";
+
   const dispatch = useDispatch();
 
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    dispatch(setLan(pLan));
     launch().then(() => {
       setLoading(false);
     });
   }, []);
 
+  useEffect(() => {
+    dispatch(getLan({ lan }));
+  }, [lan]);
+
   const launch = async () => {
-    await dispatch(getKey());
+    await dispatch(getKey({ lan: pLan, key, name }));
+    await dispatch(getLan({ lan: pLan }));
     await dispatch(getUser());
     await dispatch(getConfig());
-    await dispatch(getLan());
   };
 
   const location = useLocation();

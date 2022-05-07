@@ -1,18 +1,21 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { fetchKey } from "./configService";
 import Axios from "@/utils/axios";
 
 // get key on launch
 export const getKey = createAsyncThunk(
   "config/getKey",
-  async (data, { rejectWithValue }) => {
+  async ({ lan, key, name }, { rejectWithValue }) => {
+    console.log({ lan, key, name });
     try {
-      const res = await Axios({ url: "/api/ox/launch", data });
+      // console.log(lan, key, name);
+      const res = await Axios({
+        url: `/api/ox/launch?lan=${lan}&key=${key}&name=${name}`,
+      });
       console.log(res);
       Axios.defaults.headers.common["Authorization"] = res.data.info.KEY;
       return res.data.info.KEY;
     } catch (error) {
-      return rejectWithValue("something went wrong");
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -26,7 +29,7 @@ export const getConfig = createAsyncThunk(
       console.log(res);
       return res.data.info;
     } catch (error) {
-      return rejectWithValue("something went wrong");
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -35,6 +38,7 @@ const initialState = {
   loading: false,
   errro: false,
   key: null,
+  name: "",
   config: {
     SiteName: "Game Dashboard",
     Ico: "http://devplayerui.cotu.xyz:9901/swagger/favicon-16x16.png",
@@ -44,7 +48,16 @@ const initialState = {
 const configSlice = createSlice({
   name: "config",
   initialState,
-  reducers: {},
+  reducers: {
+    setKey: (state, action) => {
+      state.key = action.payload;
+      localStorage.setItem(action.payload);
+    },
+    setName: (state, action) => {
+      state.name = action.payload;
+      localStorage.setItem("name", action.payload);
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getKey.pending, (state) => {
@@ -55,6 +68,8 @@ const configSlice = createSlice({
         state.loading = false;
         state.errro = false;
         state.key = action.payload;
+        localStorage.setItem("key", action.payload);
+        Axios.defaults.headers.common["Authorization"] = action.payload;
       })
       .addCase(getKey.rejected, (state, action) => {
         state.loading = false;
@@ -75,5 +90,7 @@ const configSlice = createSlice({
       });
   },
 });
+
+export const { setKey, setName } = configSlice.actions;
 
 export default configSlice.reducer;

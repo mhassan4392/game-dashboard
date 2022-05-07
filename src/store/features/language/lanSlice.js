@@ -4,13 +4,14 @@ import Axios from "@/utils/axios";
 // get translations
 export const getLan = createAsyncThunk(
   "lan/getLan",
-  async (data, { rejectWithValue }) => {
+  async ({ lan }, { rejectWithValue }) => {
     try {
-      const res = await Axios({ url: "/api/ox/getlan?lan=1", data });
+      Axios.defaults.headers.common["Lan"] = lan;
+      const res = await Axios({ url: `/api/ox/getlan?lan=${lan}` });
       console.log(res);
       return res.data;
     } catch (error) {
-      return rejectWithValue("something went wrong");
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -18,33 +19,35 @@ import _translations from "@/store/data/translations";
 
 const initialState = {
   loading: false,
-  errro: false,
+  error: false,
   lan: 0,
   translations: _translations,
 };
 
 const lanSlice = createSlice({
-  name: "config",
+  name: "lan",
   initialState,
   reducers: {
     setLan: (state, action) => {
       state.lan = action.payload;
+      localStorage.setItem("lan", action.payload);
+      Axios.defaults.headers.common["Authorization"] = action.payload;
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(getLan.pending, (state) => {
         state.loading = true;
-        state.errro = false;
+        state.error = false;
       })
       .addCase(getLan.fulfilled, (state, action) => {
         state.loading = false;
-        state.errro = false;
+        state.error = false;
         state.translations = action.payload;
       })
       .addCase(getLan.rejected, (state, action) => {
         state.loading = false;
-        state.errro = action.payload;
+        state.error = action.payload;
       });
   },
 });

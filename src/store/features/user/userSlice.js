@@ -4,13 +4,13 @@ import Axios from "@/utils/axios";
 // get translations
 export const getUser = createAsyncThunk(
   "lan/getUser",
-  async (data, { rejectWithValue }) => {
+  async (_data, { rejectWithValue }) => {
     try {
-      const res = await Axios({ url: "/api/ox/userinfo", data });
+      const res = await Axios({ url: "/api/ox/userinfo" });
       console.log(res);
       return res.data.info;
     } catch (error) {
-      return rejectWithValue("something went wrong");
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -22,7 +22,7 @@ const initialState = {
 };
 
 const userSlice = createSlice({
-  name: "config",
+  name: "user",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
