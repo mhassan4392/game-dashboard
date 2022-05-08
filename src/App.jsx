@@ -4,18 +4,22 @@ import Router from "./router";
 
 import Axios from "@/utils/axios";
 
-import { useSelector } from "react-redux";
+import { setCountry } from "@/store/features/game/gameSlice";
+
+import { useDispatch, useSelector } from "react-redux";
 
 const App = () => {
+  const dispatch = useDispatch();
   useEffect(() => {
-    Axios({ url: "/api/ox/getmsgs", method: "POST" }).then((res) => {
-      console.log("/api/ox/getmsgs");
-      console.log(res.data);
-    });
-    Axios({ url: "/api/ox/get5msg", method: "POST" }).then((res) => {
-      console.log("/api/ox/get5msg");
-      console.log(res.data);
-    });
+    dispatch(setCountry("CN"));
+    // Axios({ url: "/api/ox/getmsgs", method: "POST" }).then((res) => {
+    //   console.log("/api/ox/getmsgs");
+    //   console.log(res.data);
+    // });
+    // Axios({ url: "/api/ox/get5msg", method: "POST" }).then((res) => {
+    //   console.log("/api/ox/get5msg");
+    //   console.log(res.data);
+    // });
   }, []);
   const { config } = useSelector((state) => state.config);
   return (

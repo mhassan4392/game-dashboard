@@ -1,13 +1,37 @@
 import { useState } from "react";
-import eventgame from "@/assets/images/eventgame.png";
-import fire from "@/assets/images/fire.gif";
-import teamonelogo from "@/assets/images/teamonelogo.png";
-import teamtwologo from "@/assets/images/teamtwologo.png";
-import { AiOutlinePlaySquare } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import GameResultModal from "./GameResultModal";
 
-const GameResultsStatus = () => {
+import CN from "@/assets/images/country/flags/svg/cn.svg";
+import DE from "@/assets/images/country/flags/svg/de.svg";
+import FR from "@/assets/images/country/flags/svg/fr.svg";
+import HK from "@/assets/images/country/flags/svg/hk.svg";
+import ID from "@/assets/images/country/flags/svg/id.svg";
+import IT from "@/assets/images/country/flags/svg/it.svg";
+import JP from "@/assets/images/country/flags/svg/jp.svg";
+import KR from "@/assets/images/country/flags/svg/kr.svg";
+import MY from "@/assets/images/country/flags/svg/my.svg";
+import RU from "@/assets/images/country/flags/svg/ru.svg";
+import SG from "@/assets/images/country/flags/svg/sg.svg";
+import TH from "@/assets/images/country/flags/svg/th.svg";
+import US from "@/assets/images/country/flags/svg/us.svg";
+const images = {
+  CN,
+  DE,
+  FR,
+  HK,
+  ID,
+  IT,
+  JP,
+  KR,
+  MY,
+  RU,
+  SG,
+  TH,
+  US,
+};
+
+const GameResultsWidget = ({ game }) => {
   const [gameResultModal, setGameResultModal] = useState(false);
 
   const navigate = useNavigate();
@@ -18,7 +42,7 @@ const GameResultsStatus = () => {
     if (bodyWidth < lgWidth) {
       setGameResultModal(true);
     } else {
-      navigate("/game-results/12345");
+      navigate(`/game-results/${game.Id}`);
     }
   };
   return (
@@ -33,17 +57,12 @@ const GameResultsStatus = () => {
       >
         <div className="text-xs flex flex-row lg:flex-col justify-between mb-2 lg:mb-0">
           <div className="flex items-center space-x-2 order-2 lg:order-1">
-            <img src={eventgame} className="w-5" alt="" />
-            <span>6:30</span>
-            <span className="bg-red-500 px-1 py-[1px] text-white rounded-sm text-[8px] md:text-[1ppx]">
-              INPLAY
-            </span>
-            <AiOutlinePlaySquare className="text-2xl opacity-25" />
-            <img src={fire} className="w-5" alt="" />
+            <img src={images[game.Na]} className="w-5" alt="" />
+            <span>{game.STime}</span>
           </div>
           <div className="flex flex-row lg:flex-col order-1 lg:order-2">
             <div className="truncate mr-1">NBA</div>
-            <div className="truncate">BO5</div>
+            <div className="truncate">{game.Name}</div>
           </div>
         </div>
 
@@ -51,7 +70,7 @@ const GameResultsStatus = () => {
         <div className="space-y-2 md:hidden">
           <div className="flex items-center justify-between">
             <div className="flex items-center justify-center basis-1/3">
-              <img src={teamonelogo} className="w-7" alt="" />
+              {/* <img src={teamonelogo} className="w-7" alt="" /> */}
             </div>
             <div className="flex relative items-center justify-between border border-secondary border-opacity-25 bg-dark-light h-10 basis-1/3">
               <p className="text-2xl border-r border-secondary border-opacity-25 basis-1/2 h-full flex items-center justify-center pr-2">
@@ -67,20 +86,24 @@ const GameResultsStatus = () => {
               </div>
             </div>
             <div className="flex items-center justify-center basis-1/3">
-              <img src={teamtwologo} className="w-7" alt="" />
+              {/* <img src={teamtwologo} className="w-7" alt="" /> */}
             </div>
           </div>
 
           <div className="flex items-center justify-between">
-            <p className="text-xs truncate basis-1/3 text-center">Team One</p>
+            <p className="text-xs truncate basis-1/3 text-center">
+              {game.Items[0].Name}
+            </p>
             <p className="text-sm font-bold basis-1/3 text-center">Winner</p>
-            <p className="text-xs truncate basis-1/3 text-center">Team Two</p>
+            <p className="text-xs truncate basis-1/3 text-center">
+              {game.Items[1].Name}
+            </p>
           </div>
 
           <div className="flex items-center justify-between">
             <div className="basis-1/3 text-center flex items-center justify-center">
               <p className="border border-secondary py-1 bg-dark-light w-20 font-bold border-opacity-40">
-                1.28
+                {game.Items[0].Odds}
               </p>
             </div>
             <div className="basis-1/3 text-center flex items-center justify-center">
@@ -90,7 +113,7 @@ const GameResultsStatus = () => {
             </div>
             <div className="basis-1/3 text-center flex items-center justify-center">
               <p className="border border-secondary py-1 bg-dark-light w-20 font-bold border-opacity-40">
-                1.28
+                {game.Items[0].Odds}
               </p>
             </div>
           </div>
@@ -98,35 +121,39 @@ const GameResultsStatus = () => {
 
         {/* on md screen */}
         <div className="text-xs items-center justify-around pl-2 hidden md:flex">
-          <div className="flex items-center justify-between w-44 h-14 border border-secondary border-opacity-50 py-2 px-3 bg-dark-light hover:bg-secondary hover:bg-opacity-30 transition-all duration-200">
-            <div>
+          <div className="flex items-center justify-end w-44 h-14 border border-secondary border-opacity-50 py-2 px-3 bg-dark-light hover:bg-secondary hover:bg-opacity-30 transition-all duration-200">
+            {/* <div>
               <img src={teamonelogo} className="w-7" alt="" />
-            </div>
+            </div> */}
             <div className="text-right space-y-1">
-              <div className="text-md text-[14px] sm:text-lg">2.38</div>
-              <div className="truncate text-[12px]">Top Esports Armor</div>
+              <div className="text-md text-[14px] sm:text-lg">
+                {game.Items[0].Odds}
+              </div>
+              <div className="truncate text-[12px]">{game.Items[0].Name}</div>
             </div>
           </div>
           <div className="text-lg mx-2 lg:mx-6 xl:mx-10 h-14 text-center flex items-center justify-center">
             vs
           </div>
-          <div className="flex items-center justify-between w-44 h-14 border border-secondary border-opacity-50 py-2 px-3 bg-dark-light hover:bg-secondary hover:bg-opacity-30 transition-all duration-200">
+          <div className="flex items-center justify-start w-44 h-14 border border-secondary border-opacity-50 py-2 px-3 bg-dark-light hover:bg-secondary hover:bg-opacity-30 transition-all duration-200">
             <div className="text-left space-y-1">
-              <div className="text-md text-[14px]">2.38</div>
-              <div className="truncate text-[12px]">Top Esports Armor</div>
+              <div className="text-md text-[14px] sm:text-lg">
+                {game.Items[1].Odds}
+              </div>
+              <div className="truncate text-[12px]">{game.Items[1].Name}</div>
             </div>
-            <div>
+            {/* <div>
               <img src={teamtwologo} className="w-7" alt="" />
-            </div>
+            </div> */}
           </div>
         </div>
 
-        <div className="bg-secondary text-xs md:text-sm text-white flex items-center px-1 md:px-2 absolute top-0 right-0 bottom-0">
-          +149
+        <div className="bg-secondary text-xs md:text-sm text-white flex items-center justify-center w-10 absolute top-0 right-0 bottom-0">
+          {game.No}
         </div>
       </div>
     </>
   );
 };
 
-export default GameResultsStatus;
+export default GameResultsWidget;

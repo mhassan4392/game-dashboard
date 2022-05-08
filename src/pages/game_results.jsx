@@ -3,18 +3,17 @@ import GameResultsWidget from "@/components/pages/gameresults/GameResultsWidget"
 import Spinner from "@/components/spinner/Spinner";
 import { TabsItems, TabItem } from "@/components/tabs";
 import { useOutletContext } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getGames } from "@/store/features/game/gameSlice";
+
 const GameResults = () => {
   const { tab } = useOutletContext();
   // loading
-  const [loading, setLoading] = useState(true);
+  const { loading, country, games } = useSelector((state) => state.game);
+  const dispatch = useDispatch();
   useEffect(() => {
-    setLoading(true);
-    const timeout = setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-
-    return () => clearTimeout(timeout);
-  }, [tab]);
+    dispatch(getGames());
+  }, [country]);
 
   const [tabs] = useState([
     { id: 0, title: "today" },
@@ -37,9 +36,9 @@ const GameResults = () => {
           {!loading && (
             <TabItem tab={tab.title} className="h-full">
               <>
-                {[...Array(20)].map((ar, i) => (
+                {games.map((game, i) => (
                   <div key={i}>
-                    <GameResultsWidget />
+                    <GameResultsWidget game={game} />
                   </div>
                 ))}
               </>

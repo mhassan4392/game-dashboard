@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
 import Axios from "@/utils/axios";
+import { useSelector, useDispatch } from "react-redux";
+import { setCountry } from "@/store/features/game/gameSlice";
+
+import { useLocation, useNavigate } from "react-router-dom";
 
 import Spinner from "@/components/spinner/Spinner";
 
@@ -17,7 +21,6 @@ import RU from "@/assets/images/country/flags/svg/ru.svg";
 import SG from "@/assets/images/country/flags/svg/sg.svg";
 import TH from "@/assets/images/country/flags/svg/th.svg";
 import US from "@/assets/images/country/flags/svg/us.svg";
-import { useSelector } from "react-redux";
 const images = {
   CN,
   DE,
@@ -37,17 +40,23 @@ const images = {
 // links
 const LeftSidebar = () => {
   const { translations } = useSelector((state) => state.lan);
+  const { country } = useSelector((state) => state.game);
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   const [allGames, setAllGames] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [v, setV] = useState(null);
   useEffect(() => {
+    dispatch(setCountry("CN"));
     setError(false);
     setLoading(true);
     Axios({ url: "/api/ox/getcata", method: "POST", data: { v } })
       .then((res) => {
-        // console.log(res);
         setAllGames(res?.data?.info || {});
         setV(res?.data?.v || null);
         setLoading(false);
@@ -58,6 +67,16 @@ const LeftSidebar = () => {
         setLoading(false);
       });
   }, []);
+
+  const handleClick = (game) => {
+    dispatch(setCountry(game));
+
+    if (location.pathname.includes("/events/")) {
+      navigate("/events");
+    } else if (location.pathname.includes("/game-results/")) {
+      navigate("/game-results");
+    }
+  };
 
   return (
     <>
@@ -70,9 +89,10 @@ const LeftSidebar = () => {
         {!loading &&
           Object.keys(allGames).map((game, i) => (
             <div
+              onClick={() => handleClick(game)}
               key={game}
               className={`flex items-center justify-between cursor-pointer hover:bg-gray-800 hover:bg-opacity-75 py-4 px-2 transition-all duration-200 ${
-                game == "CN"
+                game == country
                   ? "bg-gradient-to-r from-primary to-secondary text-white bg-opacity-75"
                   : ""
               }`}

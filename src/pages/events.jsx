@@ -5,21 +5,17 @@ import banner from "@/assets/images/banner.jpg";
 import EventsWidget from "@/components/pages/events/EventsWidget";
 import MobileBanner from "@/components/banner/MobileBanner";
 import { useOutletContext } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getGames } from "@/store/features/game/gameSlice";
 
 const Events = () => {
   const { tab } = useOutletContext();
-  // loading
-  const [loading, setLoading] = useState(true);
+  const { loading, country, games } = useSelector((state) => state.game);
+  const dispatch = useDispatch();
   useEffect(() => {
-    setLoading(true);
-    const timeout = setTimeout(() => {
-      setLoading(false);
-    }, 1000);
+    dispatch(getGames());
+  }, [country]);
 
-    return () => clearTimeout(timeout);
-  }, [tab]);
-
-  const items = [{ tab: "today" }, { tab: "yesterday" }, { tab: "daybefore" }];
   const [tabs] = useState([
     { id: 0, title: "today" },
     { id: 1, title: "early" },
@@ -48,9 +44,9 @@ const Events = () => {
             {!loading && (
               <TabItem tab={tab.title}>
                 <>
-                  {[...Array(20)].map((ar, i) => (
+                  {games.map((game, i) => (
                     <div key={i}>
-                      <EventsWidget />
+                      <EventsWidget game={game} />
                     </div>
                   ))}
                 </>

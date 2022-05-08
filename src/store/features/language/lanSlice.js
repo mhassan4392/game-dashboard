@@ -30,7 +30,7 @@ const lanSlice = createSlice({
     setLan: (state, action) => {
       state.lan = action.payload;
       localStorage.setItem("lan", action.payload);
-      Axios.defaults.headers.common["Authorization"] = action.payload;
+      Axios.defaults.headers.common["Lan"] = action.payload;
     },
   },
   extraReducers: (builder) => {
