@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Outlet, useSearchParams } from "react-router-dom";
 import LeftSidebar from "@/components/layout/sidebar/LeftSidebar";
 import Navbar from "@/components/layout/navbar/Navbar";
@@ -15,6 +15,9 @@ import { getLan, setLan } from "@/store/features/language/lanSlice";
 import { getUser } from "@/store/features/user/userSlice";
 
 const Layout = () => {
+  const isMounted = useRef(false);
+  const isLaunched = useRef(false);
+
   const { lan } = useSelector((state) => state.lan);
 
   // get search params or from localstorage
@@ -35,7 +38,11 @@ const Layout = () => {
   }, []);
 
   useEffect(() => {
-    dispatch(getLan({ lan }));
+    if ((isMounted.current, isLaunched.current)) {
+      dispatch(getLan({ lan }));
+    } else {
+      isMounted.current = true;
+    }
   }, [lan]);
 
   const launch = async () => {
@@ -43,6 +50,7 @@ const Layout = () => {
     await dispatch(getLan({ lan: pLan }));
     await dispatch(getUser());
     await dispatch(getConfig());
+    isLaunched.current = true;
   };
 
   const location = useLocation();
