@@ -26,7 +26,7 @@ export const getGames = createAsyncThunk(
       formData.append("limit", dat.limit);
       formData.append("na", game.country);
       const config = {
-        // headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
       };
       const res = await Axios.post("/api/ox/gettodays", dat, config);
       // console.log(res);
