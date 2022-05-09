@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import Axios from "@/utils/axios";
 
 const initialState = {
-  country: null,
+  country: "CN",
   game: null,
   games: [],
   limit: 25,
@@ -13,16 +13,27 @@ const initialState = {
 
 export const getGames = createAsyncThunk(
   "game/getGames",
-  async (_, { rejectWithValue, getState }) => {
+  async (data, { rejectWithValue, getState, dispatch }) => {
     const { game } = getState();
+    console.log(game.page);
     try {
-      const res = await Axios({
-        url: "/api/ox/gettodays",
-        method: "POST",
-        data: { page: game.page, limit: game.limit, na: game.country },
-      });
+      const dat = {
+        page: game.page,
+        limit: game.limit,
+        na: game.country,
+      };
+      const formData = new FormData();
+      formData.append("page", dat.page);
+      formData.append("limit", dat.limit);
+      formData.append("na", game.country);
+      const config = {
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      };
+      const res = await Axios.post("/api/ox/gettodays", dat, config);
+      // console.log(res);
       return res.data.info;
     } catch (error) {
+      console.log(error);
       return rejectWithValue(error.message);
     }
   }
@@ -46,6 +57,13 @@ const gameSlice = createSlice({
     setCountry: (state, action) => {
       state.country = action.payload;
     },
+    resetGames: (state) => {
+      state.games = [];
+      state.page = 1;
+    },
+    setPage: (state, action) => {
+      state.page = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -55,7 +73,8 @@ const gameSlice = createSlice({
       })
       .addCase(getGames.fulfilled, (state, action) => {
         state.loading = false;
-        state.games = action.payload;
+        state.games = [...state.games, ...action.payload];
+        state.page += 1;
         state.error = false;
       })
       .addCase(getGames.rejected, (state, action) => {
@@ -78,6 +97,6 @@ const gameSlice = createSlice({
   },
 });
 
-export const { setCountry } = gameSlice.actions;
+export const { setCountry, resetGames, setPage } = gameSlice.actions;
 
 export default gameSlice.reducer;

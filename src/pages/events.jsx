@@ -6,15 +6,21 @@ import EventsWidget from "@/components/pages/events/EventsWidget";
 import MobileBanner from "@/components/banner/MobileBanner";
 import { useOutletContext } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getGames } from "@/store/features/game/gameSlice";
+import { getGames, resetGames } from "@/store/features/game/gameSlice";
+
+import VisibilitySensor from "react-visibility-sensor";
 
 const Events = () => {
   const { tab } = useOutletContext();
-  const { loading, country, games } = useSelector((state) => state.game);
+  const { loading, country, games, page } = useSelector((state) => state.game);
   const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(getGames());
-  }, [country]);
+    const run = async () => {
+      await dispatch(resetGames());
+    };
+    run();
+  }, [country, tab]);
 
   const [tabs] = useState([
     { id: 0, title: "today" },
@@ -34,24 +40,36 @@ const Events = () => {
         <img src={banner} className="h-16 w-full" alt="" />
       </div>
       <TabsItems className="flex-grow h-full scrollbar overflow-y-auto overflow-x-hidden">
-        {loading && (
-          <div className="h-full flex items-center justify-center">
+        {loading && !games.length && (
+          <div className={`flex items-center justify-center h-4/5`}>
             <Spinner />
           </div>
         )}
         {tabs.map((tab) => (
           <div key={tab.id}>
-            {!loading && (
-              <TabItem tab={tab.title}>
-                <>
-                  {games.map((game, i) => (
-                    <div key={i}>
-                      <EventsWidget game={game} />
-                    </div>
-                  ))}
-                </>
-              </TabItem>
-            )}
+            <TabItem tab={tab.title} className="h-full">
+              <>
+                {games.map((game, i) => (
+                  <div key={i}>
+                    <EventsWidget game={game} />
+                  </div>
+                ))}
+                <VisibilitySensor
+                  onChange={async (isVisible) => {
+                    if (isVisible) {
+                      await dispatch(getGames());
+                    }
+                  }}
+                >
+                  <div className="scroller w-full h-2"></div>
+                </VisibilitySensor>
+                {loading && games.length > 0 && (
+                  <div className={`flex items-center justify-center`}>
+                    <Spinner />
+                  </div>
+                )}
+              </>
+            </TabItem>
           </div>
         ))}
       </TabsItems>
