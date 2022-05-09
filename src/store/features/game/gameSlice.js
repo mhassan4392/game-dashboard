@@ -25,10 +25,10 @@ export const getGames = createAsyncThunk(
       formData.append("page", dat.page);
       formData.append("limit", dat.limit);
       formData.append("na", game.country);
-      const config = {
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      };
-      const res = await Axios.post("/api/ox/gettodays", dat, config);
+      // const config = {
+      // headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      // };
+      const res = await Axios.post("/api/ox/gettodays", dat);
       // console.log(res);
       return res.data.info;
     } catch (error) {
