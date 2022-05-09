@@ -5,7 +5,7 @@ const initialState = {
   country: "CN",
   game: null,
   games: [],
-  limit: 25,
+  limit: 2,
   page: 1,
   loading: false,
   error: null,
@@ -15,7 +15,6 @@ export const getGames = createAsyncThunk(
   "game/getGames",
   async (data, { rejectWithValue, getState, dispatch }) => {
     const { game } = getState();
-    console.log(game.page);
     try {
       const dat = {
         page: game.page,
@@ -27,7 +26,7 @@ export const getGames = createAsyncThunk(
       formData.append("limit", dat.limit);
       formData.append("na", game.country);
       const config = {
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        // headers: { "Content-Type": "application/x-www-form-urlencoded" },
       };
       const res = await Axios.post("/api/ox/gettodays", dat, config);
       // console.log(res);

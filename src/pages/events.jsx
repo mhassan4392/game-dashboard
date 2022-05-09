@@ -55,9 +55,10 @@ const Events = () => {
                   </div>
                 ))}
                 <VisibilitySensor
-                  onChange={async (isVisible) => {
+                  onChange={(isVisible) => {
                     if (isVisible) {
-                      await dispatch(getGames());
+                      console.log("hello");
+                      dispatch(getGames());
                     }
                   }}
                 >
