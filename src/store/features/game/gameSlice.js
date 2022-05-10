@@ -30,10 +30,10 @@ export const getGames = createAsyncThunk(
         na: game.country,
       };
       const res = await Axios.post(`/api/ox/${game.tab}`, dat);
-      console.log(res);
+      // console.log(res);
       return res.data.info;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       return rejectWithValue(error.message);
     }
   }

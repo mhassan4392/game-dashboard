@@ -52,9 +52,9 @@ const Event = () => {
           <TabsItems className="flex-grow h-full scrollbar overflow-y-auto overflow-x-hidden">
             {/* {!loading && ( */}
             <>
-              {bets.map((bet) => (
+              {bets.map((bet, i) => (
                 <TabItem
-                  key={bet.Stage}
+                  key={i}
                   tab={bet.Stage}
                   className="bg-[#2d799b] bg-opacity-25 md:bg-dark"
                 >
