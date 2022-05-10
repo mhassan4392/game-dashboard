@@ -33,6 +33,7 @@ const images = {
 
 const GameResultHeader = () => {
   const { game } = useSelector((state) => state.game);
+  const { translations } = useSelector((state) => state.lan);
   return (
     <div className="bg-secondary bg-opacity-25 flex flex-col md:flex-row justify-between items-start px-4 w-full relative">
       <Link
@@ -71,7 +72,7 @@ const GameResultHeader = () => {
               </span>
             </div>
           </div>
-          <p className="text-sm">{game?.Name || ""}</p>
+          <p className="text-sm">{translations?.Market[game?.Name] || ""}</p>
         </div>
 
         <div className="flex flex-col items-center space-y-1">

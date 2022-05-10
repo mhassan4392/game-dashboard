@@ -6,8 +6,10 @@ import {
   TabsItems,
 } from "@/components/tabs";
 import EmptyBet from "@/components/bet/EmptyBet";
+import { useSelector } from "react-redux";
 
 const RightSidebar = () => {
+  const { translations } = useSelector((state) => state.lan);
   return (
     // relative and z-10 class for mobile banner
     <div className="bg-dark overflow-y-auto overflow-x-hidden relative z-10 md:z-0 h-full scrollbar">
@@ -33,28 +35,28 @@ const RightSidebar = () => {
             <EmptyBet />
           </TabItem>
           <TabItem tab="history" className="flex-grow flex flex-col">
-            <Tabs className="flex flex-col flex-grow">
+            <Tabs defaultTab="yesterday" className="flex flex-col flex-grow">
               <TabsButtons className="flex items-center bg-dark-light mb-2">
                 <TabButton
                   activeClass="tab-active"
                   className="basis-1/2 px-2 py-4 text-sm"
-                  tab="pending"
+                  tab="yesterday"
                 >
-                  Pending
+                  {translations?.Date[0]}
                 </TabButton>
                 <TabButton
                   activeClass="tab-active"
                   className="basis-1/2 px-2 py-4 text-sm"
-                  tab="settled"
+                  tab="today"
                 >
-                  Settled
+                  {translations?.Date[1]}
                 </TabButton>
               </TabsButtons>
               <TabsItems className="flex-grow">
-                <TabItem tab="pending" className="h-full" defaultTab>
+                <TabItem tab="yesterday" className="h-full">
                   <EmptyBet />
                 </TabItem>
-                <TabItem tab="settled" className="h-full">
+                <TabItem tab="today" className="h-full">
                   <EmptyBet />
                 </TabItem>
               </TabsItems>

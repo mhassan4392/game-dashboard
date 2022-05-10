@@ -77,7 +77,7 @@ const EventModalHeader = ({ onXClick }) => {
                 </span>
               </div>
             </div>
-            <p className="text-sm">{game?.Name || ""}</p>
+            <p className="text-sm">{translations?.Market[game?.Name] || ""}</p>
           </div>
 
           <div className="flex flex-col items-center space-y-1">
