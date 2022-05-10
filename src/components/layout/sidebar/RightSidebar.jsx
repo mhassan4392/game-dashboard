@@ -35,28 +35,28 @@ const RightSidebar = () => {
             <EmptyBet />
           </TabItem>
           <TabItem tab="history" className="flex-grow flex flex-col">
-            <Tabs defaultTab="yesterday" className="flex flex-col flex-grow">
+            <Tabs defaultTab="pending" className="flex flex-col flex-grow">
               <TabsButtons className="flex items-center bg-dark-light mb-2">
                 <TabButton
                   activeClass="tab-active"
                   className="basis-1/2 px-2 py-4 text-sm"
-                  tab="yesterday"
+                  tab="pending"
                 >
-                  {translations?.Date[0]}
+                  Pending
                 </TabButton>
                 <TabButton
                   activeClass="tab-active"
                   className="basis-1/2 px-2 py-4 text-sm"
-                  tab="today"
+                  tab="setteled"
                 >
-                  {translations?.Date[1]}
+                  Setteled
                 </TabButton>
               </TabsButtons>
               <TabsItems className="flex-grow">
-                <TabItem tab="yesterday" className="h-full">
+                <TabItem tab="pending" className="h-full">
                   <EmptyBet />
                 </TabItem>
-                <TabItem tab="today" className="h-full">
+                <TabItem tab="setteled" className="h-full">
                   <EmptyBet />
                 </TabItem>
               </TabsItems>

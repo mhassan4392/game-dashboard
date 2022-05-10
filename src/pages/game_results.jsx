@@ -1,8 +1,7 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import GameResultsWidget from "@/components/pages/gameresults/GameResultsWidget";
 import Spinner from "@/components/spinner/Spinner";
 import { TabsItems, TabItem } from "@/components/tabs";
-import { useOutletContext } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getGames, resetGames } from "@/store/features/game/gameSlice";
 
@@ -10,8 +9,7 @@ import VisibilitySensor from "react-visibility-sensor";
 
 const GameResults = () => {
   const isMounted = useRef(false);
-  // const { tab } = useOutletContext();
-  // loading
+
   const { loading, country, games, tabs, tab } = useSelector(
     (state) => state.game
   );

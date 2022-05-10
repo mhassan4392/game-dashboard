@@ -21,13 +21,17 @@ const GameResultWidget = ({ bet }) => {
                   <div className="border border-secondary border-opacity-50 w-20 md:w-24 text-sm md:text-lg flex items-center justify-center h-10 bg-dark-light ">
                     {item.Odds}
                   </div>
-                  <div className="ml-4 text-xs">{item.Name}</div>
+                  <div className="ml-4 text-xs">
+                    {translations?.BetItems[item.Name]}
+                  </div>
                 </div>
               )}
 
               {i % 2 != 0 && (
                 <div className="flex items-center justify-end mb-1" key={i}>
-                  <div className="mr-4 text-xs">{item.Name}</div>
+                  <div className="mr-4 text-xs">
+                    {translations?.BetItems[item.Name]}
+                  </div>
                   <div className="border border-secondary border-opacity-50 w-20 md:w-24 text-sm md:text-lg flex items-center justify-center h-10 bg-dark-light ">
                     {item.Odds}
                   </div>

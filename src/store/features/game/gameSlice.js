@@ -21,13 +21,14 @@ const initialState = {
 
 export const getGames = createAsyncThunk(
   "game/getGames",
-  async (data, { rejectWithValue, getState, dispatch }) => {
+  async (data, { rejectWithValue, getState }) => {
     const { game } = getState();
     try {
       const dat = {
         page: game.page,
         limit: game.limit,
         na: game.country,
+        dt: "2022-05-12",
       };
       const res = await Axios.post(`/api/ox/${game.tab}`, dat);
       // console.log(res);

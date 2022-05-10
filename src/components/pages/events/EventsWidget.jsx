@@ -1,7 +1,7 @@
 import { useState } from "react";
 import EventModal from "./EventModal";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setGame } from "@/store/features/game/gameSlice";
 
 import CN from "@/assets/images/country/flags/svg/cn.svg";
@@ -34,6 +34,7 @@ const images = {
 };
 
 const EventsWidget = ({ game }) => {
+  const { translations } = useSelector((state) => state.lan);
   const dispatch = useDispatch();
   const [eventModal, setEventModal] = useState(false);
 
@@ -63,11 +64,11 @@ const EventsWidget = ({ game }) => {
         <div className="text-xs flex flex-row lg:flex-col justify-between mb-2 lg:mb-0">
           <div className="flex items-center space-x-2 order-2 lg:order-1">
             <img src={images[game.Na]} className="w-5" alt="" />
-            <span>{game.STime}</span>
+            <span>{game?.STime}</span>
           </div>
           <div className="flex flex-row lg:flex-col order-1 lg:order-2">
             <div className="truncate mr-1">NBA</div>
-            <div className="truncate">{game.Name}</div>
+            <div className="truncate">{translations?.Market[game?.Name]}</div>
           </div>
         </div>
 
@@ -93,11 +94,11 @@ const EventsWidget = ({ game }) => {
 
           <div className="flex items-center justify-between">
             <p className="text-xs truncate basis-1/3 text-center">
-              {game.Items[0].Name}
+              {translations?.BetItems[game?.Items[0].Name]}
             </p>
             <p className="text-sm font-bold basis-1/3 text-center">Winner</p>
             <p className="text-xs truncate basis-1/3 text-center">
-              {game.Items[1].Name}
+              {translations?.BetItems[game?.Items[1].Name]}
             </p>
           </div>
 
@@ -114,7 +115,7 @@ const EventsWidget = ({ game }) => {
             </div>
             <div className="basis-1/3 text-center flex items-center justify-center">
               <p className="border border-secondary py-1 bg-dark-light w-20 font-bold border-opacity-40">
-                {game.Items[0].Odds}
+                {game.Items[1].Odds}
               </p>
             </div>
           </div>
@@ -127,7 +128,9 @@ const EventsWidget = ({ game }) => {
               <div className="text-md text-[14px] sm:text-lg">
                 {game.Items[0].Odds}
               </div>
-              <div className="truncate text-[12px]">{game.Items[0].Name}</div>
+              <div className="truncate text-[12px]">
+                {translations?.BetItems[game?.Items[0].Name]}
+              </div>
             </div>
           </div>
           <div className="text-lg mx-2 lg:mx-6 xl:mx-10 h-14 text-center flex items-center justify-center">
@@ -138,7 +141,9 @@ const EventsWidget = ({ game }) => {
               <div className="text-md text-[14px] sm:text-lg">
                 {game.Items[1].Odds}
               </div>
-              <div className="truncate text-[12px]">{game.Items[1].Name}</div>
+              <div className="truncate text-[12px]">
+                {translations?.BetItems[game?.Items[1].Name]}
+              </div>
             </div>
           </div>
         </div>
