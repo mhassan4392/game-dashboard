@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import Spinner from "@/components/spinner/Spinner";
 import {
   TabButton,
@@ -9,74 +10,65 @@ import {
 } from "@/components/tabs";
 import EventWidget from "@/components/pages/events/EventWidget";
 import EventHeader from "@/components/pages/events/EventHeader";
-import { useSelector } from "react-redux";
+import { getBets } from "@/store/features/bet/betSlice";
+import { useSelector, useDispatch } from "react-redux";
 
 const Event = () => {
+  const dispatch = useDispatch();
+  const { id } = useParams();
   const { translations } = useSelector((state) => state.lan);
-  // loading
-  const [loading, setLoading] = useState(true);
+  const { bets, loading } = useSelector((state) => state.bet);
   useEffect(() => {
-    setLoading(true);
-    const timeout = setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-
-    () => clearTimeout(timeout);
+    dispatch(getBets({ id }));
   }, []);
-
-  const [tabs] = useState([
-    { id: 0, title: "match" },
-    { id: 1, title: "first" },
-    { id: 2, title: "second" },
-  ]);
   return (
     <div className="flex h-full grow flex-col overflow-hidden">
       {/* Header */}
       {!loading && <EventHeader />}
 
-      <Tabs
-        defaultTab="match"
-        className="mt-1 grow h-full flex flex-col overflow-hidden"
-      >
-        {!loading && (
+      {loading && (
+        <div className="h-full flex items-center justify-center grow">
+          <Spinner />
+        </div>
+      )}
+
+      {!loading && (
+        <Tabs
+          defaultTab={bets && bets[0] ? bets[0].Stage : 0}
+          className="mt-1 grow h-full flex flex-col overflow-hidden"
+        >
           <TabsButtons className="flex items-center bg-dark-light mb-1">
-            {tabs.map((tab) => (
+            {bets.map((bet) => (
               <TabButton
                 activeClass="tab-active"
                 className="px-3 py-3 text-sm flex flex-col items-center"
-                tab={tab.title}
-                key={tab.title}
+                tab={bet.Stage}
+                key={bet.Stage}
               >
-                {translations.Stage[tab.id]}
+                {translations.Stage[bet.Stage]}
               </TabButton>
             ))}
           </TabsButtons>
-        )}
-        <TabsItems className="flex-grow h-full scrollbar overflow-y-auto overflow-x-hidden">
-          {loading && (
-            <div className="h-full flex items-center justify-center grow">
-              <Spinner />
-            </div>
-          )}
-          {!loading && (
+          <TabsItems className="flex-grow h-full scrollbar overflow-y-auto overflow-x-hidden">
+            {/* {!loading && ( */}
             <>
-              {tabs.map((tab) => (
+              {bets.map((bet) => (
                 <TabItem
-                  key={tab.id}
-                  tab={tab.title}
+                  key={bet.Stage}
+                  tab={bet.Stage}
                   className="bg-[#2d799b] bg-opacity-25 md:bg-dark"
                 >
-                  {[...Array(20)].map((ar, i) => (
+                  {bet.Items.map((b, i) => (
                     <div key={i}>
-                      <EventWidget />
+                      <EventWidget bet={b} />
                     </div>
                   ))}
                 </TabItem>
               ))}
             </>
-          )}
-        </TabsItems>
-      </Tabs>
+          </TabsItems>
+        </Tabs>
+      )}
     </div>
   );
 };

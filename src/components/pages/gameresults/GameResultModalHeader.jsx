@@ -1,40 +1,50 @@
-import { useState } from "react";
-import { BsFillPlayFill, BsX } from "react-icons/bs";
-import eventgame from "@/assets/images/eventgame.png";
-import fire from "@/assets/images/fire.gif";
-import teamonelogo from "@/assets/images/teamonelogo.png";
-import teamtwologo from "@/assets/images/teamtwologo.png";
+import { BsX } from "react-icons/bs";
 import { TabButton, TabsButtons } from "@/components/tabs";
 import { useSelector } from "react-redux";
+
+import CN from "@/assets/images/country/flags/svg/cn.svg";
+import DE from "@/assets/images/country/flags/svg/de.svg";
+import FR from "@/assets/images/country/flags/svg/fr.svg";
+import HK from "@/assets/images/country/flags/svg/hk.svg";
+import ID from "@/assets/images/country/flags/svg/id.svg";
+import IT from "@/assets/images/country/flags/svg/it.svg";
+import JP from "@/assets/images/country/flags/svg/jp.svg";
+import KR from "@/assets/images/country/flags/svg/kr.svg";
+import MY from "@/assets/images/country/flags/svg/my.svg";
+import RU from "@/assets/images/country/flags/svg/ru.svg";
+import SG from "@/assets/images/country/flags/svg/sg.svg";
+import TH from "@/assets/images/country/flags/svg/th.svg";
+import US from "@/assets/images/country/flags/svg/us.svg";
+const images = {
+  CN,
+  DE,
+  FR,
+  HK,
+  ID,
+  IT,
+  JP,
+  KR,
+  MY,
+  RU,
+  SG,
+  TH,
+  US,
+};
+
 const GameResultModalHeader = ({ onXClick }) => {
-  const [tabs] = useState([
-    { id: 0, title: "match" },
-    { id: 1, title: "first" },
-    { id: 2, title: "second" },
-  ]);
   const { translations } = useSelector((state) => state.lan);
+  const { bets } = useSelector((state) => state.bet);
+  const { game } = useSelector((state) => state.game);
   return (
     <>
       <div className="flex items-center justify-between px-4">
-        <div className="truncate pl-10 flex items-center space-x-2">
+        <div className="truncate pl-10 flex items-center py-3 space-x-2">
           <div>
-            <img src={eventgame} className="w-5" alt="" />
+            <img src={images[game?.Na] || ""} className="w-5" alt="" />
           </div>
-          <p className="truncate text-sm">
-            2021/22 ESL One Spring North America Tour 2: Division 1
-          </p>
+          <p className="truncate text-sm">{game?.STime || ""}</p>
         </div>
-        <div className="flex text-sm items-center justify-end space-x-2 py-3 basis-1/4">
-          <span className="bg-red-500 px-1 py-0.5 text-white rounded-sm text-[10px]">
-            INPLAY
-          </span>
-          <div>
-            <BsFillPlayFill className="text-lg text-black" />
-          </div>
-          <div>
-            <img src={fire} className="w-5" alt="" />
-          </div>
-        </div>
+        <div className="flex text-sm items-center justify-end space-x-2 py-3 basis-1/4"></div>
       </div>
 
       <div className="bg-secondary bg-opacity-25 flex flex-col md:flex-row justify-between items-start px-2 md:px-8 py-4 w-full relative">
@@ -47,8 +57,9 @@ const GameResultModalHeader = ({ onXClick }) => {
 
         <div className="flex items-center justify-between md:space-x-5 px-2 md:px-6 w-full">
           <div className="flex flex-col items-center space-y-1">
-            <img src={teamonelogo} className="w-10" alt="" />
-            <p className="text-white text-xs md:text-sm xl:text-lg">Team One</p>
+            <p className="text-white text-xs md:text-sm xl:text-lg">
+              {game?.Items[0].Name || ""}
+            </p>
           </div>
 
           <div className="flex flex-col items-center space-y-1.5 py-3">
@@ -66,25 +77,25 @@ const GameResultModalHeader = ({ onXClick }) => {
                 </span>
               </div>
             </div>
-            <p className="text-sm">B01</p>
+            <p className="text-sm">{game?.Name || ""}</p>
           </div>
 
           <div className="flex flex-col items-center space-y-1">
-            <img src={teamtwologo} className="w-10" alt="" />
-            <p className="text-white text-xs md:text-sm xl:text-lg">Team Two</p>
+            <p className="text-white text-xs md:text-sm xl:text-lg">
+              {game?.Items[1].Name || ""}
+            </p>
           </div>
         </div>
       </div>
-      {/* </div> */}
       <TabsButtons className="flex items-center bg-dark-light mb-1">
-        {tabs.map((tab) => (
+        {bets.map((bet) => (
           <TabButton
             activeClass="tab-active"
             className="px-3 py-3 text-sm flex flex-col items-center"
-            tab={tab.title}
-            key={tab.id}
+            tab={bet.Stage}
+            key={bet.Stage}
           >
-            {translations.Stage[tab.id]}
+            {translations.Stage[bet.Stage]}
           </TabButton>
         ))}
       </TabsButtons>

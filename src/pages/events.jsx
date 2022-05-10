@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Spinner from "@/components/spinner/Spinner";
 import { TabsItems, TabItem } from "@/components/tabs";
 import banner from "@/assets/images/banner.jpg";
@@ -11,25 +11,29 @@ import { getGames, resetGames } from "@/store/features/game/gameSlice";
 import VisibilitySensor from "react-visibility-sensor";
 
 const Events = () => {
-  const { tab } = useOutletContext();
-  const { loading, country, games, page } = useSelector((state) => state.game);
+  const isMounted = useRef(false);
+  // const { tab } = useOutletContext();
+  const { loading, country, games, page, tabs, tab } = useSelector(
+    (state) => state.game
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
     const run = async () => {
       await dispatch(resetGames());
+      await dispatch(getGames());
     };
-    run();
-  }, [country, tab]);
+    if (isMounted.current) {
+      run();
+    } else {
+      isMounted.current = true;
+      dispatch(resetGames());
+    }
+  }, [country]);
 
-  const [tabs] = useState([
-    { id: 0, title: "today" },
-    { id: 1, title: "early" },
-    { id: 2, title: "minutes" },
-    { id: 3, title: "jackpot" },
-    { id: 4, title: "outright" },
-    ,
-  ]);
+  useEffect(() => {
+    dispatch(resetGames());
+  }, [tab]);
 
   return (
     <>
@@ -57,7 +61,6 @@ const Events = () => {
                 <VisibilitySensor
                   onChange={(isVisible) => {
                     if (isVisible) {
-                      console.log("hello");
                       dispatch(getGames());
                     }
                   }}

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import GameResultsWidget from "@/components/pages/gameresults/GameResultsWidget";
 import Spinner from "@/components/spinner/Spinner";
 import { TabsItems, TabItem } from "@/components/tabs";
@@ -9,26 +9,30 @@ import { getGames, resetGames } from "@/store/features/game/gameSlice";
 import VisibilitySensor from "react-visibility-sensor";
 
 const GameResults = () => {
-  const { tab } = useOutletContext();
+  const isMounted = useRef(false);
+  // const { tab } = useOutletContext();
   // loading
-  const { loading, country, games } = useSelector((state) => state.game);
+  const { loading, country, games, tabs, tab } = useSelector(
+    (state) => state.game
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
     const run = async () => {
       await dispatch(resetGames());
+      await dispatch(getGames());
     };
-    run();
-  }, [country, tab]);
+    if (isMounted.current) {
+      run();
+    } else {
+      isMounted.current = true;
+      dispatch(resetGames());
+    }
+  }, [country]);
 
-  const [tabs] = useState([
-    { id: 0, title: "today" },
-    { id: 1, title: "early" },
-    { id: 2, title: "minutes" },
-    { id: 3, title: "jackpot" },
-    { id: 4, title: "outright" },
-    ,
-  ]);
+  useEffect(() => {
+    dispatch(resetGames());
+  }, [tab]);
 
   return (
     <TabsItems className="flex-grow flex flex-col overflow-auto scrollbar">

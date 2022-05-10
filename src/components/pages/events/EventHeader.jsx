@@ -1,11 +1,38 @@
-import { BsFillPlayFill, BsX } from "react-icons/bs";
-import eventgame from "@/assets/images/eventgame.png";
-import fire from "@/assets/images/fire.gif";
-import teamonelogo from "@/assets/images/teamonelogo.png";
-import teamtwologo from "@/assets/images/teamtwologo.png";
+import { BsX } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+
+import CN from "@/assets/images/country/flags/svg/cn.svg";
+import DE from "@/assets/images/country/flags/svg/de.svg";
+import FR from "@/assets/images/country/flags/svg/fr.svg";
+import HK from "@/assets/images/country/flags/svg/hk.svg";
+import ID from "@/assets/images/country/flags/svg/id.svg";
+import IT from "@/assets/images/country/flags/svg/it.svg";
+import JP from "@/assets/images/country/flags/svg/jp.svg";
+import KR from "@/assets/images/country/flags/svg/kr.svg";
+import MY from "@/assets/images/country/flags/svg/my.svg";
+import RU from "@/assets/images/country/flags/svg/ru.svg";
+import SG from "@/assets/images/country/flags/svg/sg.svg";
+import TH from "@/assets/images/country/flags/svg/th.svg";
+import US from "@/assets/images/country/flags/svg/us.svg";
+const images = {
+  CN,
+  DE,
+  FR,
+  HK,
+  ID,
+  IT,
+  JP,
+  KR,
+  MY,
+  RU,
+  SG,
+  TH,
+  US,
+};
 
 const EventHeader = () => {
+  const { game } = useSelector((state) => state.game);
   return (
     <div className="bg-secondary bg-opacity-25 flex flex-col md:flex-row justify-between items-start px-4 w-full relative">
       <Link
@@ -17,24 +44,16 @@ const EventHeader = () => {
 
       <div className="flex text-sm items-center space-x-2 py-3 basis-1/4">
         <div>
-          <img src={eventgame} className="w-5" alt="" />
+          <img src={images[game?.Na] || ""} className="w-5" alt="" />
         </div>
-        <div>20:48</div>
-        <span className="bg-red-500 px-1 py-0.5 text-white rounded-sm text-[10px]">
-          INPLAY
-        </span>
-        <div>
-          <BsFillPlayFill className="text-lg text-black" />
-        </div>
-        <div>
-          <img src={fire} className="w-5" alt="" />
-        </div>
+        <div>{game?.STime || ""}</div>
       </div>
 
       <div className="flex items-center justify-between md:space-x-5 px-1 md:px-6 w-full basis-1 md:basis-3/4">
         <div className="flex flex-col items-center space-y-1">
-          <img src={teamonelogo} className="w-10" alt="" />
-          <p className="text-white text-xs md:text-sm xl:text-lg">Team One</p>
+          <p className="text-white text-xs md:text-sm xl:text-lg">
+            {game?.Items[0].Name || ""}
+          </p>
         </div>
 
         <div className="flex flex-col items-center space-y-1.5 py-3">
@@ -52,12 +71,13 @@ const EventHeader = () => {
               </span>
             </div>
           </div>
-          <p className="text-sm">B01</p>
+          <p className="text-sm">{game?.Name || ""}</p>
         </div>
 
         <div className="flex flex-col items-center space-y-1">
-          <img src={teamtwologo} className="w-10" alt="" />
-          <p className="text-white text-xs md:text-sm xl:text-lg">Team Two</p>
+          <p className="text-white text-xs md:text-sm xl:text-lg">
+            {game?.Items[1].Name || ""}
+          </p>
         </div>
       </div>
     </div>

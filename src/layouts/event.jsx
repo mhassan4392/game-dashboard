@@ -1,17 +1,20 @@
 import { useState } from "react";
 import { Outlet } from "react-router";
 import { Tabs, TabsButtons, TabButton } from "@/components/tabs";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setTab } from "@/store/features/game/gameSlice";
 const EventLayout = () => {
+  const dispatch = useDispatch();
   const { translations } = useSelector((state) => state.lan);
-  const [tabs] = useState([
-    { id: 0, title: "today" },
-    { id: 1, title: "early" },
-    { id: 2, title: "minutes" },
-    { id: 3, title: "jackpot" },
-    { id: 4, title: "outright" },
-    ,
-  ]);
+  const { tabs } = useSelector((state) => state.game);
+  // const [tabs] = useState([
+  //   { id: 0, title: "today", api: "gettodays" },
+  //   { id: 1, title: "early", api: "getearlytrade" },
+  //   { id: 2, title: "minutes", api: "getminutes" },
+  //   { id: 3, title: "jackpot", api: "getjackpot" },
+  //   { id: 4, title: "outright", api: "getchampion" },
+  //   ,
+  // ]);
   return (
     <div className="bg-black h-full">
       <Tabs
@@ -29,6 +32,7 @@ const EventLayout = () => {
                   className="px-3 py-4 mx-2 text-sm flex flex-col items-center"
                   as="Link"
                   to="/events"
+                  onClick={() => dispatch(setTab(tab.api))}
                 >
                   <span>{translations.SecondMenu[tab.id]}</span>
                 </TabButton>

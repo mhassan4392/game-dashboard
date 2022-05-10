@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import GameResultModal from "./GameResultModal";
+import { setGame } from "@/store/features/game/gameSlice";
+import { useDispatch } from "react-redux";
 
 import CN from "@/assets/images/country/flags/svg/cn.svg";
 import DE from "@/assets/images/country/flags/svg/de.svg";
@@ -32,11 +34,13 @@ const images = {
 };
 
 const GameResultsWidget = ({ game }) => {
+  const dispatch = useDispatch();
   const [gameResultModal, setGameResultModal] = useState(false);
 
   const navigate = useNavigate();
 
   const handleClick = () => {
+    dispatch(setGame(game));
     const lgWidth = 1024;
     const bodyWidth = document.body.clientWidth;
     if (bodyWidth < lgWidth) {
@@ -49,6 +53,7 @@ const GameResultsWidget = ({ game }) => {
     <>
       <GameResultModal
         open={gameResultModal}
+        id={game.Id}
         onClose={() => setGameResultModal(false)}
       />
       <div
@@ -69,9 +74,7 @@ const GameResultsWidget = ({ game }) => {
         {/* on sm screen */}
         <div className="space-y-2 md:hidden">
           <div className="flex items-center justify-between">
-            <div className="flex items-center justify-center basis-1/3">
-              {/* <img src={teamonelogo} className="w-7" alt="" /> */}
-            </div>
+            <div className="flex items-center justify-center basis-1/3"></div>
             <div className="flex relative items-center justify-between border border-secondary border-opacity-25 bg-dark-light h-10 basis-1/3">
               <p className="text-2xl border-r border-secondary border-opacity-25 basis-1/2 h-full flex items-center justify-center pr-2">
                 <span>-</span>
@@ -85,9 +88,7 @@ const GameResultsWidget = ({ game }) => {
                 </span>
               </div>
             </div>
-            <div className="flex items-center justify-center basis-1/3">
-              {/* <img src={teamtwologo} className="w-7" alt="" /> */}
-            </div>
+            <div className="flex items-center justify-center basis-1/3"></div>
           </div>
 
           <div className="flex items-center justify-between">
@@ -122,9 +123,6 @@ const GameResultsWidget = ({ game }) => {
         {/* on md screen */}
         <div className="text-xs items-center justify-around pl-2 hidden md:flex">
           <div className="flex items-center justify-end w-44 h-14 border border-secondary border-opacity-50 py-2 px-3 bg-dark-light hover:bg-secondary hover:bg-opacity-30 transition-all duration-200">
-            {/* <div>
-              <img src={teamonelogo} className="w-7" alt="" />
-            </div> */}
             <div className="text-right space-y-1">
               <div className="text-md text-[14px] sm:text-lg">
                 {game.Items[0].Odds}
@@ -142,9 +140,6 @@ const GameResultsWidget = ({ game }) => {
               </div>
               <div className="truncate text-[12px]">{game.Items[1].Name}</div>
             </div>
-            {/* <div>
-              <img src={teamtwologo} className="w-7" alt="" />
-            </div> */}
           </div>
         </div>
 

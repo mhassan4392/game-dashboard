@@ -1,28 +1,20 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import MobileModel from "@/components/layout/modals/MobileModal";
 import { Tabs, TabsItems, TabItem } from "@/components/tabs";
 import Spinner from "@/components/spinner/Spinner";
 import GameResultsWidget from "./GameResultsWidget";
 import GameResultsModalHeader from "./GameResultsModalHeader";
 import { useDispatch, useSelector } from "react-redux";
-import { getGames, resetGames } from "@/store/features/game/gameSlice";
+import { getGames, resetGames, setTab } from "@/store/features/game/gameSlice";
 
 import VisibilitySensor from "react-visibility-sensor";
 
 const GameResultsModal = ({ open, onClose }) => {
-  const { loading, country, games } = useSelector((state) => state.game);
+  const isMounted = useRef(false);
+  const { loading, country, games, tabs, tab } = useSelector(
+    (state) => state.game
+  );
   const dispatch = useDispatch();
-
-  const [tabs] = useState([
-    { id: 0, title: "today" },
-    { id: 1, title: "early" },
-    { id: 2, title: "minutes" },
-    { id: 3, title: "jackpot" },
-    { id: 4, title: "outright" },
-    ,
-  ]);
-
-  const [tab, setTab] = useState("today");
 
   useEffect(() => {
     const run = async () => {
@@ -33,6 +25,27 @@ const GameResultsModal = ({ open, onClose }) => {
       run();
     }
   }, [country, open, tab]);
+
+  useEffect(() => {
+    const run = async () => {
+      await dispatch(resetGames());
+      await dispatch(getGames());
+    };
+    if (isMounted.current && open) {
+      run();
+    } else {
+      isMounted.current = true;
+      if (open) {
+        dispatch(resetGames());
+      }
+    }
+  }, [country, open]);
+
+  useEffect(() => {
+    if (open) {
+      dispatch(resetGames());
+    }
+  }, [tab, open]);
 
   return (
     <div>

@@ -1,9 +1,8 @@
 import { useState } from "react";
-import eventgame from "@/assets/images/eventgame.png";
-import teamonelogo from "@/assets/images/teamonelogo.png";
-import teamtwologo from "@/assets/images/teamtwologo.png";
 import EventModal from "./EventModal";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setGame } from "@/store/features/game/gameSlice";
 
 import CN from "@/assets/images/country/flags/svg/cn.svg";
 import DE from "@/assets/images/country/flags/svg/de.svg";
@@ -35,13 +34,13 @@ const images = {
 };
 
 const EventsWidget = ({ game }) => {
+  const dispatch = useDispatch();
   const [eventModal, setEventModal] = useState(false);
-
-  // console.log(game);
 
   const navigate = useNavigate();
 
   const handleClick = () => {
+    dispatch(setGame(game));
     const lgWidth = 1024;
     const bodyWidth = document.body.clientWidth;
     if (bodyWidth < lgWidth) {
@@ -52,7 +51,11 @@ const EventsWidget = ({ game }) => {
   };
   return (
     <>
-      <EventModal open={eventModal} onClose={() => setEventModal(false)} />
+      <EventModal
+        open={eventModal}
+        id={game.Id}
+        onClose={() => setEventModal(false)}
+      />
       <div
         onClick={handleClick}
         className="relative flex py-2 flex-col lg:flex-row lg:items-center justify-between border-l-4 pl-2 my-1 border-primary bg-dark-light cursor-pointer transition-all duration-200 hover:bg-secondary hover:bg-opacity-50 pr-10 md:pr-20"
@@ -71,9 +74,7 @@ const EventsWidget = ({ game }) => {
         {/* on sm screen */}
         <div className="space-y-2 md:hidden">
           <div className="flex items-center justify-between">
-            <div className="flex items-center justify-center basis-1/3">
-              {/* <img src={teamonelogo} className="w-7" alt="" /> */}
-            </div>
+            <div className="flex items-center justify-center basis-1/3"></div>
             <div className="flex relative items-center justify-between border border-secondary border-opacity-25 bg-dark-light h-10 basis-1/3">
               <p className="text-2xl border-r border-secondary border-opacity-25 basis-1/2 h-full flex items-center justify-center pr-2">
                 <span>-</span>
@@ -87,9 +88,7 @@ const EventsWidget = ({ game }) => {
                 </span>
               </div>
             </div>
-            <div className="flex items-center justify-center basis-1/3">
-              {/* <img src={teamtwologo} className="w-7" alt="" /> */}
-            </div>
+            <div className="flex items-center justify-center basis-1/3"></div>
           </div>
 
           <div className="flex items-center justify-between">

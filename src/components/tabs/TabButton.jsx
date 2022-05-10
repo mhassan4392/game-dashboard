@@ -6,6 +6,7 @@ const TabButton = ({
   className,
   activeClass,
   tab,
+  onClick = () => {},
   as: As = "button",
   ...rest
 }) => {
@@ -13,7 +14,10 @@ const TabButton = ({
   if (As == "Link") {
     return (
       <Link
-        onClick={() => setTab(tab)}
+        onClick={() => {
+          setTab(tab);
+          onClick();
+        }}
         className={`${className ? className : ""} ${
           tab == tab_ ? activeClass : ""
         }`}
@@ -25,7 +29,10 @@ const TabButton = ({
   }
   return (
     <As
-      onClick={() => setTab(tab)}
+      onClick={() => {
+        setTab(tab);
+        onClick();
+      }}
       className={`${className ? className : ""} ${
         tab == tab_ ? activeClass : ""
       }`}

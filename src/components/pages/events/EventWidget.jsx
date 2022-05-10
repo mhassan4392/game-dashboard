@@ -1,54 +1,68 @@
-const EventWidget = ({ ...rest }) => {
+import { useSelector } from "react-redux";
+const EventWidget = ({ bet }) => {
+  const { translations } = useSelector((state) => state.lan);
+  const { game } = useSelector((state) => state.game);
   return (
     <>
-      {/* md screen */}
-      <div
-        className="hidden md:flex items-center justify-between py-2 px-1 md:px-4 border-b border-opacity-20 border-secondary w-screen md:w-full space-x-1 md:space-x-4"
-        {...rest}
-      >
-        <div className="text-xs text-[#25f09a] basis-1/6">Open</div>
-        <div className="basis-1/6 flex justify-center">
-          <div className="border border-secondary border-opacity-50 w-20 md:w-24 text-sm md:text-lg flex items-center justify-center h-10 bg-dark-light ">
-            1.88
-          </div>
+      <div className="hidden md:flex items-start justify-between pt-2 pb-1 px-1 md:px-4 border-b border-opacity-20 border-secondary w-screen md:w-full space-x-1 md:space-x-4">
+        <div className="text-xs text-[#25f09a] mt-3 basis-[15%]">
+          {translations.BetsStatus[bet.Status]}
         </div>
-        <div className="text-xs md:text-sm flex items-center basis-3/6 justify-between space-x-1 md:space-x-10 text-center">
-          <div>+15</div>
-          <div>Point Handicap</div>
-          <div>+16</div>
-        </div>
-        <div className="basis-1/6 flex justify-center">
-          <div className="border border-secondary border-opacity-50 w-20 md:w-24 text-sm md:text-lg flex items-center justify-center h-10 bg-dark-light ">
-            1.88
+        <div className="basis-[85%] grid grid-cols-2 px-8 relative ">
+          <div className="absolute w-full top-2 flex items-center justify-center">
+            <div className="w-1/4 text-center text-sm">
+              {translations.Bets[bet.BetName]}
+            </div>
           </div>
+          {bet.Items.map((item, i) => (
+            <>
+              {i % 2 == 0 && (
+                <div className="flex items-center mb-1" key={i}>
+                  <div className="border border-secondary border-opacity-50 w-20 md:w-24 text-sm md:text-lg flex items-center justify-center h-10 bg-dark-light ">
+                    {item.Odds}
+                  </div>
+                  <div className="ml-4 text-xs">{item.Name}</div>
+                </div>
+              )}
+
+              {i % 2 != 0 && (
+                <div className="flex items-center justify-end mb-1" key={i}>
+                  <div className="mr-4 text-xs">{item.Name}</div>
+                  <div className="border border-secondary border-opacity-50 w-20 md:w-24 text-sm md:text-lg flex items-center justify-center h-10 bg-dark-light ">
+                    {item.Odds}
+                  </div>
+                </div>
+              )}
+            </>
+          ))}
         </div>
       </div>
 
       {/* sm screen */}
-      <div
-        className="border-l-2 border-primary space-y-2 py-4 text-xs text-light md:hidden px-4 mb-3"
-        {...rest}
-      >
+      <div className="border-l-2 border-primary space-y-2 py-4 text-xs text-light md:hidden px-4 mb-3">
         <div className="flex items-center justify-between color">
-          <div>Point Handicap</div>
-          <div className="text-[#25f09a]">Open</div>
+          <div>{translations.Bets[bet.BetName]}</div>
+          <div className="text-[#25f09a]">
+            {translations.BetsStatus[bet.Status]}
+          </div>
         </div>
-        <div className="flex items-center justify-between">
-          <div className="border border-[#2d4264] shadow-lg shadow-[#142131] flex items-center justify-between bg-[#142131] basis-[45%] py-1 px-2 rounded">
-            <div>
-              <div className="truncate">Team One</div>
-              <div>+5</div>
+        <div className="flex items-center justify-between flex-wrap">
+          {bet.Items.map((b, i) => (
+            <div
+              key={i}
+              className="mb-2 border border-[#2d4264] shadow-lg shadow-[#142131] flex items-center justify-between bg-[#142131] basis-[45%] py-1 px-2 rounded"
+            >
+              <div>
+                <div className="truncate">
+                  {i % 2 == 0
+                    ? game?.Items[0].Name || ""
+                    : game?.Items[1].Name || ""}
+                </div>
+                <div>{b.Name}</div>
+              </div>
+              <div className="text-white text-sm">{b.Odds}</div>
             </div>
-            <div className="text-white text-sm">1.28</div>
-          </div>
-
-          <div className="border border-[#2d4264] shadow-lg shadow-[#142131] flex items-center justify-between bg-[#142131] basis-[45%] py-1 px-2 rounded">
-            <div className="text-white text-sm">1.28</div>
-            <div className="text-right">
-              <div className="truncate">Team Two</div>
-              <div>+5</div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </>

@@ -2,18 +2,13 @@ import { useState } from "react";
 import { TabsButtons, TabButton } from "@/components/tabs";
 import { AiOutlineAppstore } from "react-icons/ai";
 import GamesMenu from "@/components/layout/modals/GamesModal";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setTab } from "../../../store/features/game/gameSlice";
 
 const GameResultsModalHeader = () => {
+  const dispatch = useDispatch();
   const { translations } = useSelector((state) => state.lan);
-  const [tabs] = useState([
-    { id: 0, title: "today" },
-    { id: 1, title: "early" },
-    { id: 2, title: "minutes" },
-    { id: 3, title: "jackpot" },
-    { id: 4, title: "outright" },
-    ,
-  ]);
+  const { tabs, tab } = useSelector((state) => state.game);
   const [gamesModal, setGamesModal] = useState(false);
   return (
     <>
@@ -27,6 +22,7 @@ const GameResultsModalHeader = () => {
             className="px-3 py-4 mx-2 text-sm flex flex-col items-center"
             as="Link"
             to="/game-results"
+            onClick={() => dispatch(setTab(tab.api))}
           >
             <span>{translations.SecondMenu[tab.id]}</span>
           </TabButton>

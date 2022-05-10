@@ -10,21 +10,21 @@ import { useDispatch, useSelector } from "react-redux";
 
 const App = () => {
   // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(setCountry("CN"));
-  //   Axios({
-  //     url: "/api/ox/gettodays",
-  //     method: "POST",
-  //     data: { page: 1, limit: 25, na: "RU" },
-  //   }).then((res) => {
-  //     // console.log("/api/ox/getmsgs");
-  //     console.log(res.data);
-  //   });
-  //   // Axios({ url: "/api/ox/get5msg", method: "POST" }).then((res) => {
-  //   //   console.log("/api/ox/get5msg");
-  //   //   console.log(res.data);
-  //   // });
-  // }, []);
+  useEffect(() => {
+    // dispatch(setCountry("CN"));
+    Axios({
+      url: "/api/ox/getearlytrade",
+      method: "POST",
+      data: { page: 1, limit: 25, na: "CN" },
+    }).then((res) => {
+      console.log("/api/ox/getearlytrade");
+      console.log(res.data);
+    });
+    // Axios({ url: "/api/ox/get5msg", method: "POST" }).then((res) => {
+    //   console.log("/api/ox/get5msg");
+    //   console.log(res.data);
+    // });
+  }, []);
   const { config } = useSelector((state) => state.config);
   return (
     <>
