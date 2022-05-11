@@ -14,7 +14,7 @@ const BetHistoryMenu = ({ open, onClose }) => {
   return (
     <Tabs className="h-full flex flex-col">
       <MobileModel
-        label="Game Results"
+        label="Bet History"
         onBackClick={onClose}
         open={open}
         modalBodyClass="p-0"

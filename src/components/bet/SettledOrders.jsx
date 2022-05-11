@@ -1,7 +1,9 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import VisibilitySensor from "react-visibility-sensor";
 import Spinner from "@/components/spinner/Spinner";
+
+import DateRangeModal from "./DateRangeModal";
 
 import { getOrders, resetOrders } from "../../store/features/order/orderSlice";
 import OrderWidget from "./OrderWidget";
@@ -19,12 +21,11 @@ const SetteledOrders = () => {
     } else {
       isMounted.current = true;
       dispatch(resetOrders());
-      // dispatch(setTab("gettodays"));
     }
   }, []);
   return (
     <div className="h-full flex-grow flex flex-col">
-      {/* <div>Date</div> */}
+      <DateRangeModal />
       <div className="flex-grow scrollbar overflow-y-auto">
         {orders.map((order, i) => (
           <div key={i}>

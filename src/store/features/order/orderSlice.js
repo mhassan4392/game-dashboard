@@ -1,14 +1,22 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import Axios from "@/utils/axios";
 
+import format from "date-fns/format";
+
+const stime = format(
+  new Date(new Date().getTime() - 24 * 60 * 60 * 1000),
+  "yyyy-MM-dd"
+);
+const etime = format(new Date(), "yyyy-MM-dd");
+
 const initialState = {
   orders: [],
   loading: false,
   error: false,
   page: 1,
   limit: 25,
-  stime: "2022-01-01",
-  etime: "2022-05-11",
+  stime,
+  etime,
   type: 1,
 };
 
@@ -46,6 +54,12 @@ const orderSlice = createSlice({
       state.orders = [];
       state.page = 1;
     },
+    setStartTime: (state, action) => {
+      state.stime = action.payload;
+    },
+    setEndTime: (state, action) => {
+      state.etime = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -70,6 +84,7 @@ const orderSlice = createSlice({
   },
 });
 
-export const { setPage, resetOrders } = orderSlice.actions;
+export const { setPage, resetOrders, setStartTime, setEndTime } =
+  orderSlice.actions;
 
 export default orderSlice.reducer;

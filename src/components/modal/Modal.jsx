@@ -56,6 +56,7 @@ const Modal = ({
               className={[
                 "max-h-full max-w-full overflow-hidden flex flex-col m-10 bg-white rounded-lg shadow-lg",
                 fullScreen && "h-full !w-full m-0",
+                size == "none" && "",
                 size == "sm" && "w-5/6 sm:w-2/3 md:w-1/2 lg:w-1/3",
                 size == "md" && "w-5/6 sm:w-3/4 md:w-2/3 lg:w-1/2",
                 size == "lg" && "w-5/6 sm:w-4/5 md:3/4 lg:w-2/3",
