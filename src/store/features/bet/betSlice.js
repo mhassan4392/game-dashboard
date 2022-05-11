@@ -7,15 +7,35 @@ const initialState = {
   error: null,
   status: null,
   slip: null,
+  bet: null,
   odds: "",
+  amount: 0,
+  itemId: "",
 };
 
 export const getBets = createAsyncThunk(
   "bet/getBets",
   async (data, { rejectWithValue }) => {
     try {
-      const res = await Axios.post(`/api/ox/getbets/${data.id}`, {
-        id: Number(data.id),
+      const res = await Axios.post(`/api/ox/getbets/${data.id}`, {});
+      console.log(res);
+      return res.data.info;
+    } catch (error) {
+      console.log(error.message);
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const saveBets = createAsyncThunk(
+  "bet/saveBet",
+  async (data, { rejectWithValue, getState }) => {
+    const { bet } = getState();
+    try {
+      const res = await Axios.post(`/api/ox/orders`, {
+        amount: bet.amount,
+        itemId: bet.itemId,
+        odds: bet.odds,
       });
       // console.log(res);
       return res.data.info;
@@ -35,6 +55,12 @@ const gameSlice = createSlice({
     },
     setOdds: (state, action) => {
       state.odds = action.payload;
+    },
+    setAmount: (state, action) => {
+      state.amount = action.payload;
+    },
+    setBet: (state, action) => {
+      state.bet = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -56,6 +82,6 @@ const gameSlice = createSlice({
   },
 });
 
-export const { setStatus, setOdds } = gameSlice.actions;
+export const { setStatus, setOdds, setAmount, setBet } = gameSlice.actions;
 
 export default gameSlice.reducer;

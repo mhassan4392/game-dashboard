@@ -2,21 +2,21 @@ import { useEffect, useState } from "react";
 import { BsFillTrashFill } from "react-icons/bs";
 import { BiError } from "react-icons/bi";
 import countryFlags from "@/utils/countryFlags";
-import { setStatus } from "@/store/features/bet/betSlice";
+import { setStatus, setBet, setAmount } from "@/store/features/bet/betSlice";
 import { useDispatch, useSelector } from "react-redux";
 const BetForm = () => {
-  const { odds } = useSelector((state) => state.bet);
+  const { odds, bet, amount } = useSelector((state) => state.bet);
   const dispatch = useDispatch();
   const betAmounts = ["+50", "+100", "+200", "+500", "+1000", "+MAX"];
   const [betAmount, setBetAmount] = useState(0);
   const [error, setError] = useState();
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (betAmount <= 10) {
+    if (amount <= 10) {
       setError("Please Enter Valid Amount");
       return false;
     }
-    console.log("submit", betAmount);
+    console.log("submit", amount);
   };
 
   useEffect(() => {
@@ -43,22 +43,25 @@ const BetForm = () => {
           </div>
           <BsFillTrashFill
             className="cursor-pointer text-primary"
-            onClick={() => dispatch(setStatus(null))}
+            onClick={() => {
+              dispatch(setStatus(null));
+              dispatch(setBet({}));
+            }}
           />
         </div>
 
         <div className="flex justify-between px-2 py-1">
           <div className="space-y-2">
-            <h3 className="text-white text-sm">G2 Sports</h3>
-            <h4 className="text-xs">Winner</h4>
+            <h3 className="text-white text-sm">{bet.market}</h3>
+            <h4 className="text-xs">{bet.status}</h4>
             <div className="text-xs">
               <p>2022 Mid-Season Invitational</p>
-              <p>Evil Geniuses vs G2 Esports</p>
+              <p>{bet.date}</p>
             </div>
           </div>
           <div>
             <div className="text-sm bg-gradient-to-r from-primary to-secondary text-white font-bold border border-primary rounded px-4 py-2 ml-3">
-              {odds}
+              {bet.odds}
             </div>
           </div>
         </div>
@@ -77,7 +80,7 @@ const BetForm = () => {
               <div className="relative">
                 <span className="absolute left-2 top-0.5">¥</span>
                 <input
-                  onChange={(e) => setBetAmount(e.target.value)}
+                  onChange={(e) => dispatch(setAmount(e.target.value))}
                   type="number"
                   min={10}
                   max={8000}
@@ -102,7 +105,7 @@ const BetForm = () => {
           <div className="bg-dark-light px-3 py-2 text-sm mt-2">
             <div className="flex items-center justify-between">
               <h2>Total Bet Amounts</h2>
-              <h2 className="text-lg">¥ {Number(betAmount).toFixed(2)}</h2>
+              <h2 className="text-lg">¥ {Number(amount).toFixed(2)}</h2>
             </div>
             <div className="flex items-center justify-between">
               <h2>Potential Wininngs</h2>

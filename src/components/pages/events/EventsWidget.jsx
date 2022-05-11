@@ -3,7 +3,7 @@ import EventModal from "./EventModal";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setGame } from "@/store/features/game/gameSlice";
-import { setStatus, setOdds } from "@/store/features/bet/betSlice";
+import { setStatus, setOdds, setBet } from "@/store/features/bet/betSlice";
 
 import CN from "@/assets/images/country/flags/svg/cn.svg";
 import DE from "@/assets/images/country/flags/svg/de.svg";
@@ -129,7 +129,15 @@ const EventsWidget = ({ game }) => {
             onClick={(e) => {
               e.stopPropagation();
               dispatch(setStatus("add"));
-              dispatch(setOdds(game.Items[0].Odds));
+              // dispatch(setOdds(game.Items[0].Odds));
+              dispatch(
+                setBet({
+                  odds: game.Items[0].Odds,
+                  date: game.STime,
+                  market: translations?.Market[game?.Name],
+                  status: translations?.BetItems[game?.Items[0].Name],
+                })
+              );
             }}
             className="flex items-center justify-end w-44 h-14 border border-secondary border-opacity-50 py-2 px-3 bg-dark-light hover:bg-secondary hover:bg-opacity-30 transition-all duration-200"
           >
@@ -149,7 +157,14 @@ const EventsWidget = ({ game }) => {
             onClick={(e) => {
               e.stopPropagation();
               dispatch(setStatus("add"));
-              dispatch(setOdds(game.Items[1].Odds));
+              dispatch(
+                setBet({
+                  odds: game.Items[1].Odds,
+                  date: game.STime,
+                  market: translations?.Market[game?.Name],
+                  status: translations?.BetItems[game?.Items[1].Name],
+                })
+              );
             }}
             className="flex items-center justify-start w-44 h-14 border border-secondary border-opacity-50 py-2 px-3 bg-dark-light hover:bg-secondary hover:bg-opacity-30 transition-all duration-200"
           >
