@@ -1,4 +1,6 @@
+import { useEffect, useState } from "react";
 import { BsFillTrashFill } from "react-icons/bs";
+import { BiError } from "react-icons/bi";
 import countryFlags from "@/utils/countryFlags";
 import { setStatus } from "@/store/features/bet/betSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,8 +8,33 @@ const BetForm = () => {
   const { odds } = useSelector((state) => state.bet);
   const dispatch = useDispatch();
   const betAmounts = ["+50", "+100", "+200", "+500", "+1000", "+MAX"];
+  const [betAmount, setBetAmount] = useState(0);
+  const [error, setError] = useState();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (betAmount <= 10) {
+      setError("Please Enter Valid Amount");
+      return false;
+    }
+    console.log("submit", betAmount);
+  };
+
+  useEffect(() => {
+    if (error) {
+      const timeout = setTimeout(() => {
+        setError(false);
+      }, 3000);
+    }
+  }, [error]);
   return (
     <div>
+      {error && (
+        <div className="bg-gradient-to-r from-red-500 to-red-400 text-white text-xs p-3">
+          <div className="flex justify-center items-center">
+            <BiError className="text-lg mr-2" /> {error}
+          </div>
+        </div>
+      )}
       <div className="border-l-2 border-l-white border-b border-b-secondary">
         <div className="flex items-center justify-between px-2 bg-dark-light py-2">
           <div className="flex items-center">
@@ -38,7 +65,7 @@ const BetForm = () => {
       </div>
 
       <div>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="px-3 py-2 text-sm space-y-3">
             <div className="flex items-center space-x-2">
               <input type="checkbox" name="odds" id="bet-odds" />
@@ -50,6 +77,7 @@ const BetForm = () => {
               <div className="relative">
                 <span className="absolute left-2 top-0.5">¥</span>
                 <input
+                  onChange={(e) => setBetAmount(e.target.value)}
                   type="number"
                   min={10}
                   max={8000}
@@ -82,7 +110,10 @@ const BetForm = () => {
             </div>
           </div>
 
-          <button className="w-full font-bold py-3 bg-gradient-to-r from-primary to-secondary text-white hover:from-secondary hover:to-primary transition-all duration-200">
+          <button
+            type="submit"
+            className="w-full font-bold py-3 bg-gradient-to-r from-primary to-secondary text-white hover:from-secondary hover:to-primary transition-all duration-200"
+          >
             PLACE BET
           </button>
         </form>
