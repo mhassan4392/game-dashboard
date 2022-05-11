@@ -3,7 +3,7 @@ import EventModal from "./EventModal";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setGame } from "@/store/features/game/gameSlice";
-import { setStatus, setOdds, setBet } from "@/store/features/bet/betSlice";
+import { setStatus, setBet } from "@/store/features/bet/betSlice";
 
 import CN from "@/assets/images/country/flags/svg/cn.svg";
 import DE from "@/assets/images/country/flags/svg/de.svg";
@@ -136,6 +136,7 @@ const EventsWidget = ({ game }) => {
                   date: game.STime,
                   market: translations?.Market[game?.Name],
                   status: translations?.BetItems[game?.Items[0].Name],
+                  itemId: game?.Items[0].Id,
                 })
               );
             }}
@@ -163,6 +164,7 @@ const EventsWidget = ({ game }) => {
                   date: game.STime,
                   market: translations?.Market[game?.Name],
                   status: translations?.BetItems[game?.Items[1].Name],
+                  itemId: game?.Items[1].Id,
                 })
               );
             }}

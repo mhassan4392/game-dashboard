@@ -1,37 +1,71 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { BsFillTrashFill } from "react-icons/bs";
 import { BiError } from "react-icons/bi";
 import countryFlags from "@/utils/countryFlags";
-import { setStatus, setBet, setAmount } from "@/store/features/bet/betSlice";
+import { ImSpinner3 } from "react-icons/im";
+import {
+  setStatus,
+  setBet,
+  setAmount,
+  setSaveError,
+  setSaveSuccess,
+  saveBet,
+} from "@/store/features/bet/betSlice";
 import { useDispatch, useSelector } from "react-redux";
+
 const BetForm = () => {
-  const { bet, amount } = useSelector((state) => state.bet);
+  const { bet, amount, saveError, saveSuccess, saveLoading } = useSelector(
+    (state) => state.bet
+  );
   const dispatch = useDispatch();
-  const betAmounts = ["+50", "+100", "+200", "+500", "+1000", "+MAX"];
-  // const [betAmount, setBetAmount] = useState(0);
-  const [error, setError] = useState();
-  const handleSubmit = (e) => {
+  const betAmounts = [
+    { title: "+50", value: 50 },
+    { title: "+100", value: 100 },
+    { title: "+200", value: 200 },
+    { title: "+400", value: 400 },
+    { title: "+500", value: 500 },
+    { title: "+MAX", value: 500 },
+  ];
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (amount <= 10) {
-      setError("Please Enter Valid Amount");
+      dispatch(setSaveError("Please Enter Valid Amount"));
       return false;
     }
     console.log("submit", amount);
+
+    console.log("saving");
+    await dispatch(saveBet());
+    console.log("saved");
   };
 
   useEffect(() => {
-    if (error) {
-      const timeout = setTimeout(() => {
-        setError(false);
+    if (saveError) {
+      setTimeout(() => {
+        dispatch(setSaveError(false));
       }, 3000);
     }
-  }, [error]);
+
+    if (saveSuccess) {
+      setTimeout(() => {
+        dispatch(setSaveSuccess(false));
+      }, 3000);
+    }
+  }, [saveError, saveSuccess]);
   return (
     <div>
-      {error && (
+      {saveError && (
         <div className="bg-gradient-to-r from-red-500 to-red-400 text-white text-xs p-3">
           <div className="flex justify-center items-center">
-            <BiError className="text-lg mr-2" /> {error}
+            <BiError className="text-lg mr-2" /> {saveError}
+          </div>
+        </div>
+      )}
+      {saveSuccess && (
+        <div className="bg-gradient-to-r from-green-500 to-green-400 text-white text-xs p-3">
+          <div className="flex justify-center items-center">
+            <BiError className="text-lg mr-2" /> {saveSuccess}
           </div>
         </div>
       )}
@@ -46,6 +80,7 @@ const BetForm = () => {
             onClick={() => {
               dispatch(setStatus(null));
               dispatch(setBet({}));
+              dispatch(setAmount(""));
             }}
           />
         </div>
@@ -80,11 +115,10 @@ const BetForm = () => {
               <div className="relative">
                 <span className="absolute left-2 top-0.5">¥</span>
                 <input
-                  onChange={(e) => dispatch(setAmount(e.target.value))}
-                  type="number"
-                  min={10}
-                  max={8000}
+                  onChange={(e) => dispatch(setAmount(Number(e.target.value)))}
+                  type="text"
                   name=""
+                  value={amount}
                   className="w-full py-1 h-6 bg-transparent border border-primary border-opacity-30 pl-5 outline-none"
                   id=""
                 />
@@ -94,9 +128,15 @@ const BetForm = () => {
             <div>MIN - MAX BET AMOUNT : 10 - 8,000</div>
 
             <div className="grid grid-cols-3 gap-3">
-              {betAmounts.map((amount, i) => (
-                <div className="text-primary bg-dark-light py-2 text-center font-bold hover:bg-gradient-to-r from-primary to-secondary hover:text-white cursor-pointer">
-                  {amount}
+              {betAmounts.map((a, i) => (
+                <div
+                  onClick={() => {
+                    console.log(amount);
+                    dispatch(setAmount(Number(amount) + Number(a.value)));
+                  }}
+                  className="text-primary bg-dark-light py-2 text-center font-bold hover:bg-gradient-to-r from-primary to-secondary hover:text-white cursor-pointer"
+                >
+                  {a.title}
                 </div>
               ))}
             </div>
@@ -115,9 +155,10 @@ const BetForm = () => {
 
           <button
             type="submit"
-            className="w-full font-bold py-3 bg-gradient-to-r from-primary to-secondary text-white hover:from-secondary hover:to-primary transition-all duration-200"
+            className="w-full flex justify-center font-bold py-3 bg-gradient-to-r from-primary to-secondary text-white hover:from-secondary hover:to-primary transition-all duration-200"
           >
-            PLACE BET
+            {!saveLoading && "PLACE BET"}
+            {saveLoading && <ImSpinner3 className="animate-spin" />}
           </button>
         </form>
       </div>

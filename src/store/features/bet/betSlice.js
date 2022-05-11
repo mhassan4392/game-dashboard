@@ -5,11 +5,13 @@ const initialState = {
   bets: [],
   loading: false,
   error: null,
+  saveLoading: false,
+  saveError: false,
+  saveSuccess: false,
   status: null,
   slip: null,
   bet: null,
-  amount: 0,
-  itemId: "",
+  amount: "",
 };
 
 export const getBets = createAsyncThunk(
@@ -26,15 +28,16 @@ export const getBets = createAsyncThunk(
   }
 );
 
-export const saveBets = createAsyncThunk(
+export const saveBet = createAsyncThunk(
   "bet/saveBet",
   async (data, { rejectWithValue, getState }) => {
     const { bet } = getState();
+    console.log(bet);
     try {
       const res = await Axios.post(`/api/ox/orders`, {
-        amount: bet.amount,
-        itemId: bet.itemId,
-        odds: bet.odds,
+        amount: Number(bet.amount),
+        itemId: bet.bet.itemId,
+        odds: bet.bet.odds,
       });
       // console.log(res);
       return res.data.info;
@@ -52,14 +55,17 @@ const gameSlice = createSlice({
     setStatus: (state, action) => {
       state.status = action.payload;
     },
-    setOdds: (state, action) => {
-      state.odds = action.payload;
-    },
     setAmount: (state, action) => {
       state.amount = action.payload;
     },
     setBet: (state, action) => {
       state.bet = action.payload;
+    },
+    setSaveError: (state, action) => {
+      state.saveError = action.payload;
+    },
+    setSaveSuccess: (state, action) => {
+      state.saveSuccess = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -77,10 +83,30 @@ const gameSlice = createSlice({
       .addCase(getBets.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+      })
+      .addCase(saveBet.pending, (state) => {
+        state.saveLoading = true;
+        state.saveError = false;
+      })
+      .addCase(saveBet.fulfilled, (state, action) => {
+        state.saveLoading = false;
+        state.saveError = false;
+        state.saveSuccess = "Bet Added Successfully";
+      })
+      .addCase(saveBet.rejected, (state, action) => {
+        state.saveLoading = false;
+        state.saveLoading = action.payload;
       });
   },
 });
 
-export const { setStatus, setOdds, setAmount, setBet } = gameSlice.actions;
+export const {
+  setStatus,
+  setOdds,
+  setAmount,
+  setBet,
+  setSaveSuccess,
+  setSaveError,
+} = gameSlice.actions;
 
 export default gameSlice.reducer;

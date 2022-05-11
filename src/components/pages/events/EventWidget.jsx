@@ -1,4 +1,4 @@
-import { setOdds, setStatus, setBet } from "@/store/features/bet/betSlice";
+import { setStatus, setBet } from "@/store/features/bet/betSlice";
 import { useSelector, useDispatch } from "react-redux";
 const EventWidget = ({ bet }) => {
   const dispatch = useDispatch();
@@ -29,6 +29,7 @@ const EventWidget = ({ bet }) => {
                           date: game.STime,
                           market: translations?.Market[game.Name],
                           status: translations?.BetItems[item.Name],
+                          itemId: item.Id,
                         })
                       );
                     }}
