@@ -5,13 +5,13 @@ import banner from "@/assets/images/banner.jpg";
 import EventsWidget from "@/components/pages/events/EventsWidget";
 import MobileBanner from "@/components/banner/MobileBanner";
 import { useDispatch, useSelector } from "react-redux";
-import { getGames, resetGames } from "@/store/features/game/gameSlice";
+import { getGames, resetGames, setTab } from "@/store/features/game/gameSlice";
 
 import VisibilitySensor from "react-visibility-sensor";
 
 const Events = () => {
   const isMounted = useRef(false);
-  const { loading, country, games, page, tabs, tab } = useSelector(
+  const { loading, country, games, tabs, tab } = useSelector(
     (state) => state.game
   );
   const dispatch = useDispatch();
@@ -26,11 +26,14 @@ const Events = () => {
     } else {
       isMounted.current = true;
       dispatch(resetGames());
+      dispatch(setTab("gettodays"));
     }
   }, [country]);
 
   useEffect(() => {
-    dispatch(resetGames());
+    if (isMounted.current) {
+      dispatch(resetGames());
+    }
   }, [tab]);
 
   return (

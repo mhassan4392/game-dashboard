@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import GameResultModal from "./GameResultModal";
 import { setGame } from "@/store/features/game/gameSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { setStatus, setOdds } from "@/store/features/bet/betSlice";
 
 import CN from "@/assets/images/country/flags/svg/cn.svg";
 import DE from "@/assets/images/country/flags/svg/de.svg";
@@ -123,7 +124,14 @@ const GameResultsWidget = ({ game }) => {
 
         {/* on md screen */}
         <div className="text-xs items-center justify-around pl-2 hidden md:flex">
-          <div className="flex items-center justify-end w-44 h-14 border border-secondary border-opacity-50 py-2 px-3 bg-dark-light hover:bg-secondary hover:bg-opacity-30 transition-all duration-200">
+          <div
+            onClick={(e) => {
+              e.stopPropagation();
+              dispatch(setStatus("add"));
+              dispatch(setOdds(game.Items[0].Odds));
+            }}
+            className="flex items-center justify-end w-44 h-14 border border-secondary border-opacity-50 py-2 px-3 bg-dark-light hover:bg-secondary hover:bg-opacity-30 transition-all duration-200"
+          >
             <div className="text-right space-y-1">
               <div className="text-md text-[14px] sm:text-lg">
                 {game.Items[0].Odds}
@@ -136,7 +144,14 @@ const GameResultsWidget = ({ game }) => {
           <div className="text-lg mx-2 lg:mx-6 xl:mx-10 h-14 text-center flex items-center justify-center">
             vs
           </div>
-          <div className="flex items-center justify-start w-44 h-14 border border-secondary border-opacity-50 py-2 px-3 bg-dark-light hover:bg-secondary hover:bg-opacity-30 transition-all duration-200">
+          <div
+            onClick={(e) => {
+              e.stopPropagation();
+              dispatch(setStatus("add"));
+              dispatch(setOdds(game.Items[1].Odds));
+            }}
+            className="flex items-center justify-start w-44 h-14 border border-secondary border-opacity-50 py-2 px-3 bg-dark-light hover:bg-secondary hover:bg-opacity-30 transition-all duration-200"
+          >
             <div className="text-left space-y-1">
               <div className="text-md text-[14px] sm:text-lg">
                 {game.Items[1].Odds}

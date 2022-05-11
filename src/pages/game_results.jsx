@@ -3,7 +3,7 @@ import GameResultsWidget from "@/components/pages/gameresults/GameResultsWidget"
 import Spinner from "@/components/spinner/Spinner";
 import { TabsItems, TabItem } from "@/components/tabs";
 import { useDispatch, useSelector } from "react-redux";
-import { getGames, resetGames } from "@/store/features/game/gameSlice";
+import { getGames, resetGames, setTab } from "@/store/features/game/gameSlice";
 
 import VisibilitySensor from "react-visibility-sensor";
 
@@ -18,7 +18,6 @@ const GameResults = () => {
   useEffect(() => {
     const run = async () => {
       await dispatch(resetGames());
-      console.log("hello");
       await dispatch(getGames());
     };
     if (isMounted.current) {
@@ -26,11 +25,14 @@ const GameResults = () => {
     } else {
       isMounted.current = true;
       dispatch(resetGames());
+      dispatch(setTab("gettodays"));
     }
   }, [country]);
 
   useEffect(() => {
-    dispatch(resetGames());
+    if (isMounted.current) {
+      dispatch(resetGames());
+    }
   }, [tab]);
 
   return (
@@ -51,13 +53,16 @@ const GameResults = () => {
               ))}
               <VisibilitySensor
                 onChange={(isVisible) => {
-                  if (isVisible && isMounted) {
-                    console.log("mounted");
+                  console.log("change", isVisible);
+                  if (isVisible) {
+                    if (!isMounted.current) {
+                      dispatch(resetGames());
+                    }
                     dispatch(getGames());
                   }
                 }}
               >
-                <div className="scroller w-full h-2"></div>
+                <div className="scroller w-full h-6"></div>
               </VisibilitySensor>
               {loading && games.length > 0 && (
                 <div className={`flex items-center justify-center`}>

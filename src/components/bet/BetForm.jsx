@@ -102,7 +102,7 @@ const BetForm = () => {
           <div className="bg-dark-light px-3 py-2 text-sm mt-2">
             <div className="flex items-center justify-between">
               <h2>Total Bet Amounts</h2>
-              <h2 className="text-lg">¥ 0.00</h2>
+              <h2 className="text-lg">¥ {Number(betAmount).toFixed(2)}</h2>
             </div>
             <div className="flex items-center justify-between">
               <h2>Potential Wininngs</h2>

@@ -74,7 +74,9 @@ const gameSlice = createSlice({
         if (typeof action.payload == "object") {
           state.games = [...state.games, ...action.payload];
         }
-        state.page += 1;
+        if (typeof action.payload == "object" && action.payload.length > 0) {
+          state.page += 1;
+        }
         state.error = false;
       })
       .addCase(getGames.rejected, (state, action) => {
