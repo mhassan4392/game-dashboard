@@ -94,7 +94,7 @@ const gameSlice = createSlice({
       })
       .addCase(saveBet.rejected, (state, action) => {
         state.saveLoading = false;
-        state.saveLoading = action.payload;
+        state.saveError = action.payload;
       });
   },
 });
