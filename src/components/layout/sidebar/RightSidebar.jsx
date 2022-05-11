@@ -63,7 +63,7 @@ const RightSidebar = () => {
                   Setteled
                 </TabButton>
               </TabsButtons>
-              <TabsItems className="flex-grow h-full scrollbar overflow-y-auto">
+              <TabsItems className="flex-grow h-full overflow-hidden">
                 <TabItem tab="pending" className="h-full">
                   {/* <EmptyBet /> */}
                   <PendingOrders />

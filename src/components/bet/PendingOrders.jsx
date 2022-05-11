@@ -23,36 +23,39 @@ const PendingOrders = () => {
     }
   }, []);
   return (
-    <div className="h-full">
-      {orders.map((order, i) => (
-        <div key={i}>
-          <OrderWidget order={order} />
-        </div>
-      ))}
+    <div className="h-full flex-grow flex flex-col">
+      {/* <div>Date</div> */}
+      <div className="flex-grow scrollbar overflow-y-auto">
+        {orders.map((order, i) => (
+          <div key={i}>
+            <OrderWidget order={order} />
+          </div>
+        ))}
 
-      {loading && !orders.length && (
-        <div className={`flex items-center justify-center h-4/5`}>
-          <Spinner />
-        </div>
-      )}
+        {loading && !orders.length && (
+          <div className={`flex items-center justify-center h-4/5`}>
+            <Spinner />
+          </div>
+        )}
 
-      <VisibilitySensor
-        onChange={(isVisible) => {
-          if (isVisible) {
-            if (!isMounted.current) {
-              dispatch(resetOrders());
+        <VisibilitySensor
+          onChange={(isVisible) => {
+            if (isVisible) {
+              if (!isMounted.current) {
+                dispatch(resetOrders());
+              }
+              dispatch(getOrders());
             }
-            dispatch(getOrders());
-          }
-        }}
-      >
-        <div className="scroller w-full h-2"></div>
-      </VisibilitySensor>
-      {loading && orders.length > 0 && (
-        <div className={`flex items-center justify-center`}>
-          <Spinner />
-        </div>
-      )}
+          }}
+        >
+          <div className="scroller w-full h-2"></div>
+        </VisibilitySensor>
+        {loading && orders.length > 0 && (
+          <div className={`flex items-center justify-center`}>
+            <Spinner />
+          </div>
+        )}
+      </div>
     </div>
   );
 };

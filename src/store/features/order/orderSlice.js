@@ -16,7 +16,6 @@ export const getOrders = createAsyncThunk(
   "order/getOrders",
   async (_, { rejectWithValue, getState }) => {
     const { order } = getState();
-    console.log("hello");
     try {
       const dat = {
         page: order.page,
@@ -29,10 +28,8 @@ export const getOrders = createAsyncThunk(
         `/api/ox/orderlist?page=${dat.page}&limit=${dat.limit}&stime=${dat.stime}&etime=${dat.etime}&type=${dat.type}`,
         dat
       );
-      console.log(res);
       return res.data.data;
     } catch (error) {
-      console.log(error);
       return rejectWithValue(error.message);
     }
   }

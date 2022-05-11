@@ -2,7 +2,6 @@ import { useSelector } from "react-redux";
 
 const OrderWidget = ({ order }) => {
   const { translations } = useSelector((state) => state.lan);
-  console.log(order);
   return (
     <div className="border-l-2 border-primary space-y-2 py-4 text-xs text-light px-4 mb-3">
       <div className="flex items-center justify-between color">
