@@ -6,10 +6,12 @@ import {
   TabsItems,
 } from "@/components/tabs";
 import EmptyBet from "@/components/bet/EmptyBet";
+import BetForm from "@/components/bet/BetForm";
 import { useSelector } from "react-redux";
 
 const RightSidebar = () => {
   const { translations } = useSelector((state) => state.lan);
+  const { slip, status } = useSelector((state) => state.bet);
   return (
     // relative and z-10 class for mobile banner
     <div className="bg-dark overflow-y-auto overflow-x-hidden relative z-10 md:z-0 h-full scrollbar">
@@ -32,7 +34,8 @@ const RightSidebar = () => {
         </TabsButtons>
         <TabsItems className="flex-grow flex flex-col">
           <TabItem tab="slip" className="h-full" defaultTab>
-            <EmptyBet />
+            {!slip && !status && <EmptyBet />}
+            {status == "add" && <BetForm />}
           </TabItem>
           <TabItem tab="history" className="flex-grow flex flex-col">
             <Tabs defaultTab="pending" className="flex flex-col flex-grow">

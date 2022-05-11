@@ -1,5 +1,7 @@
-import { useSelector } from "react-redux";
+import { setOdds, setStatus } from "@/store/features/bet/betSlice";
+import { useSelector, useDispatch } from "react-redux";
 const EventWidget = ({ bet }) => {
+  const dispatch = useDispatch();
   const { translations } = useSelector((state) => state.lan);
   const { game } = useSelector((state) => state.game);
   return (
@@ -9,7 +11,7 @@ const EventWidget = ({ bet }) => {
           {translations.BetsStatus[bet.Status]}
         </div>
         <div className="basis-[85%] grid grid-cols-2 px-8 relative ">
-          <div className="absolute w-full top-2 flex items-center justify-center">
+          <div className="absolute z-0 w-full top-2 flex items-center justify-center">
             <div className="w-1/4 text-center text-sm">
               {translations.Bets[bet.BetName]}
             </div>
@@ -17,8 +19,14 @@ const EventWidget = ({ bet }) => {
           {bet.Items.map((item, i) => (
             <>
               {i % 2 == 0 && (
-                <div className="flex items-center mb-1" key={i}>
-                  <div className="border border-secondary border-opacity-50 w-20 md:w-24 text-sm md:text-lg flex items-center justify-center h-10 bg-dark-light ">
+                <div className="flex items-center mb-1 z-10" key={i}>
+                  <div
+                    onClick={(e) => {
+                      dispatch(setStatus("add"));
+                      dispatch(setOdds(item.Odds));
+                    }}
+                    className="border cursor-pointer rounded border-secondary border-opacity-50 w-20 md:w-24 text-sm md:text-lg flex items-center justify-center h-10 bg-dark-light "
+                  >
                     {item.Odds}
                   </div>
                   <div className="ml-4 text-xs">
@@ -28,11 +36,20 @@ const EventWidget = ({ bet }) => {
               )}
 
               {i % 2 != 0 && (
-                <div className="flex items-center justify-end mb-1" key={i}>
+                <div
+                  className="flex items-center justify-end mb-1 z-10"
+                  key={i}
+                >
                   <div className="mr-4 text-xs">
                     {translations?.BetItems[item.Name]}
                   </div>
-                  <div className="border border-secondary border-opacity-50 w-20 md:w-24 text-sm md:text-lg flex items-center justify-center h-10 bg-dark-light ">
+                  <div
+                    onClick={(e) => {
+                      dispatch(setStatus("add"));
+                      dispatch(setOdds(item.Odds));
+                    }}
+                    className="border cursor-pointer rounded border-secondary border-opacity-50 w-20 md:w-24 text-sm md:text-lg flex items-center justify-center h-10 bg-dark-light "
+                  >
                     {item.Odds}
                   </div>
                 </div>

@@ -5,7 +5,7 @@ const initialState = {
   country: "CN",
   game: null,
   games: [],
-  limit: 2,
+  limit: 25,
   page: 1,
   tab: "getTodays",
   tabs: [

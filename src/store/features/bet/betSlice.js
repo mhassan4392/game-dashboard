@@ -5,6 +5,9 @@ const initialState = {
   bets: [],
   loading: false,
   error: null,
+  status: null,
+  slip: null,
+  odds: "",
 };
 
 export const getBets = createAsyncThunk(
@@ -26,7 +29,14 @@ export const getBets = createAsyncThunk(
 const gameSlice = createSlice({
   name: "bet",
   initialState,
-  reducers: {},
+  reducers: {
+    setStatus: (state, action) => {
+      state.status = action.payload;
+    },
+    setOdds: (state, action) => {
+      state.odds = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getBets.pending, (state) => {
@@ -45,5 +55,7 @@ const gameSlice = createSlice({
       });
   },
 });
+
+export const { setStatus, setOdds } = gameSlice.actions;
 
 export default gameSlice.reducer;

@@ -18,6 +18,7 @@ const GameResults = () => {
   useEffect(() => {
     const run = async () => {
       await dispatch(resetGames());
+      console.log("hello");
       await dispatch(getGames());
     };
     if (isMounted.current) {
@@ -50,7 +51,8 @@ const GameResults = () => {
               ))}
               <VisibilitySensor
                 onChange={(isVisible) => {
-                  if (isVisible) {
+                  if (isVisible && isMounted) {
+                    console.log("mounted");
                     dispatch(getGames());
                   }
                 }}
