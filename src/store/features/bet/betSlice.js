@@ -19,10 +19,8 @@ export const getBets = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const res = await Axios.post(`/api/ox/getbets/${data.id}`, {});
-      console.log(res);
       return res.data.info;
     } catch (error) {
-      console.log(error.message);
       return rejectWithValue(error.message);
     }
   }
@@ -38,10 +36,8 @@ export const saveBet = createAsyncThunk(
         itemId: bet.bet.itemId,
         odds: bet.bet.odds,
       });
-      // console.log(res);
       return res.data.info;
     } catch (error) {
-      console.log(error.message);
       return rejectWithValue(error.message);
     }
   }

@@ -53,7 +53,6 @@ const GameResults = () => {
               ))}
               <VisibilitySensor
                 onChange={(isVisible) => {
-                  console.log("change", isVisible);
                   if (isVisible) {
                     if (!isMounted.current) {
                       dispatch(resetGames());
