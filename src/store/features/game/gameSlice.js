@@ -15,6 +15,7 @@ const initialState = {
     { id: 3, title: "jackpot", api: "getjackpot" },
     { id: 4, title: "outright", api: "getchampion" },
   ],
+  modal: false,
   loading: false,
   error: null,
 };

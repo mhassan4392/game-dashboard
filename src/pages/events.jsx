@@ -1,10 +1,9 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import Spinner from "@/components/spinner/Spinner";
 import { TabsItems, TabItem } from "@/components/tabs";
 import banner from "@/assets/images/banner.jpg";
 import EventsWidget from "@/components/pages/events/EventsWidget";
 import MobileBanner from "@/components/banner/MobileBanner";
-import { useOutletContext } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getGames, resetGames } from "@/store/features/game/gameSlice";
 
@@ -12,7 +11,6 @@ import VisibilitySensor from "react-visibility-sensor";
 
 const Events = () => {
   const isMounted = useRef(false);
-  // const { tab } = useOutletContext();
   const { loading, country, games, page, tabs, tab } = useSelector(
     (state) => state.game
   );
@@ -61,6 +59,9 @@ const Events = () => {
                 <VisibilitySensor
                   onChange={(isVisible) => {
                     if (isVisible) {
+                      if (!isMounted.current) {
+                        dispatch(resetGames());
+                      }
                       dispatch(getGames());
                     }
                   }}
