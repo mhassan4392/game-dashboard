@@ -7,6 +7,8 @@ import {
   TabItem,
 } from "@/components/tabs";
 import EmptyBet from "@/components/bet/EmptyBet";
+import PendingOrders from "@/components/bet/PendingOrders";
+import SettledOrder from "@/components/bet/SettledOrders";
 
 const BetHistoryMenu = ({ open, onClose }) => {
   return (
@@ -38,7 +40,7 @@ const BetHistoryMenu = ({ open, onClose }) => {
           </>
         )}
       >
-        <TabsItems className="flex-grow h-full flex flex-col">
+        <TabsItems className="flex-grow h-full overflow-hidden flex flex-col">
           <TabItem tab="lootbox" className="h-full flex flex-col bg-dark-light">
             <div className="flex items-center justify-between text-sm py-4 px-4">
               <div>Date</div>
@@ -51,8 +53,12 @@ const BetHistoryMenu = ({ open, onClose }) => {
               <EmptyBet />
             </div>
           </TabItem>
-          <TabItem defaultTab tab="history" className="flex-grow flex flex-col">
-            <Tabs className="flex flex-col flex-grow">
+          <TabItem
+            defaultTab
+            tab="history"
+            className="flex-grow overflow-hidden flex flex-col"
+          >
+            <Tabs className="flex flex-col flex-grow overflow-hidden">
               <TabsButtons className="flex items-center bg-dark-light mb-2">
                 <TabButton
                   activeClass="tab-active"
@@ -69,12 +75,14 @@ const BetHistoryMenu = ({ open, onClose }) => {
                   Settled
                 </TabButton>
               </TabsButtons>
-              <TabsItems className="flex-grow">
+              <TabsItems className="flex-grow scrollbar overflow-y-auto">
                 <TabItem tab="pending" className="h-full" defaultTab>
-                  <EmptyBet />
+                  {/* <EmptyBet /> */}
+                  <PendingOrders />
                 </TabItem>
                 <TabItem tab="settled" className="h-full">
-                  <EmptyBet />
+                  {/* <EmptyBet /> */}
+                  <SettledOrder />
                 </TabItem>
               </TabsItems>
             </Tabs>
