@@ -28,8 +28,8 @@ const LanguageMenu = ({ open, onClose }) => {
       open={open}
       className="!bg-dark !max-w-xs"
       onOutsideClick={onClose}
-      overlayClass="!bg-dark"
-      overlayOpacity={0.7}
+      containerClass="bg-black bg-opacity-50"
+      overlay={false}
     >
       <Modal.Header className="bg-dark-light py-3 relative">
         <h2 className="text-center">Select Language</h2>

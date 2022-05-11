@@ -1,11 +1,18 @@
+import { useState } from "react";
 import { setStatus, setBet } from "@/store/features/bet/betSlice";
 import { useSelector, useDispatch } from "react-redux";
+import BetFormModal from "@/components/bet/BetFormModal";
 const EventWidget = ({ bet }) => {
   const dispatch = useDispatch();
   const { translations } = useSelector((state) => state.lan);
   const { game } = useSelector((state) => state.game);
+  const [betFormModal, setBetFormModal] = useState(false);
   return (
     <>
+      <BetFormModal
+        open={betFormModal}
+        onClose={() => setBetFormModal(false)}
+      />
       <div className="hidden md:flex items-start justify-between pt-2 pb-1 px-1 md:px-4 border-b border-opacity-20 border-secondary w-screen md:w-full space-x-1 md:space-x-4">
         <div className="text-xs text-[#25f09a] mt-3 basis-[15%]">
           {translations.BetsStatus[bet.Status]}
@@ -85,8 +92,20 @@ const EventWidget = ({ bet }) => {
         <div className="flex items-center justify-between flex-wrap">
           {bet.Items.map((b, i) => (
             <div
+              onClick={(e) => {
+                dispatch(setStatus("add"));
+                dispatch(
+                  setBet({
+                    odds: b.Odds,
+                    date: game.STime,
+                    market: translations?.Market[game.Name],
+                    status: translations?.BetItems[b.Name],
+                  })
+                );
+                setBetFormModal(true);
+              }}
               key={i}
-              className="mb-2 border border-[#2d4264] shadow-lg shadow-[#142131] flex items-center justify-between bg-[#142131] basis-[45%] py-1 px-2 rounded"
+              className="mb-2 cursor-pointer border border-[#2d4264] shadow-lg shadow-[#142131] flex items-center justify-between bg-[#142131] basis-[45%] py-1 px-2 rounded"
             >
               <div>
                 <div className="truncate">

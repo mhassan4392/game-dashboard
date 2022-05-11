@@ -4,6 +4,7 @@ import { BiError } from "react-icons/bi";
 import countryFlags from "@/utils/countryFlags";
 import { ImSpinner3 } from "react-icons/im";
 import { AiOutlineCheck } from "react-icons/ai";
+import { BsX } from "react-icons/bs";
 import {
   setStatus,
   setBet,
@@ -14,7 +15,7 @@ import {
 } from "@/store/features/bet/betSlice";
 import { useDispatch, useSelector } from "react-redux";
 
-const BetForm = () => {
+const BetForm = ({ modal, onClose }) => {
   const { bet, amount, saveError, saveSuccess, saveLoading } = useSelector(
     (state) => state.bet
   );
@@ -52,6 +53,25 @@ const BetForm = () => {
   }, [saveError, saveSuccess]);
   return (
     <div>
+      {modal && (
+        <div className="flex items-center justify-between px-2 bg-dark-light py-3 mb-1">
+          <div className="flex items-center">
+            <img src={countryFlags["CN"]} className="w-4" alt="" />
+            <h3 className="truncate text-xs ml-2">League of Legends</h3>
+          </div>
+          <div
+            onClick={() => {
+              dispatch(setStatus(null));
+              dispatch(setBet({}));
+              dispatch(setAmount(""));
+              onClose();
+            }}
+            className="cursor-pointer p-1 text-primary bg-dark rounded"
+          >
+            <BsX className="text-xl" />
+          </div>
+        </div>
+      )}
       {saveError && (
         <div className="bg-gradient-to-r from-red-500 to-red-400 text-white text-xs p-3">
           <div className="flex justify-center items-center">
@@ -67,20 +87,22 @@ const BetForm = () => {
         </div>
       )}
       <div className="border-l-2 border-l-white border-b border-b-secondary">
-        <div className="flex items-center justify-between px-2 bg-dark-light py-2">
-          <div className="flex items-center">
-            <img src={countryFlags["CN"]} className="w-4" alt="" />
-            <h3 className="truncate text-xs ml-2">League of Legends</h3>
+        {!modal && (
+          <div className="flex items-center justify-between px-2 bg-dark-light py-2">
+            <div className="flex items-center">
+              <img src={countryFlags["CN"]} className="w-4" alt="" />
+              <h3 className="truncate text-xs ml-2">League of Legends</h3>
+            </div>
+            <BsFillTrashFill
+              className="cursor-pointer text-primary"
+              onClick={() => {
+                dispatch(setStatus(null));
+                dispatch(setBet({}));
+                dispatch(setAmount(""));
+              }}
+            />
           </div>
-          <BsFillTrashFill
-            className="cursor-pointer text-primary"
-            onClick={() => {
-              dispatch(setStatus(null));
-              dispatch(setBet({}));
-              dispatch(setAmount(""));
-            }}
-          />
-        </div>
+        )}
 
         <div className="flex justify-between px-2 py-1">
           <div className="space-y-2">
@@ -127,8 +149,8 @@ const BetForm = () => {
             <div className="grid grid-cols-3 gap-3">
               {betAmounts.map((a, i) => (
                 <div
+                  key={i}
                   onClick={() => {
-                    console.log(amount);
                     dispatch(setAmount(Number(amount) + Number(a.value)));
                   }}
                   className="text-primary bg-dark-light py-2 text-center font-bold hover:bg-gradient-to-r from-primary to-secondary hover:text-white cursor-pointer"

@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { setGame } from "@/store/features/game/gameSlice";
 import { setStatus, setBet } from "@/store/features/bet/betSlice";
 
+import BetFormModal from "@/components/bet/BetFormModal";
+
 import CN from "@/assets/images/country/flags/svg/cn.svg";
 import DE from "@/assets/images/country/flags/svg/de.svg";
 import FR from "@/assets/images/country/flags/svg/fr.svg";
@@ -35,6 +37,7 @@ const images = {
 };
 
 const EventsWidget = ({ game }) => {
+  const [betFormModal, setBetFormModal] = useState(false);
   const { translations } = useSelector((state) => state.lan);
   const dispatch = useDispatch();
   const [eventModal, setEventModal] = useState(false);
@@ -54,6 +57,10 @@ const EventsWidget = ({ game }) => {
   };
   return (
     <>
+      <BetFormModal
+        open={betFormModal}
+        onClose={() => setBetFormModal(false)}
+      />
       <EventModal
         open={eventModal}
         id={game.Id}
@@ -106,7 +113,23 @@ const EventsWidget = ({ game }) => {
 
           <div className="flex items-center justify-between">
             <div className="basis-1/3 text-center flex items-center justify-center">
-              <p className="border border-secondary py-1 bg-dark-light w-20 font-bold border-opacity-40">
+              <p
+                onClick={(e) => {
+                  e.stopPropagation();
+                  dispatch(setStatus("add"));
+                  dispatch(
+                    setBet({
+                      odds: game.Items[0].Odds,
+                      date: game.STime,
+                      market: translations?.Market[game?.Name],
+                      status: translations?.BetItems[game?.Items[0].Name],
+                      itemId: game?.Items[0].Id,
+                    })
+                  );
+                  setBetFormModal(true);
+                }}
+                className="border border-secondary py-1 bg-dark-light w-20 font-bold border-opacity-40"
+              >
                 {game.Items[0].Odds}
               </p>
             </div>
@@ -116,7 +139,23 @@ const EventsWidget = ({ game }) => {
               </p>
             </div>
             <div className="basis-1/3 text-center flex items-center justify-center">
-              <p className="border border-secondary py-1 bg-dark-light w-20 font-bold border-opacity-40">
+              <p
+                onClick={(e) => {
+                  e.stopPropagation();
+                  dispatch(setStatus("add"));
+                  dispatch(
+                    setBet({
+                      odds: game.Items[1].Odds,
+                      date: game.STime,
+                      market: translations?.Market[game?.Name],
+                      status: translations?.BetItems[game?.Items[0].Name],
+                      itemId: game?.Items[1].Id,
+                    })
+                  );
+                  setBetFormModal(true);
+                }}
+                className="border border-secondary py-1 bg-dark-light w-20 font-bold border-opacity-40"
+              >
                 {game.Items[1].Odds}
               </p>
             </div>
@@ -129,7 +168,6 @@ const EventsWidget = ({ game }) => {
             onClick={(e) => {
               e.stopPropagation();
               dispatch(setStatus("add"));
-              // dispatch(setOdds(game.Items[0].Odds));
               dispatch(
                 setBet({
                   odds: game.Items[0].Odds,
