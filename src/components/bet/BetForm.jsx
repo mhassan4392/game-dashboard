@@ -3,6 +3,7 @@ import { BsFillTrashFill } from "react-icons/bs";
 import { BiError } from "react-icons/bi";
 import countryFlags from "@/utils/countryFlags";
 import { ImSpinner3 } from "react-icons/im";
+import { AiOutlineCheck } from "react-icons/ai";
 import {
   setStatus,
   setBet,
@@ -33,11 +34,7 @@ const BetForm = () => {
       dispatch(setSaveError("Please Enter Valid Amount"));
       return false;
     }
-    console.log("submit", amount);
-
-    console.log("saving");
     await dispatch(saveBet());
-    console.log("saved");
   };
 
   useEffect(() => {
@@ -65,7 +62,7 @@ const BetForm = () => {
       {saveSuccess && (
         <div className="bg-gradient-to-r from-green-500 to-green-400 text-white text-xs p-3">
           <div className="flex justify-center items-center">
-            <BiError className="text-lg mr-2" /> {saveSuccess}
+            <AiOutlineCheck className="text-lg mr-2" /> {saveSuccess}
           </div>
         </div>
       )}
