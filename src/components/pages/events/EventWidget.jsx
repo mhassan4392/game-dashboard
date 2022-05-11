@@ -1,4 +1,4 @@
-import { setOdds, setStatus } from "@/store/features/bet/betSlice";
+import { setOdds, setStatus, setBet } from "@/store/features/bet/betSlice";
 import { useSelector, useDispatch } from "react-redux";
 const EventWidget = ({ bet }) => {
   const dispatch = useDispatch();
@@ -23,7 +23,14 @@ const EventWidget = ({ bet }) => {
                   <div
                     onClick={(e) => {
                       dispatch(setStatus("add"));
-                      dispatch(setOdds(item.Odds));
+                      dispatch(
+                        setBet({
+                          odds: item.Odds,
+                          date: game.STime,
+                          market: translations?.Market[game.Name],
+                          status: translations?.BetItems[item.Name],
+                        })
+                      );
                     }}
                     className="border cursor-pointer rounded border-secondary border-opacity-50 w-20 md:w-24 text-sm md:text-lg flex items-center justify-center h-10 bg-dark-light "
                   >
@@ -46,7 +53,14 @@ const EventWidget = ({ bet }) => {
                   <div
                     onClick={(e) => {
                       dispatch(setStatus("add"));
-                      dispatch(setOdds(item.Odds));
+                      dispatch(
+                        setBet({
+                          odds: item.Odds,
+                          date: game.STime,
+                          market: translations?.Market[game.Name],
+                          status: translations?.BetItems[item.Name],
+                        })
+                      );
                     }}
                     className="border cursor-pointer rounded border-secondary border-opacity-50 w-20 md:w-24 text-sm md:text-lg flex items-center justify-center h-10 bg-dark-light "
                   >

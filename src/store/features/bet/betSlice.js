@@ -8,7 +8,6 @@ const initialState = {
   status: null,
   slip: null,
   bet: null,
-  odds: "",
   amount: 0,
   itemId: "",
 };

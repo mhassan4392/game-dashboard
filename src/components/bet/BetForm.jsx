@@ -5,10 +5,10 @@ import countryFlags from "@/utils/countryFlags";
 import { setStatus, setBet, setAmount } from "@/store/features/bet/betSlice";
 import { useDispatch, useSelector } from "react-redux";
 const BetForm = () => {
-  const { odds, bet, amount } = useSelector((state) => state.bet);
+  const { bet, amount } = useSelector((state) => state.bet);
   const dispatch = useDispatch();
   const betAmounts = ["+50", "+100", "+200", "+500", "+1000", "+MAX"];
-  const [betAmount, setBetAmount] = useState(0);
+  // const [betAmount, setBetAmount] = useState(0);
   const [error, setError] = useState();
   const handleSubmit = (e) => {
     e.preventDefault();
