@@ -1,17 +1,24 @@
-import { useDispatch, useSelector } from "react-redux";
-import { setOdds, setStatus } from "@/store/features/bet/betSlice";
+import { useState } from "react";
+import { setStatus, setBet } from "@/store/features/bet/betSlice";
+import { useSelector, useDispatch } from "react-redux";
+import BetFormModal from "@/components/bet/BetFormModal";
 const GameResultWidget = ({ bet }) => {
+  const dispatch = useDispatch();
   const { translations } = useSelector((state) => state.lan);
   const { game } = useSelector((state) => state.game);
-  const dispatch = useDispatch();
+  const [betFormModal, setBetFormModal] = useState(false);
   return (
     <>
+      <BetFormModal
+        open={betFormModal}
+        onClose={() => setBetFormModal(false)}
+      />
       <div className="hidden md:flex items-start justify-between pt-2 pb-1 px-1 md:px-4 border-b border-opacity-20 border-secondary w-screen md:w-full space-x-1 md:space-x-4">
         <div className="text-xs text-[#25f09a] mt-3 basis-[15%]">
           {translations.BetsStatus[bet.Status]}
         </div>
         <div className="basis-[85%] grid grid-cols-2 px-8 relative ">
-          <div className="absolute w-full top-2 flex items-center justify-center z-0">
+          <div className="absolute z-0 w-full top-2 flex items-center justify-center">
             <div className="w-1/4 text-center text-sm">
               {translations.Bets[bet.BetName]}
             </div>
@@ -23,7 +30,15 @@ const GameResultWidget = ({ bet }) => {
                   <div
                     onClick={(e) => {
                       dispatch(setStatus("add"));
-                      dispatch(setOdds(item.Odds));
+                      dispatch(
+                        setBet({
+                          odds: item.Odds,
+                          date: game.STime,
+                          market: translations?.Market[game.Name],
+                          status: translations?.BetItems[item.Name],
+                          itemId: item.Id,
+                        })
+                      );
                     }}
                     className="border cursor-pointer rounded border-secondary border-opacity-50 w-20 md:w-24 text-sm md:text-lg flex items-center justify-center h-10 bg-dark-light "
                   >
@@ -36,14 +51,24 @@ const GameResultWidget = ({ bet }) => {
               )}
 
               {i % 2 != 0 && (
-                <div className="flex items-center justify-end mb-1" key={i}>
+                <div
+                  className="flex items-center justify-end mb-1 z-10"
+                  key={i}
+                >
                   <div className="mr-4 text-xs">
                     {translations?.BetItems[item.Name]}
                   </div>
                   <div
                     onClick={(e) => {
                       dispatch(setStatus("add"));
-                      dispatch(setOdds(item.Odds));
+                      dispatch(
+                        setBet({
+                          odds: item.Odds,
+                          date: game.STime,
+                          market: translations?.Market[game.Name],
+                          status: translations?.BetItems[item.Name],
+                        })
+                      );
                     }}
                     className="border cursor-pointer rounded border-secondary border-opacity-50 w-20 md:w-24 text-sm md:text-lg flex items-center justify-center h-10 bg-dark-light "
                   >
@@ -67,8 +92,20 @@ const GameResultWidget = ({ bet }) => {
         <div className="flex items-center justify-between flex-wrap">
           {bet.Items.map((b, i) => (
             <div
+              onClick={(e) => {
+                dispatch(setStatus("add"));
+                dispatch(
+                  setBet({
+                    odds: b.Odds,
+                    date: game.STime,
+                    market: translations?.Market[game.Name],
+                    status: translations?.BetItems[b.Name],
+                  })
+                );
+                setBetFormModal(true);
+              }}
               key={i}
-              className="mb-2 border border-[#2d4264] shadow-lg shadow-[#142131] flex items-center justify-between bg-[#142131] basis-[45%] py-1 px-2 rounded"
+              className="mb-2 cursor-pointer border border-[#2d4264] shadow-lg shadow-[#142131] flex items-center justify-between bg-[#142131] basis-[45%] py-1 px-2 rounded"
             >
               <div>
                 <div className="truncate">

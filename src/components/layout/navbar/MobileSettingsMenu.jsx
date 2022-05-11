@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 import {
   AiOutlineUser,
   AiOutlineRight,
@@ -75,8 +76,11 @@ const MobileSettingsMenu = () => {
               </div>
             </Link>
           </MenuItem>
-          <MenuItem onClick={() => setGameResultsModal(true)}>
-            <div className="flex items-center justify-between w-full">
+          <MenuItem>
+            <NavLink
+              className="flex items-center justify-between w-full"
+              to="/game-results"
+            >
               <div className="flex items-center">
                 <GiTrophyCup className="mr-2 text-primary" />
                 <span>{translations.TopMenu[1]}</span>
@@ -84,7 +88,7 @@ const MobileSettingsMenu = () => {
               <div>
                 <AiOutlineRight />
               </div>
-            </div>
+            </NavLink>
           </MenuItem>
           <MenuItem
             onClick={() => {

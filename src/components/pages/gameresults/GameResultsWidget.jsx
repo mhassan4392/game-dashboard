@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import GameResultModal from "./GameResultModal";
-import { setGame } from "@/store/features/game/gameSlice";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setStatus, setOdds } from "@/store/features/bet/betSlice";
+import { setGame } from "@/store/features/game/gameSlice";
+import { setStatus, setBet } from "@/store/features/bet/betSlice";
+
+import BetFormModal from "@/components/bet/BetFormModal";
 
 import CN from "@/assets/images/country/flags/svg/cn.svg";
 import DE from "@/assets/images/country/flags/svg/de.svg";
@@ -35,14 +37,16 @@ const images = {
 };
 
 const GameResultsWidget = ({ game }) => {
+  const [betFormModal, setBetFormModal] = useState(false);
   const { translations } = useSelector((state) => state.lan);
   const dispatch = useDispatch();
-  const [gameResultModal, setGameResultModal] = useState(false);
+  const [gameresultModal, setGameResultModal] = useState(false);
 
   const navigate = useNavigate();
 
-  const handleClick = () => {
+  const handleClick = (e) => {
     dispatch(setGame(game));
+    e.stopPropagation();
     const lgWidth = 1024;
     const bodyWidth = document.body.clientWidth;
     if (bodyWidth < lgWidth) {
@@ -53,8 +57,12 @@ const GameResultsWidget = ({ game }) => {
   };
   return (
     <>
+      <BetFormModal
+        open={betFormModal}
+        onClose={() => setBetFormModal(false)}
+      />
       <GameResultModal
-        open={gameResultModal}
+        open={gameresultModal}
         id={game.Id}
         onClose={() => setGameResultModal(false)}
       />
@@ -64,7 +72,7 @@ const GameResultsWidget = ({ game }) => {
       >
         <div className="text-xs flex flex-row lg:flex-col justify-between mb-2 lg:mb-0">
           <div className="flex items-center space-x-2 order-2 lg:order-1">
-            <img src={images[game?.Na]} className="w-5" alt="" />
+            <img src={images[game.Na]} className="w-5" alt="" />
             <span>{game?.STime}</span>
           </div>
           <div className="flex flex-row lg:flex-col order-1 lg:order-2">
@@ -105,18 +113,50 @@ const GameResultsWidget = ({ game }) => {
 
           <div className="flex items-center justify-between">
             <div className="basis-1/3 text-center flex items-center justify-center">
-              <p className="border border-secondary py-1 bg-dark-light w-20 font-bold border-opacity-40">
+              <p
+                onClick={(e) => {
+                  e.stopPropagation();
+                  dispatch(setStatus("add"));
+                  dispatch(
+                    setBet({
+                      odds: game.Items[0].Odds,
+                      date: game.STime,
+                      market: translations?.Market[game?.Name],
+                      status: translations?.BetItems[game?.Items[0].Name],
+                      itemId: game?.Items[0].Id,
+                    })
+                  );
+                  setBetFormModal(true);
+                }}
+                className="border border-secondary py-1 bg-dark-light w-20 font-bold border-opacity-40"
+              >
                 {game.Items[0].Odds}
               </p>
             </div>
             <div className="basis-1/3 text-center flex items-center justify-center">
-              <p className="text-xs border-2 text-[#d8d852] border-[#d8d852] rounded px-1 py-[1px] bg-dark-light font-bold border-opacity-40">
-                Awaiting Result
+              <p className="text-xs border-2 text-[#25f09a] border-[#25f09a] rounded px-1 py-[1px] bg-dark-light font-bold border-opacity-40">
+                OPEN
               </p>
             </div>
             <div className="basis-1/3 text-center flex items-center justify-center">
-              <p className="border border-secondary py-1 bg-dark-light w-20 font-bold border-opacity-40">
-                {game.Items[0].Odds}
+              <p
+                onClick={(e) => {
+                  e.stopPropagation();
+                  dispatch(setStatus("add"));
+                  dispatch(
+                    setBet({
+                      odds: game.Items[1].Odds,
+                      date: game.STime,
+                      market: translations?.Market[game?.Name],
+                      status: translations?.BetItems[game?.Items[0].Name],
+                      itemId: game?.Items[1].Id,
+                    })
+                  );
+                  setBetFormModal(true);
+                }}
+                className="border border-secondary py-1 bg-dark-light w-20 font-bold border-opacity-40"
+              >
+                {game.Items[1].Odds}
               </p>
             </div>
           </div>
@@ -128,7 +168,15 @@ const GameResultsWidget = ({ game }) => {
             onClick={(e) => {
               e.stopPropagation();
               dispatch(setStatus("add"));
-              dispatch(setOdds(game.Items[0].Odds));
+              dispatch(
+                setBet({
+                  odds: game.Items[0].Odds,
+                  date: game.STime,
+                  market: translations?.Market[game?.Name],
+                  status: translations?.BetItems[game?.Items[0].Name],
+                  itemId: game?.Items[0].Id,
+                })
+              );
             }}
             className="flex items-center justify-end w-44 h-14 border border-secondary border-opacity-50 py-2 px-3 bg-dark-light hover:bg-secondary hover:bg-opacity-30 transition-all duration-200"
           >
@@ -148,7 +196,15 @@ const GameResultsWidget = ({ game }) => {
             onClick={(e) => {
               e.stopPropagation();
               dispatch(setStatus("add"));
-              dispatch(setOdds(game.Items[1].Odds));
+              dispatch(
+                setBet({
+                  odds: game.Items[1].Odds,
+                  date: game.STime,
+                  market: translations?.Market[game?.Name],
+                  status: translations?.BetItems[game?.Items[1].Name],
+                  itemId: game?.Items[1].Id,
+                })
+              );
             }}
             className="flex items-center justify-start w-44 h-14 border border-secondary border-opacity-50 py-2 px-3 bg-dark-light hover:bg-secondary hover:bg-opacity-30 transition-all duration-200"
           >
@@ -163,7 +219,7 @@ const GameResultsWidget = ({ game }) => {
           </div>
         </div>
 
-        <div className="bg-secondary text-xs md:text-sm text-white flex items-center justify-center w-10 absolute top-0 right-0 bottom-0">
+        <div className="bg-secondary text-xs md:text-sm text-white flex items-center w-10 justify-center absolute top-0 right-0 bottom-0">
           {game.No}
         </div>
       </div>
