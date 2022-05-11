@@ -32,7 +32,6 @@ export const saveBet = createAsyncThunk(
   "bet/saveBet",
   async (data, { rejectWithValue, getState }) => {
     const { bet } = getState();
-    console.log(bet);
     try {
       const res = await Axios.post(`/api/ox/orders`, {
         amount: Number(bet.amount),
