@@ -4,6 +4,8 @@ import "./index.css";
 import App from "./App";
 
 import "@szhsin/react-menu/dist/index.css";
+import "react-date-range/dist/styles.css";
+// import "react-date-range/dist/theme/default.css";
 
 import { BrowserRouter, HashRouter } from "react-router-dom";
 
