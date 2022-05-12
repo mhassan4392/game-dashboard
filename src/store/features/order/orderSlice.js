@@ -30,7 +30,7 @@ export const getOrders = createAsyncThunk(
         limit: order.limit,
         stime: order.stime,
         etime: order.etime,
-        type: 1,
+        type: order.type,
       };
       const res = await Axios.get(
         `/api/ox/orderlist?page=${dat.page}&limit=${dat.limit}&stime=${dat.stime}&etime=${dat.etime}&type=${dat.type}`,
@@ -60,6 +60,9 @@ const orderSlice = createSlice({
     setEndTime: (state, action) => {
       state.etime = action.payload;
     },
+    setType: (state, action) => {
+      state.type = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -84,7 +87,7 @@ const orderSlice = createSlice({
   },
 });
 
-export const { setPage, resetOrders, setStartTime, setEndTime } =
+export const { setPage, resetOrders, setStartTime, setEndTime, setType } =
   orderSlice.actions;
 
 export default orderSlice.reducer;

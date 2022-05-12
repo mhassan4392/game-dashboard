@@ -5,7 +5,11 @@ import Spinner from "@/components/spinner/Spinner";
 
 import DateRangeModal from "./DateRangeModal";
 
-import { getOrders, resetOrders } from "../../store/features/order/orderSlice";
+import {
+  getOrders,
+  resetOrders,
+  setType,
+} from "@/store/features/order/orderSlice";
 import OrderWidget from "./OrderWidget";
 const SetteledOrders = () => {
   const isMounted = useRef(false);
@@ -14,6 +18,7 @@ const SetteledOrders = () => {
   useEffect(() => {
     const run = async () => {
       await dispatch(resetOrders());
+      await dispatch(setType(1));
       await dispatch(getOrders());
     };
     if (isMounted.current) {
@@ -21,6 +26,7 @@ const SetteledOrders = () => {
     } else {
       isMounted.current = true;
       dispatch(resetOrders());
+      dispatch(setType(1));
     }
   }, []);
   return (
@@ -44,6 +50,7 @@ const SetteledOrders = () => {
             if (isVisible) {
               if (!isMounted.current) {
                 dispatch(resetOrders());
+                dispatch(setType(1));
               }
               dispatch(getOrders());
             }
