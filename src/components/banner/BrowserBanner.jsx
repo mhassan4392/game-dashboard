@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useLayoutEffect, useState } from "react";
 import { FaBullhorn } from "react-icons/fa";
 import { format } from "date-fns";
 import "./index.scss";
@@ -6,6 +6,7 @@ import "./index.scss";
 import Axios from "@/utils/axios";
 
 const BrowserBanner = () => {
+  const textRef = useRef();
   // reference for banner container
   const ref = useRef(null);
 
@@ -21,12 +22,21 @@ const BrowserBanner = () => {
     }, 1000);
     return () => clearInterval(interval);
   }, []);
-
-  // useEffect(() => {
-  //   Axios({ url: "/api/ox/getmsgs", method: "POST" }).then((res) =>
-  //     console.log(res)
-  //   );
-  // }, []);
+  useLayoutEffect(() => {
+    Axios({ url: "/api/ox/get5msg", method: "POST" }).then((res) => {
+      const d = res.data.map((d) => {
+        return d[0] + d[1];
+      });
+      let text = "";
+      for (let a in d) {
+        text += "     ";
+        text += d[a];
+      }
+      if (textRef.current) {
+        textRef.current.innerText = text;
+      }
+    });
+  }, []);
   return (
     <>
       <div className="flex justify-between items-center h-8 lg:h-10 w-full">
@@ -37,6 +47,7 @@ const BrowserBanner = () => {
         {/* Banner Text */}
         <div className="flex-grow overflow-hidden" ref={ref}>
           <p
+            ref={textRef}
             className="bg-transparent text-xs lg:sm banner-content min-w-max text-right"
             style={{
               transform: `translateX(${
@@ -45,18 +56,7 @@ const BrowserBanner = () => {
                   : "100%"
               })`,
             }}
-          >
-            2022 League of Legends Circuit Oceania Split 1, League of Legends,
-            2022-03-28 13:47:00 (PEACE vs Pentanet.GG) All bets placed MAP 1
-            WHICH ROLE GET THE MAP MVP, MAP 3 WHICH ROLE GET THE MAP MVP will be
-            considered VOID due to no official result after 24 hours from event
-            time. Parlay calculation will be taken as one (1). We apologize for
-            any inconvenience caused.
-            {"           "}
-            NBA, Basketball,2022-03-29 10:00:00（Tre Mann) All bets placed will
-            be considered VOID due to are didn't play. Parlay calculation will
-            be taken as one (1). We apologize for any inconvenience caused.
-          </p>
+          ></p>
         </div>
         {/* Date and Clock */}
         <div className="hidden lg:block bg-dark-light h-full">

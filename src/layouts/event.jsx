@@ -7,14 +7,6 @@ const EventLayout = () => {
   const dispatch = useDispatch();
   const { translations } = useSelector((state) => state.lan);
   const { tabs } = useSelector((state) => state.game);
-  // const [tabs] = useState([
-  //   { id: 0, title: "today", api: "gettodays" },
-  //   { id: 1, title: "early", api: "getearlytrade" },
-  //   { id: 2, title: "minutes", api: "getminutes" },
-  //   { id: 3, title: "jackpot", api: "getjackpot" },
-  //   { id: 4, title: "outright", api: "getchampion" },
-  //   ,
-  // ]);
   return (
     <div className="bg-black h-full">
       <Tabs
