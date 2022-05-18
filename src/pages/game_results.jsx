@@ -41,9 +41,9 @@ const GameResults = () => {
       <div className="lg:hidden">
         <MobileBanner />
       </div>
-      <div>
+      {/* <div>
         <img src={banner} className="h-16 w-full" alt="" />
-      </div>
+      </div> */}
       <TabsItems className="flex-grow h-full scrollbar overflow-y-auto overflow-x-hidden">
         {loading && !games.length && (
           <div className={`flex items-center justify-center h-4/5`}>
