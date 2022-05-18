@@ -48,7 +48,7 @@ const BrowserBanner = () => {
         <div className="flex-grow overflow-hidden" ref={ref}>
           <p
             ref={textRef}
-            className="bg-transparent text-xs lg:sm banner-content min-w-max text-right"
+            className="bg-transparent text-xs lg:sm banner-content min-w-max text-right overflow-x-scroll"
             style={{
               transform: `translateX(${
                 ref.current?.clientWidth

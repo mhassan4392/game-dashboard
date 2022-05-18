@@ -1,6 +1,6 @@
 .banner-content {
   overflow: hidden;
-  animation: banner-content 40s linear infinite;
+  -webkit-animation: banner-content 40s linear infinite;
 
   &:hover {
     animation-play-state: paused;
