@@ -6,7 +6,7 @@
     animation-play-state: paused;
   }
 }
-@keyframes banner-content {
+@-webkit-keyframes banner-content {
   100% {
     transform: translateX(-100%);
   }
