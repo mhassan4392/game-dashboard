@@ -9,10 +9,11 @@ import {
   resetGames,
   setDt,
   setDtTrigger,
+  setTab,
 } from "@/store/features/game/gameSlice";
 
 import { format } from "date-fns";
-import { setTab } from "../store/features/game/gameSlice";
+import isVisible from "@/utils/isVisible";
 
 const Events = () => {
   const visibleRef = useRef();
@@ -38,7 +39,9 @@ const Events = () => {
   useEffect(() => {
     const run = async () => {
       await dispatch(setDtTrigger(false));
-      await dispatch(setDt(format(new Date(), "yyyy-MM-dd")));
+      let date = new Date();
+      date.setDate(date.getDate() + 1);
+      await dispatch(setDt(format(date, "yyyy-MM-dd")));
       await dispatch(resetGames());
       await dispatch(getGames());
     };
@@ -59,17 +62,8 @@ const Events = () => {
   }, [country]);
 
   const scrollDiv = async (e) => {
-    const rect = visibleRef.current.getBoundingClientRect();
-
-    const isVis =
-      rect.top >= 0 &&
-      rect.left >= 0 &&
-      rect.bottom <=
-        (window.innerHeight || document.documentElement.clientHeight) &&
-      rect.right <= (window.innerWidth || document.documentElement.clientWidth);
-
-    console.log(isVis);
-    if (isVis && e.deltaY > 0 && !loading) {
+    const isvisible = isVisible(visibleRef);
+    if (isvisible && e.deltaY > 0 && !loading) {
       setVisible(true);
     } else {
       setVisible(false);

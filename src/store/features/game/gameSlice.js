@@ -2,13 +2,16 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import Axios from "@/utils/axios";
 import { format } from "date-fns";
 
+let date = new Date();
+date.setDate(date.getDate() + 1);
+
 const initialState = {
   country: "ALL",
   game: null,
   games: [],
   limit: 25,
   page: 1,
-  dt: format(new Date(), "yyyy-MM-dd"),
+  dt: format(date, "yyyy-MM-dd"),
   dtTrigger: false,
   tab: "gettodays",
   tabs: [
