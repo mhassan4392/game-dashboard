@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import VisibilitySensor from "react-visibility-sensor";
 import Spinner from "@/components/spinner/Spinner";
 
 import DateRangeModal from "./DateRangeModal";
+import isVisible from "@/utils/isVisible";
 
 import {
   getOrders,
@@ -11,28 +11,45 @@ import {
   setType,
 } from "@/store/features/order/orderSlice";
 import OrderWidget from "./OrderWidget";
-const SetteledOrders = () => {
+const SettledOrders = () => {
+  const visibleRef = useRef();
   const isMounted = useRef(false);
   const { orders, loading } = useSelector((state) => state.order);
   const dispatch = useDispatch();
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const run = async () => {
+      await dispatch(getOrders());
+    };
+    if (isMounted.current && visible) {
+      run();
+    }
+  }, [visible]);
+
   useEffect(() => {
     const run = async () => {
       await dispatch(resetOrders());
       await dispatch(setType(1));
       await dispatch(getOrders());
-    };
-    if (isMounted.current) {
-      run();
-    } else {
       isMounted.current = true;
-      dispatch(resetOrders());
-      dispatch(setType(1));
-    }
+    };
+    run();
   }, []);
+
+  const scrollDiv = async (e) => {
+    const isvisible = isVisible(visibleRef);
+    if (isvisible && e.deltaY > 0 && !loading) {
+      setVisible(true);
+    } else {
+      setVisible(false);
+    }
+  };
+
   return (
     <div className="h-full flex-grow flex flex-col">
       <DateRangeModal />
-      <div className="flex-grow scrollbar overflow-y-auto">
+      <div className="flex-grow scrollbar overflow-y-auto" onWheel={scrollDiv}>
         {orders.map((order, i) => (
           <div key={i}>
             <OrderWidget order={order} />
@@ -45,19 +62,7 @@ const SetteledOrders = () => {
           </div>
         )}
 
-        <VisibilitySensor
-          onChange={(isVisible) => {
-            if (isVisible) {
-              if (!isMounted.current) {
-                dispatch(resetOrders());
-                dispatch(setType(1));
-              }
-              dispatch(getOrders());
-            }
-          }}
-        >
-          <div className="scroller w-full h-2"></div>
-        </VisibilitySensor>
+        <div ref={visibleRef} className="s-screen w-full h-2"></div>
         {loading && orders.length > 0 && (
           <div className={`flex items-center justify-center`}>
             <Spinner />
@@ -68,4 +73,4 @@ const SetteledOrders = () => {
   );
 };
 
-export default SetteledOrders;
+export default SettledOrders;

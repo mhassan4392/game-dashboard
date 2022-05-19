@@ -76,7 +76,9 @@ const GameResultsWidget = ({ game }) => {
             <span>{game?.STime}</span>
           </div>
           <div className="flex flex-row lg:flex-col order-1 lg:order-2">
-            <div className="truncate mr-1">NBA</div>
+            <div className="truncate mr-1">
+              {translations?.GameCategory[game.CateId]}
+            </div>
             <div className="truncate">{translations?.Market[game?.Name]}</div>
           </div>
         </div>

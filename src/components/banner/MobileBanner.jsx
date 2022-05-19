@@ -27,14 +27,17 @@ const MobileBanner = () => {
   return (
     <div className="flex justify-between items-center h-8 lg:h-10 w-full">
       {/* Horn Icon */}
-      <div className="bg-dark-light px-4 h-full flex items-center justify-center z-[1] overflow-hidden">
+      <div className="bg-dark-light px-4 h-full flex items-center justify-center overflow-hidden shrink-0">
         <FaBullhorn className="text-primary" />
       </div>
       {/* Banner Text */}
-      <div className="grow h-full relative flex items-center" ref={ref}>
+      <div
+        className="grow h-full relative flex items-center overflow-hidden"
+        ref={ref}
+      >
         <p
           ref={textRef}
-          className="bg-transparent text-xs lg:sm banner-content min-w-max text-right absolute -z-0"
+          className="bg-transparent text-xs lg:sm banner-content min-w-max text-right absolute"
           style={{
             transform: `translateX(${
               ref.current?.clientWidth ? ref.current.clientWidth + "px" : "100%"

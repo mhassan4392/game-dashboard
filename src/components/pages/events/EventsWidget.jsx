@@ -37,6 +37,7 @@ const images = {
 };
 
 const EventsWidget = ({ game }) => {
+  console.log(game);
   const [betFormModal, setBetFormModal] = useState(false);
   const { translations } = useSelector((state) => state.lan);
   const dispatch = useDispatch();
@@ -70,13 +71,15 @@ const EventsWidget = ({ game }) => {
         onClick={handleClick}
         className="relative flex py-2 flex-col lg:flex-row lg:items-center justify-between border-l-4 pl-2 my-1 border-primary bg-dark-light cursor-pointer transition-all duration-200 hover:bg-secondary hover:bg-opacity-50 pr-10 md:pr-20"
       >
-        <div className="text-xs flex flex-row lg:flex-col justify-between mb-2 lg:mb-0">
+        <div className="text-xs flex flex-row lg:flex-col justify-between mb-2 space-y-1 lg:mb-0">
           <div className="flex items-center space-x-2 order-2 lg:order-1">
             <img src={images[game.Na]} className="w-5" alt="" />
             <span>{game?.STime}</span>
           </div>
           <div className="flex flex-row lg:flex-col order-1 lg:order-2">
-            <div className="truncate mr-1">NBA</div>
+            <div className="truncate mr-1">
+              {translations?.GameCategory[game.CateId]}
+            </div>
             <div className="truncate">{translations?.Market[game?.Name]}</div>
           </div>
         </div>

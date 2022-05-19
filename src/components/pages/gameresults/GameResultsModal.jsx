@@ -7,8 +7,6 @@ import GameResultsModalHeader from "./GameResultsModalHeader";
 import { useDispatch, useSelector } from "react-redux";
 import { getGames, resetGames, setTab } from "@/store/features/game/gameSlice";
 
-import VisibilitySensor from "react-visibility-sensor";
-
 const GameResultsModal = ({ open, onClose }) => {
   const isMounted = useRef(false);
   const { loading, country, games, tabs, tab } = useSelector(
@@ -75,15 +73,7 @@ const GameResultsModal = ({ open, onClose }) => {
                           <GameResultsWidget game={game} />
                         </div>
                       ))}
-                      <VisibilitySensor
-                        onChange={(isVisible) => {
-                          if (isVisible) {
-                            dispatch(getGames());
-                          }
-                        }}
-                      >
-                        <div className="scroller w-full h-2"></div>
-                      </VisibilitySensor>
+
                       {loading && games.length > 0 && (
                         <div className={`flex items-center justify-center`}>
                           <Spinner />

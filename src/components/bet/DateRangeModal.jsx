@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { BsCalendarDate } from "react-icons/bs";
 import { BiChevronDown } from "react-icons/bi";
 import {
+  getOrders,
   resetOrders,
   setEndTime,
   setStartTime,
@@ -68,6 +69,7 @@ const DateRangeModal = ({ onClose }) => {
               onClick={async () => {
                 await dispatch(resetOrders());
                 setDateModal(false);
+                await dispatch(getOrders());
               }}
               className="bg-gradient-to-r from-primary to-secondary hover:from-secondary hover:to-primary transition-all duration-300 px-6 py-2 rounded-xl text-white"
             >

@@ -17,7 +17,6 @@ import isVisible from "@/utils/isVisible";
 
 const GameResults = () => {
   const visibleRef = useRef();
-  const scrollableDiv = useRef();
   const isMounted = useRef(false);
   const { loading, country, games, tabs, tab, dt, dtTrigger } = useSelector(
     (state) => state.game
@@ -102,10 +101,9 @@ const GameResults = () => {
       <div
         className="flex-grow h-full scrollbar overflow-hidden overflow-x-hidden overflow-y-auto"
         onWheel={scrollDiv}
-        ref={scrollableDiv}
       >
         {loading && !games.length && (
-          <div className={`flex items-center justify-center h-4/5`}>
+          <div className={`flex items-center justify-center h-full`}>
             <Spinner />
           </div>
         )}

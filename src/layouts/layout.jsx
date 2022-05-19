@@ -83,11 +83,11 @@ const Layout = () => {
           <Navbar></Navbar>
           {/* Main Content */}
           <div
-            className={`grid grid-cols-5 w-full grow overflow-hidden max-w-[1400px] mx-auto`}
+            className={`grid grid-cols-5 gap-2 w-full grow overflow-hidden max-w-[1400px] mx-auto`}
           >
             {/* left sidebar */}
             {showSidebars && (
-              <div className="lg:block hidden overflow-hidden mr-2 lg:basis-1/5">
+              <div className="lg:flex flex-col h-full hidden overflow-hidden">
                 <LeftSidebar />
               </div>
             )}
@@ -101,7 +101,7 @@ const Layout = () => {
             </div>
             {/* right sidebar */}
             {showSidebars && (
-              <div className="md:col-span-2 lg:col-span-1 hidden ml-2 md:basis-1/3 lg:basis-1/5 md:block">
+              <div className="md:col-span-2 lg:col-span-1 hidden overflow-hidden h-full md:flex flex-col">
                 <RightSidebar />
               </div>
             )}

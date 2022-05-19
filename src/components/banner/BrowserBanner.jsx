@@ -41,8 +41,8 @@ const BrowserBanner = () => {
     <>
       <div className="flex justify-between items-center h-8 lg:h-10 w-full">
         {/* Horn Icon */}
-        <div className="w-52 bg-dark-light h-full inline-flex items-center justify-center">
-          <FaBullhorn className="text-primary" />
+        <div className="bg-dark-light h-full inline-flex items-center justify-center shrink-0">
+          <FaBullhorn className="text-primary mx-4" />
         </div>
         {/* Banner Text */}
         <div className="flex-grow overflow-hidden" ref={ref}>
@@ -59,8 +59,8 @@ const BrowserBanner = () => {
           ></p>
         </div>
         {/* Date and Clock */}
-        <div className="hidden lg:block bg-dark-light h-full">
-          <div className="min-w-max bg-dark-light h-full flex items-center justify-center px-5 text-sm font-semibold">
+        <div className="hidden lg:block bg-dark-light h-full px-2 shrink-0">
+          <div className="bg-dark-light h-full flex items-center justify-center px-5 text-sm font-semibold">
             <span className="mr-4">{date}</span>
             <span className="border-l border-l-secondary border-opacity-25 pl-4">
               {clock}
