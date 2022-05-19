@@ -1,13 +1,16 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import Axios from "@/utils/axios";
+import { format } from "date-fns";
 
 const initialState = {
-  country: "CN",
+  country: "ALL",
   game: null,
   games: [],
   limit: 25,
   page: 1,
-  tab: "getTodays",
+  dt: format(new Date(), "yyyy-MM-dd"),
+  dtTrigger: false,
+  tab: "gettodays",
   tabs: [
     { id: 0, title: "today", api: "gettodays" },
     { id: 1, title: "early", api: "getearlytrade" },
@@ -29,13 +32,11 @@ export const getGames = createAsyncThunk(
         page: game.page,
         limit: game.limit,
         na: game.country,
-        dt: "2022-05-12",
+        dt: game.dt,
       };
       const res = await Axios.post(`/api/ox/${game.tab}`, dat);
-      // console.log(res);
       return res.data.info;
     } catch (error) {
-      // console.log(error);
       return rejectWithValue(error.message);
     }
   }
@@ -62,6 +63,12 @@ const gameSlice = createSlice({
     setGame: (state, action) => {
       state.game = action.payload;
     },
+    setDt: (state, action) => {
+      state.dt = action.payload;
+    },
+    setDtTrigger: (state, action) => {
+      state.dtTrigger = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -86,7 +93,14 @@ const gameSlice = createSlice({
   },
 });
 
-export const { setCountry, resetGames, setPage, setTab, setGame } =
-  gameSlice.actions;
+export const {
+  setCountry,
+  resetGames,
+  setPage,
+  setTab,
+  setGame,
+  setDt,
+  setDtTrigger,
+} = gameSlice.actions;
 
 export default gameSlice.reducer;

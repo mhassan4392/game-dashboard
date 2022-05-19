@@ -83,7 +83,7 @@ const Layout = () => {
           <Navbar></Navbar>
           {/* Main Content */}
           <div
-            className={`flex w-full grow overflow-hidden max-w-[1400px] mx-auto`}
+            className={`grid grid-cols-5 w-full grow overflow-hidden max-w-[1400px] mx-auto`}
           >
             {/* left sidebar */}
             {showSidebars && (
@@ -92,7 +92,11 @@ const Layout = () => {
               </div>
             )}
             {/* pages */}
-            <div className={`bg-dark grow`}>
+            <div
+              className={`bg-dark grow overflow-hidden col-span-5 ${
+                showSidebars ? "md:col-span-3" : ""
+              }`}
+            >
               <Outlet />
             </div>
             {/* right sidebar */}

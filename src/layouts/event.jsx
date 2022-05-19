@@ -1,40 +1,80 @@
-import { useState } from "react";
 import { Outlet } from "react-router";
 import { Tabs, TabsButtons, TabButton } from "@/components/tabs";
 import { useSelector, useDispatch } from "react-redux";
-import { setTab } from "@/store/features/game/gameSlice";
+import { setTab, setDt } from "@/store/features/game/gameSlice";
+import { format } from "date-fns";
+import { setDtTrigger } from "../store/features/game/gameSlice";
+import EventDateModal from "../components/layout/event/EventDateModel";
 const EventLayout = () => {
   const dispatch = useDispatch();
   const { translations } = useSelector((state) => state.lan);
-  const { tabs } = useSelector((state) => state.game);
+  const { tabs, dt, tab } = useSelector((state) => state.game);
+
+  // get dates
+  let i = 0;
+  const dates = Array.from({ length: 14 }).map(() => {
+    let d = new Date();
+    let t = d;
+    let a = i;
+    i++;
+    if (i == 14) {
+      i = 0;
+    }
+    d.setDate(d.getDate() + a);
+    return format(d, "yyyy-MM-dd");
+  });
+
   return (
     <div className="bg-black h-full">
       <Tabs
         defaultTab="today"
-        className="h-full flex flex-col overflow-y-hidden w-screen sm:w-full"
+        className="h-full flex flex-col overflow-hidden w-screen sm:w-full"
       >
-        {(tab) => (
-          <>
-            <TabsButtons className="flex items-end bg-dark-light px-4 mb-1 flex-nowrap scrollbar-x">
-              {tabs.map((tab, i) => (
-                <TabButton
-                  tab={tab.title}
+        <>
+          <TabsButtons className="flex items-end bg-dark-light px-4 mb-1 flex-nowrap scrollbar-x shrink-0">
+            {tabs.map((tab, i) => (
+              <TabButton
+                tab={tab.title}
+                key={i}
+                activeClass="tab-active"
+                className="px-3 py-4 mx-2 text-sm flex flex-col items-center"
+                as="Link"
+                to="/events"
+                onClick={() => dispatch(setTab(tab.api))}
+              >
+                <span>{translations.SecondMenu[tab.id]}</span>
+              </TabButton>
+            ))}
+          </TabsButtons>
+          <div className="items-center bg-dark-light px-4 flex-nowrap scrollbar-x shrink-0 text-xs md:flex hidden w-full">
+            {(tab == "getearlytrade" || tab == "getjackpot") &&
+              dates.map((date, i) => (
+                <div
+                  onClick={async () => {
+                    await dispatch(setDtTrigger(true));
+                    await dispatch(setDt(date));
+                  }}
+                  className={`flex flex-col items-center justify-center py-2 space-y-1 flex-nowrap mx-2 cursor-pointer ${
+                    dt == date ? "text-primary" : ""
+                  }`}
                   key={i}
-                  activeClass="tab-active"
-                  className="px-3 py-4 mx-2 text-sm flex flex-col items-center"
-                  as="Link"
-                  to="/events"
-                  onClick={() => dispatch(setTab(tab.api))}
                 >
-                  <span>{translations.SecondMenu[tab.id]}</span>
-                </TabButton>
+                  <div className="w-max">{date}</div>
+                  <div className="font-extralight">
+                    {format(new Date(date), "EE")}
+                  </div>
+                </div>
               ))}
-            </TabsButtons>
-            <div className="h-full flex flex-col grow overflow-hidden">
-              <Outlet context={{ tab }} />
+          </div>
+          {(tab == "getearlytrade" || tab == "getjackpot") && (
+            <div className="items-center justify-center py-2 bg-dark-light px-4 flex-nowrap scrollbar-x shrink-0 text-xs flex md:hidden w-full">
+              <EventDateModal />
             </div>
-          </>
-        )}
+          )}
+          <div className="h-full flex flex-col grow overflow-hidden">
+            <Outlet />
+          </div>
+        </>
       </Tabs>
     </div>
   );

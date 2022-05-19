@@ -1,88 +1,147 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState, memo } from "react";
 import Spinner from "@/components/spinner/Spinner";
 import { TabsItems, TabItem } from "@/components/tabs";
-import banner from "@/assets/images/banner.jpg";
 import GameResultsWidget from "@/components/pages/gameresults/GameResultsWidget";
 import MobileBanner from "@/components/banner/MobileBanner";
 import { useDispatch, useSelector } from "react-redux";
-import { getGames, resetGames, setTab } from "@/store/features/game/gameSlice";
+import {
+  getGames,
+  resetGames,
+  setDt,
+  setDtTrigger,
+  setTab,
+} from "@/store/features/game/gameSlice";
 
-import VisibilitySensor from "react-visibility-sensor";
+import { format } from "date-fns";
 
-const GameResults = () => {
+const Events = () => {
+  const visibleRef = useRef();
+  const scrollableDiv = useRef();
   const isMounted = useRef(false);
-  const { loading, country, games, tabs, tab } = useSelector(
+  const { loading, country, games, tabs, tab, dt, dtTrigger } = useSelector(
     (state) => state.game
   );
   const dispatch = useDispatch();
+
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     const run = async () => {
       await dispatch(resetGames());
       await dispatch(getGames());
     };
+    if (isMounted.current && dtTrigger) {
+      run();
+    }
+  }, [dt]);
+
+  useEffect(() => {
+    const run = async () => {
+      await dispatch(setDtTrigger(false));
+      await dispatch(setDt(format(new Date(), "yyyy-MM-dd")));
+      await dispatch(resetGames());
+      await dispatch(getGames());
+    };
     if (isMounted.current) {
       run();
-    } else {
-      isMounted.current = true;
-      dispatch(resetGames());
-      dispatch(setTab("gettodays"));
+    }
+  }, [tab]);
+
+  useEffect(() => {
+    const run = async () => {
+      await dispatch(resetGames());
+      await dispatch(getGames());
+    };
+
+    if (isMounted.current) {
+      run();
     }
   }, [country]);
 
-  useEffect(() => {
-    if (isMounted.current) {
-      dispatch(resetGames());
+  const scrollDiv = async (e) => {
+    const rect = visibleRef.current.getBoundingClientRect();
+
+    const isVis =
+      rect.top >= 0 &&
+      rect.left >= 0 &&
+      rect.bottom <=
+        (window.innerHeight ||
+          document.documentElement.clientHeight) /* or $(window).height() */ &&
+      rect.right <=
+        (window.innerWidth ||
+          document.documentElement.clientWidth); /* or $(window).width() */
+
+    console.log(isVis);
+    if (isVis && e.deltaY > 0 && !loading) {
+      setVisible(true);
+    } else {
+      setVisible(false);
     }
-  }, [tab]);
+  };
+
+  useEffect(() => {
+    const run = async () => {
+      await dispatch(getGames());
+    };
+    if (isMounted.current && visible) {
+      run();
+    }
+  }, [visible]);
+
+  useEffect(() => {
+    const run = async () => {
+      if (isMounted.current) {
+        await dispatch(getGames());
+      } else {
+        await dispatch(setTab("gettodays"));
+        await dispatch(resetGames());
+        await dispatch(getGames());
+        isMounted.current = true;
+      }
+    };
+
+    run();
+  }, []);
 
   return (
     <>
       <div className="lg:hidden">
         <MobileBanner />
       </div>
-      {/* <div>
-        <img src={banner} className="h-16 w-full" alt="" />
-      </div> */}
-      <TabsItems className="flex-grow h-full scrollbar overflow-y-auto overflow-x-hidden">
-        {loading && !games.length && (
-          <div className={`flex items-center justify-center h-4/5`}>
+      <div
+        className="flex-grow h-full scrollbar overflow-hidden overflow-x-hidden overflow-y-auto"
+        onWheel={scrollDiv}
+        ref={scrollableDiv}
+      >
+        <TabsItems className="">
+          {loading && !games.length && (
+            <div className={`flex items-center justify-center h-4/5`}>
+              <Spinner />
+            </div>
+          )}
+          {tabs.map((tab) => (
+            <div key={tab.id}>
+              <TabItem tab={tab.title}>
+                <div>
+                  {games.map((game, i) => (
+                    <div key={i}>
+                      <GameResultsWidget game={game} />
+                    </div>
+                  ))}
+                </div>
+              </TabItem>
+            </div>
+          ))}
+        </TabsItems>
+        <div ref={visibleRef} className="s-screen w-full h-2"></div>
+        {loading && games.length > 0 && (
+          <div className={`flex items-center justify-center`}>
             <Spinner />
           </div>
         )}
-        {tabs.map((tab) => (
-          <div key={tab.id}>
-            <TabItem tab={tab.title} className="h-full">
-              <>
-                {games.map((game, i) => (
-                  <div key={i}>
-                    <GameResultsWidget game={game} />
-                  </div>
-                ))}
-                <VisibilitySensor
-                  onChange={(isVisible) => {
-                    if (isVisible) {
-                      if (!isMounted.current) {
-                        dispatch(resetGames());
-                      }
-                      dispatch(getGames());
-                    }
-                  }}
-                >
-                  <div className="scroller w-full h-2"></div>
-                </VisibilitySensor>
-                {loading && games.length > 0 && (
-                  <div className={`flex items-center justify-center`}>
-                    <Spinner />
-                  </div>
-                )}
-              </>
-            </TabItem>
-          </div>
-        ))}
-      </TabsItems>
+      </div>
     </>
   );
 };
 
-export default GameResults;
+export default memo(Events);

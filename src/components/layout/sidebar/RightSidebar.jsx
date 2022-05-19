@@ -24,14 +24,14 @@ const RightSidebar = () => {
             className="basis-1/2 px-2 py-4 text-sm"
             tab="slip"
           >
-            Bet Slip
+            {translations.RightSide["betslip"]}
           </TabButton>
           <TabButton
             activeClass="tab-active"
             className="basis-1/2 px-2 py-4 text-sm"
             tab="history"
           >
-            Bet History
+            {translations.RightSide["bethistory"]}
           </TabButton>
         </TabsButtons>
         <TabsItems className="flex-grow flex flex-col overflow-hidden">
@@ -53,14 +53,14 @@ const RightSidebar = () => {
                   className="basis-1/2 px-2 py-4 text-sm"
                   tab="pending"
                 >
-                  Pending
+                  {translations.RightSide["pending"]}
                 </TabButton>
                 <TabButton
                   activeClass="tab-active"
                   className="basis-1/2 px-2 py-4 text-sm"
                   tab="setteled"
                 >
-                  Setteled
+                  {translations.RightSide["settled"]}
                 </TabButton>
               </TabsButtons>
               <TabsItems className="flex-grow h-full overflow-hidden">

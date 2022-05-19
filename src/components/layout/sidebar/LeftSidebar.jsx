@@ -52,7 +52,6 @@ const LeftSidebar = () => {
   const [error, setError] = useState(false);
   const [v, setV] = useState(null);
   useEffect(() => {
-    dispatch(setCountry("CN"));
     setError(false);
     setLoading(true);
     Axios({ url: "/api/ox/getcata", method: "POST", data: { v } })
