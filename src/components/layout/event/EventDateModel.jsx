@@ -7,24 +7,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { BsCalendarDate, BsX } from "react-icons/bs";
 import { BiChevronDown } from "react-icons/bi";
 import { setDtTrigger, setDt } from "@/store/features/game/gameSlice";
+import getDates from "@/utils/getDates";
 const EventDateModal = () => {
   const [dateModal, setDateModal] = useState(false);
   const dispatch = useDispatch();
 
   const { dt } = useSelector((state) => state.game);
-  // get dates
-  let i = 0;
-  const dates = Array.from({ length: 14 }).map(() => {
-    let d = new Date();
-    let t = d;
-    let a = i;
-    i++;
-    if (i == 14) {
-      i = 0;
-    }
-    d.setDate(d.getDate() + a);
-    return format(d, "yyyy-MM-dd");
-  });
+
+  const dates = getDates();
+
   return (
     <>
       <div

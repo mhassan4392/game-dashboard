@@ -3,26 +3,15 @@ import { Tabs, TabsButtons, TabButton } from "@/components/tabs";
 import { useSelector, useDispatch } from "react-redux";
 import { setTab, setDt } from "@/store/features/game/gameSlice";
 import { format } from "date-fns";
-import { setDtTrigger } from "../store/features/game/gameSlice";
-import EventDateModal from "../components/layout/event/EventDateModel";
+import { setDtTrigger } from "@/store/features/game/gameSlice";
+import EventDateModal from "@/components/layout/event/EventDateModel";
+import getDates from "@/utils/getDates";
 const GameResultLayout = () => {
   const dispatch = useDispatch();
   const { translations } = useSelector((state) => state.lan);
   const { tabs, dt, tab } = useSelector((state) => state.game);
 
-  // get dates
-  let i = 0;
-  const dates = Array.from({ length: 14 }).map(() => {
-    let d = new Date();
-    let t = d;
-    let a = i;
-    i++;
-    if (i == 14) {
-      i = 0;
-    }
-    d.setDate(d.getDate() + a);
-    return format(d, "yyyy-MM-dd");
-  });
+  const dates = getDates();
 
   return (
     <div className="bg-black h-full">
