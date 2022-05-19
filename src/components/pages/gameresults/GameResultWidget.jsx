@@ -113,7 +113,7 @@ const GameResultWidget = ({ bet }) => {
                     ? game?.Items[0].Name || ""
                     : game?.Items[1].Name || ""}
                 </div>
-                <div>{b.Name}</div>
+                <div>{translations?.BetItems[b?.Name]}</div>
               </div>
               <div className="text-white text-sm">{b.Odds}</div>
             </div>
