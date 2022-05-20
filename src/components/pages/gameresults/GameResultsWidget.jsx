@@ -36,11 +36,11 @@ const images = {
   US,
 };
 
-const GameResultsWidget = ({ game }) => {
+const GameResultWidget = ({ game }) => {
   const [betFormModal, setBetFormModal] = useState(false);
   const { translations } = useSelector((state) => state.lan);
   const dispatch = useDispatch();
-  const [gameresultModal, setGameResultModal] = useState(false);
+  const [gameResultModal, setGameResultModal] = useState(false);
 
   const navigate = useNavigate();
 
@@ -62,7 +62,7 @@ const GameResultsWidget = ({ game }) => {
         onClose={() => setBetFormModal(false)}
       />
       <GameResultModal
-        open={gameresultModal}
+        open={gameResultModal}
         id={game.Id}
         onClose={() => setGameResultModal(false)}
       />
@@ -70,12 +70,12 @@ const GameResultsWidget = ({ game }) => {
         onClick={handleClick}
         className="relative flex py-2 flex-col lg:flex-row lg:items-center justify-between border-l-4 pl-2 my-1 border-primary bg-dark-light cursor-pointer transition-all duration-200 hover:bg-secondary hover:bg-opacity-50 pr-10 md:pr-20"
       >
-        <div className="text-xs flex flex-row lg:flex-col justify-between mb-2 lg:mb-0">
-          <div className="flex items-center space-x-2 order-2 lg:order-1">
+        <div className="text-xs flex flex-row lg:flex-col justify-between mb-2 space-y-1 lg:mb-0 basis-1/3 overflow-hidden px-2 md:px-0">
+          <div className="flex items-center space-x-2 order-2 lg:order-1 justify-end lg:justify-start basis-1/3">
             <img src={images[game.Na]} className="w-5" alt="" />
-            <span>{game?.STime}</span>
+            <span className="truncate">{game?.STime}</span>
           </div>
-          <div className="flex flex-row lg:flex-col order-1 lg:order-2">
+          <div className="flex flex-row lg:flex-col order-1 lg:order-2 overflow-hidden basis-2/3">
             <div className="truncate mr-1">
               {translations?.GameCategory[game.CateId]}
             </div>
@@ -84,7 +84,7 @@ const GameResultsWidget = ({ game }) => {
         </div>
 
         {/* on sm screen */}
-        <div className="space-y-2 md:hidden">
+        <div className="space-y-2 md:hidden basis-2/3 overflow-hidden">
           <div className="flex items-center justify-between">
             <div className="flex items-center justify-center basis-1/3"></div>
             <div className="flex relative items-center justify-between border border-secondary border-opacity-25 bg-dark-light h-10 basis-1/3">
@@ -229,4 +229,4 @@ const GameResultsWidget = ({ game }) => {
   );
 };
 
-export default GameResultsWidget;
+export default GameResultWidget;

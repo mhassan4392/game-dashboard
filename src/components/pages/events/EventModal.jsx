@@ -17,7 +17,7 @@ const EventModal = ({ open, onClose, id }) => {
   }, [open]);
   return (
     <div className="">
-      <Tabs defaultTab={bets && bets[0] ? bets[0].Stage : 0}>
+      <Tabs defaultTab={bets && bets[0] ? bets[0].Stage : 1}>
         <MobileModel
           onBackClick={onClose}
           open={open}

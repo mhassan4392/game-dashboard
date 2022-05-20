@@ -19,6 +19,8 @@ const BetForm = ({ modal, onClose }) => {
   const { bet, amount, saveError, saveSuccess, saveLoading } = useSelector(
     (state) => state.bet
   );
+
+  const { translations } = useSelector((state) => state.lan);
   const dispatch = useDispatch();
   const betAmounts = [
     { title: "+50", value: 50 },
@@ -126,11 +128,15 @@ const BetForm = ({ modal, onClose }) => {
           <div className="px-3 py-2 text-sm space-y-3">
             <div className="flex items-center space-x-2">
               <input type="checkbox" name="odds" id="bet-odds" />
-              <label htmlFor="bet-odds">Accept any odds</label>
+              <label htmlFor="bet-odds">
+                {translations?.RightSide["acceptodds"]}
+              </label>
             </div>
 
             <div className="grid grid-cols-2 items-center">
-              <div className="text-xs">Bet Amount</div>
+              <div className="text-xs">
+                {translations?.RightSide["betamount"]}
+              </div>
               <div className="relative">
                 <span className="absolute left-2 top-0.5">¥</span>
                 <input
@@ -144,7 +150,7 @@ const BetForm = ({ modal, onClose }) => {
               </div>
             </div>
 
-            <div>MIN - MAX BET AMOUNT : 10 - 8,000</div>
+            <div>{translations?.RightSide["betrange"]} : 10 - 8,000</div>
 
             <div className="grid grid-cols-3 gap-3">
               {betAmounts.map((a, i) => (
@@ -163,11 +169,11 @@ const BetForm = ({ modal, onClose }) => {
 
           <div className="bg-dark-light px-3 py-2 text-sm mt-2">
             <div className="flex items-center justify-between">
-              <h2>Total Bet Amounts</h2>
+              <h2>{translations?.RightSide["bettotal"]}</h2>
               <h2 className="text-lg">¥ {Number(amount).toFixed(2)}</h2>
             </div>
             <div className="flex items-center justify-between">
-              <h2>Potential Wininngs</h2>
+              <h2>{translations?.RightSide["potentialwinnings"]}</h2>
               <h2 className="text-primary text-lg">¥ 0.00</h2>
             </div>
           </div>
@@ -176,7 +182,7 @@ const BetForm = ({ modal, onClose }) => {
             type="submit"
             className="w-full flex justify-center font-bold py-3 bg-gradient-to-r from-primary to-secondary text-white hover:from-secondary hover:to-primary transition-all duration-200"
           >
-            {!saveLoading && "PLACE BET"}
+            {!saveLoading && translations?.RightSide["placebet"]}
             {saveLoading && <ImSpinner3 className="animate-spin" />}
           </button>
         </form>
