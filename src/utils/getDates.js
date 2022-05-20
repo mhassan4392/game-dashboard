@@ -6,9 +6,9 @@ const getDates = () => {
     let t = d;
     let a = i;
     i++;
-    if (i == 14) {
-      i = 0;
-    }
+    // if (i == 14) {
+    //   i = 1;
+    // }
     d.setDate(d.getDate() + a);
     return format(d, "yyyy-MM-dd");
   });
