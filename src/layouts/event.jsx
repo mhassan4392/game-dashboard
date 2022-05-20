@@ -6,6 +6,7 @@ import { format } from "date-fns";
 import { setDtTrigger } from "@/store/features/game/gameSlice";
 import EventDateModal from "@/components/layout/event/EventDateModel";
 import getDates from "@/utils/getDates";
+import EventDates from "../components/layout/event/EventDates";
 const EventLayout = () => {
   const dispatch = useDispatch();
   const { translations } = useSelector((state) => state.lan);
@@ -35,31 +36,7 @@ const EventLayout = () => {
               </TabButton>
             ))}
           </TabsButtons>
-          <div className="items-center bg-dark-light px-4 flex-nowrap scrollbar-x shrink-0 text-xs md:flex hidden w-full">
-            {(tab == "getearlytrade" || tab == "getjackpot") &&
-              dates.map((date, i) => (
-                <div
-                  onClick={async () => {
-                    await dispatch(setDtTrigger(true));
-                    await dispatch(setDt(date));
-                  }}
-                  className={`flex flex-col items-center justify-center py-2 space-y-1 flex-nowrap mx-2 cursor-pointer ${
-                    dt == date ? "text-primary" : ""
-                  }`}
-                  key={i}
-                >
-                  <div className="w-max">{date}</div>
-                  <div className="font-extralight">
-                    {format(new Date(date), "EE")}
-                  </div>
-                </div>
-              ))}
-          </div>
-          {(tab == "getearlytrade" || tab == "getjackpot") && (
-            <div className="items-center justify-center py-2 bg-dark-light px-4 flex-nowrap scrollbar-x shrink-0 text-xs flex md:hidden w-full">
-              <EventDateModal />
-            </div>
-          )}
+          <EventDates />
           <div className="h-full flex flex-col grow overflow-hidden">
             <Outlet />
           </div>

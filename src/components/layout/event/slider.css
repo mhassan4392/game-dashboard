@@ -1,0 +1,11 @@
+.slick-arrow {
+  @apply !rounded !text-white !bg-secondary !p-2 !w-8 !h-8 hover:!bg-primary !transition-all !duration-300;
+}
+
+.slick-prev {
+  @apply !-ml-3;
+}
+
+.slick-next {
+  @apply !-mr-3;
+}

@@ -5,7 +5,10 @@ import App from "./App";
 
 import "@szhsin/react-menu/dist/index.css";
 import "react-date-range/dist/styles.css";
-// import "react-date-range/dist/theme/default.css";
+
+// slick slider css
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 import { BrowserRouter, HashRouter } from "react-router-dom";
 
