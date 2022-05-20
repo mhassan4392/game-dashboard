@@ -37,22 +37,26 @@ const MobileBanner = () => {
         className="grow h-full relative flex items-center overflow-hidden"
         ref={ref}
       >
-        <motion.p
-          initial={{
-            translateX: ref.current?.clientWidth
-              ? ref.current.clientWidth + "px"
-              : "100%",
-          }}
-          animate={{ translateX: "100%" }}
-          transition={{ repeat: Infinity }}
-          ref={textRef}
-          className="bg-transparent text-xs lg:sm banner-content min-w-max text-right absolute"
-          style={{
-            transform: `translateX(${
-              ref.current?.clientWidth ? ref.current.clientWidth + "px" : "100%"
-            })`,
-          }}
-        ></motion.p>
+        <AnimatePresence>
+          <motion.p
+            initial={{
+              translateX: ref.current?.clientWidth
+                ? ref.current.clientWidth + "px"
+                : "100%",
+            }}
+            animate={{ translateX: "100%" }}
+            transition={{ repeat: Infinity }}
+            ref={textRef}
+            className="bg-transparent text-xs lg:sm banner-content min-w-max text-right absolute"
+            style={{
+              transform: `translateX(${
+                ref.current?.clientWidth
+                  ? ref.current.clientWidth + "px"
+                  : "100%"
+              })`,
+            }}
+          ></motion.p>
+        </AnimatePresence>
       </div>
     </div>
   );
