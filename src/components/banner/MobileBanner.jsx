@@ -37,16 +37,20 @@ const MobileBanner = () => {
         className="grow h-full relative flex items-center overflow-hidden"
         ref={ref}
       >
-        <p
-          className={`bg-transparent text-xs lg:sm banner-content min-w-max text-right`}
-          style={{
-            transform: `translateX(${
-              ref.current?.clientWidth ? ref.current.clientWidth + "px" : "100%"
-            })`,
-          }}
-        >
-          {bannerText}
-        </p>
+        {bannerText && (
+          <p
+            className={`bg-transparent text-xs lg:sm banner-content min-w-max text-right`}
+            style={{
+              transform: `translateX(${
+                ref.current?.clientWidth
+                  ? ref.current.clientWidth + "px"
+                  : "100%"
+              })`,
+            }}
+          >
+            {bannerText}
+          </p>
+        )}
       </div>
     </div>
   );
