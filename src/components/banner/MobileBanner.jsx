@@ -20,6 +20,7 @@ const MobileBanner = () => {
       let text = "";
       for (let a in d) {
         text += d[a];
+        text += " &nbsp; &nbsp;";
       }
 
       setBannerText(text);
