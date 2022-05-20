@@ -27,7 +27,6 @@ const MobileBanner = () => {
       setBannerText(text);
 
       console.log(textRef.current.clientWidth);
-      setTextWidth(textRef.current.clientWidth);
 
       setTimeout(() => {
         setShowBanner(true);
@@ -47,9 +46,7 @@ const MobileBanner = () => {
       >
         <div ref={textRef}>
           <p
-            className={`bg-transparent text-xs lg:sm banner-content min-w-max text-right ${
-              showBanner ? "hidden" : ""
-            }`}
+            className={`bg-transparent text-xs lg:sm banner-content min-w-max text-right`}
             style={{
               transform: `translateX(${
                 ref.current?.clientWidth
@@ -66,7 +63,7 @@ const MobileBanner = () => {
                 translateX: ref.current?.clientWidth + "px",
               }}
               animate={{
-                translateX: "-" + textWidth + "px",
+                translateX: "-" + textRef.current?.clientWidth + "px",
               }}
               transition={{ repeat: Infinity, duration: 10 }}
               className="bg-transparent text-xs lg:sm banner-content min-w-max text-right"
