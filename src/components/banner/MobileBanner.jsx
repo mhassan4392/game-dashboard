@@ -24,8 +24,11 @@ const MobileBanner = () => {
         text += "     ";
         text += d[a];
       }
-      setBannerText(text);
 
+      setBannerText(text);
+      const percent =
+        (ref.current.clientWidth * 100) / textRef.current.clientWidth;
+      console.log(percent);
       console.log(textRef.current.clientWidth);
 
       setTimeout(() => {
@@ -60,11 +63,15 @@ const MobileBanner = () => {
           {showBanner && (
             <motion.p
               initial={{
-                translateX: ref.current?.clientWidth + "px",
+                translateX:
+                  (ref.current.clientWidth * 100) /
+                    textRef.current.clientWidth +
+                  "%",
               }}
               animate={{
-                translateX: "-" + textRef.current?.clientWidth + "px",
+                translateX: "-100%",
               }}
+              exit={{}}
               transition={{ repeat: Infinity, duration: 10 }}
               className="bg-transparent text-xs lg:sm banner-content min-w-max text-right"
             >
