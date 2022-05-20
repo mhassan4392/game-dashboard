@@ -1,6 +1,10 @@
 .banner-content {
   overflow: hidden;
-  -webkit-animation: banner-content 40s linear infinite;
+  // -webkit-animation: banner-content 40s linear infinite;
+  -webkit-animation-name: banner-content;
+  -webkit-animation-duration: 40s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
 
   &:hover {
     animation-play-state: paused;

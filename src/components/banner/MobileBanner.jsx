@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from "react";
 import { FaBullhorn } from "react-icons/fa";
-// import "./index.scss";
+import "./index.scss";
 
 import { motion } from "framer-motion";
 
@@ -47,38 +47,12 @@ const MobileBanner = () => {
         className="grow h-full relative flex items-center overflow-hidden"
         ref={ref}
       >
-        <div ref={textRef}>
-          <p
-            className={`bg-transparent text-xs lg:sm banner-content min-w-max text-right`}
-            style={{
-              transform: `translateX(${
-                ref.current?.clientWidth
-                  ? ref.current.clientWidth + "px"
-                  : "100%"
-              })`,
-            }}
-          >
-            {bannerText}
-          </p>
-          {showBanner && (
-            <motion.p
-              initial={{
-                translateX:
-                  (ref.current.clientWidth * 100) /
-                    textRef.current.clientWidth +
-                  "%",
-              }}
-              animate={{
-                translateX: "-100%",
-              }}
-              exit={{}}
-              transition={{ repeat: Infinity, duration: 10 }}
-              className="bg-transparent text-xs lg:sm banner-content min-w-max text-right"
-            >
-              {bannerText}
-            </motion.p>
-          )}
-        </div>
+        <p
+          className={`bg-transparent text-xs lg:sm banner-content min-w-max text-right`}
+          ref={textRef}
+        >
+          {bannerText}
+        </p>
       </div>
     </div>
   );
