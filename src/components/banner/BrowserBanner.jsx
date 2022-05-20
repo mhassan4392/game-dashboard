@@ -32,9 +32,7 @@ const BrowserBanner = () => {
       for (let a in d) {
         text += d[a];
       }
-      if (textRef.current) {
-        setBannerText(text);
-      }
+      setBannerText(text);
     });
   }, []);
   return (
@@ -46,7 +44,7 @@ const BrowserBanner = () => {
         </div>
         {/* Banner Text */}
         <div
-          className="grow h-full flex flex-col  overflow-hidden items-center justify-center"
+          className="grow h-full flex flex-col overflow-hidden items-center justify-center"
           ref={ref}
         >
           <p
