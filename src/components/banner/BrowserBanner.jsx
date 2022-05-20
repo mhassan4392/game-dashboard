@@ -1,4 +1,4 @@
-import { useRef, useEffect, useLayoutEffect, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import { FaBullhorn } from "react-icons/fa";
 import { format } from "date-fns";
 import "./index.scss";
@@ -7,7 +7,6 @@ import Axios from "@/utils/axios";
 
 const BrowserBanner = () => {
   const [bannerText, setBannerText] = useState("");
-  const textRef = useRef();
   // reference for banner container
   const ref = useRef(null);
 
@@ -31,6 +30,7 @@ const BrowserBanner = () => {
       let text = "";
       for (let a in d) {
         text += d[a];
+        text += " ";
       }
       setBannerText(text);
     });

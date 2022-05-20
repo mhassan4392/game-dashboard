@@ -2,8 +2,6 @@ import { useRef, useEffect, useState } from "react";
 import { FaBullhorn } from "react-icons/fa";
 import "./index.scss";
 
-import { motion } from "framer-motion";
-
 import Axios from "@/utils/axios";
 
 const MobileBanner = () => {
@@ -20,7 +18,7 @@ const MobileBanner = () => {
       let text = "";
       for (let a in d) {
         text += d[a];
-        text += " &nbsp; &nbsp;";
+        text += " ";
       }
 
       setBannerText(text);
