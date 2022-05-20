@@ -1,4 +1,4 @@
-import { useRef, useLayoutEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { FaBullhorn } from "react-icons/fa";
 // import "./index.scss";
 
@@ -7,11 +7,13 @@ import { motion } from "framer-motion";
 import Axios from "@/utils/axios";
 
 const MobileBanner = () => {
+  const [showBanner, setShowBanner] = useState(0);
+  const [bannerText, setBannerText] = useState("");
   const textRef = useRef();
   // reference for banner container
   const ref = useRef(null);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     Axios({ url: "/api/ox/get5msg", method: "POST" }).then((res) => {
       const d = res.data.map((d) => {
         return d[0] + d[1];
@@ -21,9 +23,9 @@ const MobileBanner = () => {
         text += "     ";
         text += d[a];
       }
-      if (textRef.current) {
-        textRef.current.innerText = text;
-      }
+      setBannerText(text);
+
+      setShowBanner(true);
     });
   }, []);
   return (
@@ -37,17 +39,36 @@ const MobileBanner = () => {
         className="grow h-full relative flex items-center overflow-hidden"
         ref={ref}
       >
-        <motion.p
-          animate={{ translateX: "-100%" }}
-          transition={{ repeat: Infinity, duration: 2 }}
-          ref={textRef}
-          className="bg-transparent text-xs lg:sm banner-content min-w-max text-right absolute"
-          style={{
-            transform: `translateX(${
-              ref.current?.clientWidth ? ref.current.clientWidth + "px" : "100%"
-            })`,
-          }}
-        ></motion.p>
+        <div ref={textRef}>
+          <p
+            className={`bg-transparent text-xs lg:sm banner-content min-w-max text-right ${
+              showBanner ? "hidden" : ""
+            }`}
+            style={{
+              transform: `translateX(${
+                ref.current?.clientWidth
+                  ? ref.current.clientWidth + "px"
+                  : "100%"
+              })`,
+            }}
+          >
+            {bannerText}
+          </p>
+          {showBanner && (
+            <motion.p
+              initial={{
+                translateX: ref.current?.clientWidth + "px",
+              }}
+              animate={{
+                translateX: "-" + textRef.current?.clientWidth + "px",
+              }}
+              transition={{ repeat: Infinity, duration: 10 }}
+              className="bg-transparent text-xs lg:sm banner-content min-w-max text-right"
+            >
+              {bannerText}
+            </motion.p>
+          )}
+        </div>
       </div>
     </div>
   );
