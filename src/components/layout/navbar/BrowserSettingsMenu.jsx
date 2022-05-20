@@ -27,7 +27,7 @@ const SettingsMenu = () => {
   const [effectsSound, setEffectsSound] = useState(0);
 
   return (
-    <div className="browser-menu">
+    <div className="browser-menu relative">
       <Menu
         menuButton={({ open }) => (
           <div
