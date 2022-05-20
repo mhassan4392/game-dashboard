@@ -33,24 +33,23 @@ const MobileBanner = () => {
         <FaBullhorn className="text-primary" />
       </div>
       {/* Banner Text */}
-      <div
-        className="grow h-full relative flex items-center overflow-hidden"
-        ref={ref}
-      >
-        {bannerText && (
-          <p
-            className={`bg-transparent text-xs lg:sm banner-content min-w-max text-right`}
-            style={{
-              transform: `translateX(${
-                ref.current?.clientWidth
-                  ? ref.current.clientWidth + "px"
-                  : "100%"
-              })`,
-            }}
-          >
-            {bannerText}
-          </p>
-        )}
+      <div className="grow h-full relative block overflow-hidden" ref={ref}>
+        <div className="grid items-center h-full w-full">
+          {bannerText && (
+            <p
+              className="bg-transparent text-xs lg:sm banner-content min-w-max"
+              style={{
+                transform: `translateX(${
+                  ref.current?.clientWidth
+                    ? ref.current.clientWidth + "px"
+                    : "100%"
+                })`,
+              }}
+            >
+              {bannerText}
+            </p>
+          )}
+        </div>
       </div>
     </div>
   );

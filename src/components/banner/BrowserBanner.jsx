@@ -44,21 +44,25 @@ const BrowserBanner = () => {
         </div>
         {/* Banner Text */}
         <div
-          className="grow h-full flex flex-col overflow-hidden items-center justify-center"
+          className="grow h-full block overflow-hidden items-center justify-center"
           ref={ref}
         >
-          <p
-            className="bg-transparent text-xs lg:sm banner-content min-w-max"
-            style={{
-              transform: `translateX(${
-                ref.current?.clientWidth
-                  ? ref.current.clientWidth + "px"
-                  : "100%"
-              })`,
-            }}
-          >
-            {bannerText}
-          </p>
+          <div className="grid items-center h-full w-full">
+            {bannerText && (
+              <p
+                className="bg-transparent text-xs lg:sm banner-content min-w-max"
+                style={{
+                  transform: `translateX(${
+                    ref.current?.clientWidth
+                      ? ref.current.clientWidth + "px"
+                      : "100%"
+                  })`,
+                }}
+              >
+                {bannerText}
+              </p>
+            )}
+          </div>
         </div>
         {/* Date and Clock */}
         <div className="hidden lg:block bg-dark-light h-full px-2">
