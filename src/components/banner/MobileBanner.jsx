@@ -10,6 +10,7 @@ const MobileBanner = () => {
   const [showBanner, setShowBanner] = useState(0);
   const [bannerText, setBannerText] = useState("");
   const textRef = useRef();
+  const [textWidth, setTextWidth] = useState(0);
   // reference for banner container
   const ref = useRef(null);
 
@@ -24,6 +25,9 @@ const MobileBanner = () => {
         text += d[a];
       }
       setBannerText(text);
+
+      console.log(textRef.current.clientWidth);
+      setTextWidth(textRef.current.clientWidth);
 
       setTimeout(() => {
         setShowBanner(true);
@@ -62,7 +66,7 @@ const MobileBanner = () => {
                 translateX: ref.current?.clientWidth + "px",
               }}
               animate={{
-                translateX: "-" + textRef.current?.clientWidth + "px",
+                translateX: "-" + textWidth + "px",
               }}
               transition={{ repeat: Infinity, duration: 10 }}
               className="bg-transparent text-xs lg:sm banner-content min-w-max text-right"
