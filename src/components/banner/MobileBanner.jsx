@@ -1,6 +1,6 @@
 import { useRef, useLayoutEffect } from "react";
 import { FaBullhorn } from "react-icons/fa";
-import "./index.scss";
+// import "./index.scss";
 
 import Axios from "@/utils/axios";
 
@@ -44,17 +44,17 @@ const MobileBanner = () => {
                 ? ref.current.clientWidth + "px"
                 : "100%",
             }}
-            animate={{ translateX: "100%" }}
-            transition={{ repeat: Infinity }}
+            animate={{ translateX: "-100" }}
+            transition={{ repeat: Infinity, duration: "5s" }}
             ref={textRef}
             className="bg-transparent text-xs lg:sm banner-content min-w-max text-right absolute"
-            style={{
-              transform: `translateX(${
-                ref.current?.clientWidth
-                  ? ref.current.clientWidth + "px"
-                  : "100%"
-              })`,
-            }}
+            // style={{
+            //   transform: `translateX(${
+            //     ref.current?.clientWidth
+            //       ? ref.current.clientWidth + "px"
+            //       : "100%"
+            //   })`,
+            // }}
           ></motion.p>
         </AnimatePresence>
       </div>
