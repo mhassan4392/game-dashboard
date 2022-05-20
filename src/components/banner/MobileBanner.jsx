@@ -4,6 +4,8 @@ import "./index.scss";
 
 import Axios from "@/utils/axios";
 
+import { AnimatePresence, motion } from "framer-motion";
+
 const MobileBanner = () => {
   const textRef = useRef();
   // reference for banner container
@@ -35,7 +37,14 @@ const MobileBanner = () => {
         className="grow h-full relative flex items-center overflow-hidden"
         ref={ref}
       >
-        <p
+        <motion.p
+          initial={{
+            translateX: ref.current?.clientWidth
+              ? ref.current.clientWidth + "px"
+              : "100%",
+          }}
+          animate={{ translateX: "100%" }}
+          transition={{ repeat: Infinity }}
           ref={textRef}
           className="bg-transparent text-xs lg:sm banner-content min-w-max text-right absolute"
           style={{
@@ -43,7 +52,7 @@ const MobileBanner = () => {
               ref.current?.clientWidth ? ref.current.clientWidth + "px" : "100%"
             })`,
           }}
-        ></p>
+        ></motion.p>
       </div>
     </div>
   );
