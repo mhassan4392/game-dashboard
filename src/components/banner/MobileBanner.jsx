@@ -7,10 +7,8 @@ import { motion } from "framer-motion";
 import Axios from "@/utils/axios";
 
 const MobileBanner = () => {
-  const [showBanner, setShowBanner] = useState(0);
   const [bannerText, setBannerText] = useState("");
-  const textRef = useRef();
-  const [textWidth, setTextWidth] = useState(0);
+
   // reference for banner container
   const ref = useRef(null);
 
@@ -26,14 +24,6 @@ const MobileBanner = () => {
       }
 
       setBannerText(text);
-      const percent =
-        (ref.current.clientWidth * 100) / textRef.current.clientWidth;
-      console.log(percent);
-      console.log(textRef.current.clientWidth);
-
-      setTimeout(() => {
-        setShowBanner(true);
-      }, 2000);
     });
   }, []);
   return (
@@ -49,7 +39,6 @@ const MobileBanner = () => {
       >
         <p
           className={`bg-transparent text-xs lg:sm banner-content min-w-max text-right`}
-          ref={textRef}
           style={{
             transform: `translateX(${
               ref.current?.clientWidth ? ref.current.clientWidth + "px" : "100%"
