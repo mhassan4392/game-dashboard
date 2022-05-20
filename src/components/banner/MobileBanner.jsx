@@ -15,7 +15,7 @@ const MobileBanner = () => {
   useEffect(() => {
     Axios({ url: "/api/ox/get5msg", method: "POST" }).then((res) => {
       const d = res.data.map((d) => {
-        return d[0] + "" + d[1];
+        return d[0] + " " + d[1];
       });
       let text = "";
       for (let a in d) {
