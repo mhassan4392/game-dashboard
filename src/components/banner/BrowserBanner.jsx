@@ -1,12 +1,13 @@
 import { useRef, useEffect, useLayoutEffect, useState } from "react";
 import { FaBullhorn } from "react-icons/fa";
 import { format } from "date-fns";
-import "./index.scss";
-
-import Axios from "@/utils/axios";
+// import "./index.scss";
 import { AnimatePresence, motion } from "framer-motion";
 
+import Axios from "@/utils/axios";
+
 const BrowserBanner = () => {
+  const [width, setWidth] = useState("100%");
   const textRef = useRef();
   // reference for banner container
   const ref = useRef(null);
@@ -23,7 +24,7 @@ const BrowserBanner = () => {
     }, 1000);
     return () => clearInterval(interval);
   }, []);
-  useLayoutEffect(() => {
+  useEffect(() => {
     Axios({ url: "/api/ox/get5msg", method: "POST" }).then((res) => {
       const d = res.data.map((d) => {
         return d[0] + d[1];
@@ -38,26 +39,33 @@ const BrowserBanner = () => {
       }
     });
   }, []);
+
+  useEffect(() => {
+    if (ref.current) {
+      setWidth(ref.current.clientWidth + "px");
+      console.log(width);
+    }
+  }, [ref.current]);
   return (
     <>
       <div className="flex justify-between items-center h-8 lg:h-10 w-full">
         {/* Horn Icon */}
-        <div className="bg-dark-light h-full inline-flex items-center justify-center shrink-0">
+        <div className="bg-dark-light h-full inline-flex items-center justify-center">
           <FaBullhorn className="text-primary mx-4" />
         </div>
         {/* Banner Text */}
-        <div className="flex-grow overflow-hidden" ref={ref}>
+        <div
+          className="grow h-full flex items-center flex-col justify-center overflow-hidden relative"
+          ref={ref}
+        >
           <AnimatePresence>
             <motion.p
-              initial={{
-                translateX: ref.current?.clientWidth
-                  ? ref.current.clientWidth + "px"
-                  : "100%",
-              }}
-              animate={{ translateX: "100%" }}
-              transition={{ repeat: Infinity }}
+              initial={{ translateX: width }}
+              animate={{ translateX: "-" + width }}
+              exit={{ translateX: width }}
+              transition={{ repeat: Infinity, duration: 2 }}
               ref={textRef}
-              className="bg-transparent text-xs lg:sm banner-content min-w-max text-right overflow-x-scroll"
+              className="bg-transparent absolute right-0 text-xs lg:sm banner-content min-w-max"
               // style={{
               //   transform: `translateX(${
               //     ref.current?.clientWidth
@@ -69,7 +77,7 @@ const BrowserBanner = () => {
           </AnimatePresence>
         </div>
         {/* Date and Clock */}
-        <div className="hidden lg:block bg-dark-light h-full px-2 shrink-0">
+        <div className="hidden lg:block bg-dark-light h-full px-2">
           <div className="bg-dark-light h-full flex items-center justify-center px-5 text-sm font-semibold">
             <span className="mr-4">{date}</span>
             <span className="border-l border-l-secondary border-opacity-25 pl-4">

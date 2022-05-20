@@ -93,7 +93,7 @@ const Layout = () => {
             )}
             {/* pages */}
             <div
-              className={`bg-dark grow overflow-hidden col-span-5 ${
+              className={`bg-dark overflow-hidden col-span-5 ${
                 showSidebars ? "md:col-span-3" : ""
               }`}
             >

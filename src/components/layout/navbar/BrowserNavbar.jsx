@@ -21,7 +21,7 @@ const BrowserNavbar = () => {
   ];
 
   return (
-    <div className="hidden lg:block max-w-[1400px] mx-auto">
+    <div className="hidden overflow-hidden lg:block max-w-[1400px] mx-auto">
       {/* Top Navbar */}
       <Banner />
 
