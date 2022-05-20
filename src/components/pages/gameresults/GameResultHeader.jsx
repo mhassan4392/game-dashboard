@@ -58,7 +58,9 @@ const GameResultHeader = () => {
         </div>
 
         <div className="flex flex-col items-center space-y-1.5 py-3">
-          <p className="text-sm truncate">NBA</p>
+          <p className="text-sm truncate">
+            {translations?.GameCategory[game?.CateId]}
+          </p>
           <div className="flex relative items-center justify-between border border-secondary border-opacity-25 bg-dark-light h-10 w-36 sm:w-44 lg:w-52">
             <p className="text-2xl border-r border-secondary border-opacity-25 basis-1/2 h-full flex items-center justify-center pr-2">
               <span>-</span>

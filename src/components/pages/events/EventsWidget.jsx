@@ -37,7 +37,6 @@ const images = {
 };
 
 const EventsWidget = ({ game }) => {
-  console.log(game);
   const [betFormModal, setBetFormModal] = useState(false);
   const { translations } = useSelector((state) => state.lan);
   const dispatch = useDispatch();
