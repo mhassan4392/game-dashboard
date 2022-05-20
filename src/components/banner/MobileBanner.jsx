@@ -50,6 +50,11 @@ const MobileBanner = () => {
         <p
           className={`bg-transparent text-xs lg:sm banner-content min-w-max text-right`}
           ref={textRef}
+          style={{
+            transform: `translateX(${
+              ref.current?.clientWidth ? ref.current.clientWidth + "px" : "100%"
+            })`,
+          }}
         >
           {bannerText}
         </p>

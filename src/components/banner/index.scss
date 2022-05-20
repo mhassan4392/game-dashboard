@@ -1,16 +1,12 @@
 .banner-content {
   // overflow: hidden;
-  -webkit-animation: banner-content 40s linear 1s infinite;
-  // -webkit-animation-name: banner-content;
-  // -webkit-animation-duration: 40s;
-  // -webkit-animation-timing-function: linear;
-  // -webkit-animation-iteration-count: infinite;
+  animation: banner-content 40s linear 1s infinite;
 
   &:hover {
     animation-play-state: paused;
   }
 }
-@-webkit-keyframes banner-content {
+@keyframes banner-content {
   100% {
     transform: translateX(-100%);
   }
