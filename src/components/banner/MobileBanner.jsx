@@ -25,7 +25,9 @@ const MobileBanner = () => {
       }
       setBannerText(text);
 
-      setShowBanner(true);
+      setTimeout(() => {
+        setShowBanner(true);
+      }, 2000);
     });
   }, []);
   return (

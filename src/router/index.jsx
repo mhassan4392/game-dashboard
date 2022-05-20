@@ -13,6 +13,7 @@ import GameResult from "@/pages/game_result";
 import Rules from "@/pages/rules";
 import Announcement from "@/pages/announcement";
 import Lootbox from "@/pages/lootbox";
+import Test from "../pages/text";
 
 const Router = () => {
   return (
@@ -31,6 +32,7 @@ const Router = () => {
         <Route path="/announcement" element={<Announcement />} />
         <Route path="/lootbox" element={<Lootbox />} />
       </Route>
+      <Route path="test" element={<Test />} />
     </Routes>
   );
 };
