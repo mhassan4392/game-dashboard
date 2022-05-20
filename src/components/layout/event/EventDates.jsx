@@ -5,22 +5,13 @@ import getDates from "@/utils/getDates";
 import { format } from "date-fns";
 import Slider from "react-slick";
 import "./slider.css";
-import { BsArrowLeft, BsArrowRight, BsX } from "react-icons/bs";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 const EventDates = () => {
-  const ArrowBtn = () => {
-    return (
-      <button>
-        <BsX />
-      </button>
-    );
-  };
   const dispatch = useDispatch();
   const { tab, dt } = useSelector((state) => state.game);
   const dates = getDates();
 
   const settings = {
-    // infinite: true,
     speed: 300,
     slidesToShow: 7,
     slidesToScroll: 1,

@@ -4,6 +4,7 @@ import { format } from "date-fns";
 import "./index.scss";
 
 import Axios from "@/utils/axios";
+import { AnimatePresence, motion } from "framer-motion";
 
 const BrowserBanner = () => {
   const textRef = useRef();
@@ -46,17 +47,26 @@ const BrowserBanner = () => {
         </div>
         {/* Banner Text */}
         <div className="flex-grow overflow-hidden" ref={ref}>
-          <p
-            ref={textRef}
-            className="bg-transparent text-xs lg:sm banner-content min-w-max text-right overflow-x-scroll"
-            style={{
-              transform: `translateX(${
-                ref.current?.clientWidth
+          <AnimatePresence>
+            <motion.p
+              initial={{
+                translateX: ref.current?.clientWidth
                   ? ref.current.clientWidth + "px"
-                  : "100%"
-              })`,
-            }}
-          ></p>
+                  : "100%",
+              }}
+              animate={{ translateX: "100%" }}
+              transition={{ repeat: Infinity }}
+              ref={textRef}
+              className="bg-transparent text-xs lg:sm banner-content min-w-max text-right overflow-x-scroll"
+              // style={{
+              //   transform: `translateX(${
+              //     ref.current?.clientWidth
+              //       ? ref.current.clientWidth + "px"
+              //       : "100%"
+              //   })`,
+              // }}
+            ></motion.p>
+          </AnimatePresence>
         </div>
         {/* Date and Clock */}
         <div className="hidden lg:block bg-dark-light h-full px-2 shrink-0">
