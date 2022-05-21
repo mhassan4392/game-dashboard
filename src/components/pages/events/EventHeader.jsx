@@ -50,18 +50,18 @@ const EventHeader = () => {
         <div>{game?.STime || ""}</div>
       </div>
 
-      <div className="flex items-center justify-between md:space-x-5 px-1 md:px-6 w-full basis-1 md:basis-3/4">
-        <div className="flex flex-col items-center space-y-1">
+      <div className="flex items-center justify-center py-5 md:space-x-5 px-1 md:px-6 w-full basis-1 md:basis-3/4">
+        {/* <div className="flex flex-col items-center space-y-1">
           <p className="text-white text-xs md:text-sm xl:text-lg">
             {game?.Items[0].Name || ""}
           </p>
-        </div>
+        </div> */}
 
-        <div className="flex flex-col items-center space-y-1.5 py-3">
-          <p className="text-sm truncate">
+        <div className="flex flex-col items-center justify-center space-y-1.5 py-3">
+          {/* <p className="text-sm truncate">
             {translations?.GameCategory[game?.CateId]}
-          </p>
-          <div className="flex relative items-center justify-between border border-secondary border-opacity-25 bg-dark-light h-10 w-36 sm:w-44 lg:w-52">
+          </p> */}
+          {/* <div className="flex relative items-center justify-between border border-secondary border-opacity-25 bg-dark-light h-10 w-36 sm:w-44 lg:w-52">
             <p className="text-2xl border-r border-secondary border-opacity-25 basis-1/2 h-full flex items-center justify-center pr-2">
               <span>-</span>
             </p>
@@ -73,15 +73,15 @@ const EventHeader = () => {
                 VS
               </span>
             </div>
-          </div>
+          </div> */}
           <p className="text-sm">{translations?.Market[game?.Name] || ""}</p>
         </div>
 
-        <div className="flex flex-col items-center space-y-1">
+        {/* <div className="flex flex-col items-center space-y-1">
           <p className="text-white text-xs md:text-sm xl:text-lg">
             {game?.Items[1].Name || ""}
           </p>
-        </div>
+        </div> */}
       </div>
     </div>
   );

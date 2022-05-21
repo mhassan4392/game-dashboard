@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Spinner from "@/components/spinner/Spinner";
 
 import DateRangeModal from "./DateRangeModal";
+
 import isVisible from "@/utils/isVisible";
 
 import {
@@ -10,7 +11,9 @@ import {
   resetOrders,
   setType,
 } from "@/store/features/order/orderSlice";
+
 import OrderWidget from "./OrderWidget";
+
 const SettledOrders = () => {
   const visibleRef = useRef();
   const isMounted = useRef(false);
@@ -30,7 +33,7 @@ const SettledOrders = () => {
   useEffect(() => {
     const run = async () => {
       await dispatch(resetOrders());
-      await dispatch(setType(1));
+      await dispatch(setType(2));
       await dispatch(getOrders());
       isMounted.current = true;
     };

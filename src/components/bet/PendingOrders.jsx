@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Spinner from "@/components/spinner/Spinner";
 
-import DateRangeModal from "./DateRangeModal";
+// import DateRangeModal from "./DateRangeModal";
 import isVisible from "@/utils/isVisible";
 
 import {
@@ -48,7 +48,7 @@ const PendingOrders = () => {
 
   return (
     <div className="h-full flex-grow flex flex-col">
-      <DateRangeModal />
+      {/* <DateRangeModal /> */}
       <div className="flex-grow scrollbar overflow-y-auto" onWheel={scrollDiv}>
         {orders.map((order, i) => (
           <div key={i}>

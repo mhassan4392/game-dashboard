@@ -55,15 +55,15 @@ const EventModalHeader = ({ onXClick }) => {
           <BsX className="text-xl" />
         </div>
 
-        <div className="flex items-center justify-between md:space-x-5 px-2 md:px-6 w-full">
-          <div className="flex flex-col items-center space-y-1">
+        <div className="flex items-center justify-center py-5 md:space-x-5 px-2 md:px-6 w-full">
+          {/* <div className="flex flex-col items-center space-y-1">
             <p className="text-white text-xs md:text-sm xl:text-lg">
               {game?.Items[0].Name || ""}
             </p>
-          </div>
+          </div> */}
 
           <div className="flex flex-col items-center space-y-1.5 py-3">
-            <p className="text-sm truncate">
+            {/* <p className="text-sm truncate">
               {translations?.GameCategory[game?.CateId]}
             </p>
             <div className="flex relative items-center justify-between border border-secondary border-opacity-25 bg-dark-light h-10 w-36 sm:w-44 lg:w-52">
@@ -78,15 +78,15 @@ const EventModalHeader = ({ onXClick }) => {
                   VS
                 </span>
               </div>
-            </div>
+            </div> */}
             <p className="text-sm">{translations?.Market[game?.Name] || ""}</p>
           </div>
 
-          <div className="flex flex-col items-center space-y-1">
+          {/* <div className="flex flex-col items-center space-y-1">
             <p className="text-white text-xs md:text-sm xl:text-lg">
               {game?.Items[1].Name || ""}
             </p>
-          </div>
+          </div> */}
         </div>
       </div>
       <TabsButtons className="flex items-center bg-dark-light mb-1">
