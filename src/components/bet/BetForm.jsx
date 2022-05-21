@@ -20,6 +20,8 @@ const BetForm = ({ modal, onClose }) => {
     (state) => state.bet
   );
 
+  console.log(bet);
+
   const { translations } = useSelector((state) => state.lan);
   const dispatch = useDispatch();
   const betAmounts = [
@@ -58,8 +60,9 @@ const BetForm = ({ modal, onClose }) => {
       {modal && (
         <div className="flex items-center justify-between px-2 bg-dark-light py-3 mb-1">
           <div className="flex items-center">
-            <img src={countryFlags["CN"]} className="w-4" alt="" />
-            <h3 className="truncate text-xs ml-2">League of Legends</h3>
+            <img src={countryFlags[bet.na]} className="w-4" alt="" />
+            <h3 className="truncate text-xs ml-2">{bet.date}</h3>
+            <h3 className="truncate text-xs ml-2">{bet.stage}</h3>
           </div>
           <div
             onClick={() => {
@@ -92,8 +95,9 @@ const BetForm = ({ modal, onClose }) => {
         {!modal && (
           <div className="flex items-center justify-between px-2 bg-dark-light py-2">
             <div className="flex items-center">
-              <img src={countryFlags["CN"]} className="w-4" alt="" />
-              <h3 className="truncate text-xs ml-2">League of Legends</h3>
+              <img src={countryFlags[bet.na]} className="w-4" alt="" />
+              <h3 className="truncate text-xs ml-2">{bet.date}</h3>
+              <h3 className="truncate text-xs ml-2">{bet.stage}</h3>
             </div>
             <BsFillTrashFill
               className="cursor-pointer text-primary"
@@ -112,7 +116,7 @@ const BetForm = ({ modal, onClose }) => {
             <h4 className="text-xs">{bet.status}</h4>
             <div className="text-xs">
               <p>2022 Mid-Season Invitational</p>
-              <p>{bet.date}</p>
+              {/* <p>{bet.date}</p> */}
             </div>
           </div>
           <div>

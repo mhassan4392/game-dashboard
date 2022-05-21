@@ -12,6 +12,7 @@ const initialState = {
   limit: 25,
   page: 1,
   dt: format(date, "yyyy-MM-dd"),
+  // dt: format(date, "yyyy/MM/dd HH:mm:ss"),
   dtTrigger: false,
   tab: "gettodays",
   tabs: [

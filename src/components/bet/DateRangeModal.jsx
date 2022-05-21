@@ -53,7 +53,7 @@ const DateRangeModal = ({ onClose }) => {
         size="none"
       >
         {/* <Modal.Header>Header</Modal.Header> */}
-        <Modal.Body className="p-0">
+        <Modal.Body className="p-0 overflow-hidden">
           <DateRangePicker
             onChange={(item) => setState([item.selection])}
             showSelectionPreview={true}

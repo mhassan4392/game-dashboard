@@ -33,7 +33,7 @@ const SettledOrders = () => {
   useEffect(() => {
     const run = async () => {
       await dispatch(resetOrders());
-      await dispatch(setType(2));
+      await dispatch(setType(0));
       await dispatch(getOrders());
       isMounted.current = true;
     };

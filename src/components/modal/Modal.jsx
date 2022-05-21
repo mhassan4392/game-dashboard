@@ -42,7 +42,7 @@ const Modal = ({
             onClick={outsideClickHandler}
             className={[
               "modal-container",
-              "fixed inset-0 flex modal-container z-10",
+              "fixed inset-0 flex modal-container z-[100]",
               justify == "center" && "justify-center",
               justify == "start" && "justify-start",
               justify == "end" && "justify-end",
@@ -54,7 +54,7 @@ const Modal = ({
           >
             <div
               className={[
-                "max-h-full max-w-full overflow-hidden flex flex-col m-10 bg-white rounded-lg shadow-lg",
+                "max-h-full max-w-full overflow-hidden flex flex-col m-10 bg-white rounded-lg shadow-lg relative z-[30]",
                 fullScreen && "h-full !w-full m-0",
                 size == "none" && "",
                 size == "sm" && "w-5/6 sm:w-2/3 md:w-1/2 lg:w-1/3",

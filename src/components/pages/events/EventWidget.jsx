@@ -2,7 +2,7 @@ import { useState } from "react";
 import { setStatus, setBet } from "@/store/features/bet/betSlice";
 import { useSelector, useDispatch } from "react-redux";
 import BetFormModal from "@/components/bet/BetFormModal";
-const EventWidget = ({ bet }) => {
+const EventWidget = ({ bet, stage }) => {
   const dispatch = useDispatch();
   const { translations } = useSelector((state) => state.lan);
   const { game } = useSelector((state) => state.game);
@@ -18,25 +18,23 @@ const EventWidget = ({ bet }) => {
           {translations.BetsStatus[bet.Status]}
         </div>
         <div className="basis-[85%] grid grid-cols-2 px-8 relative ">
-          <div className="absolute z-0 w-full top-2 flex items-center justify-center">
-            <div className="w-1/4 text-center text-sm">
-              {translations.Bets[bet.BetName]}
-            </div>
-          </div>
           {bet.Items.map((item, i) => (
             <>
               {i % 2 == 0 && (
-                <div className="flex items-center mb-1 z-10" key={i}>
+                <div className="flex items-center mb-1 z-1" key={i}>
                   <div
                     onClick={(e) => {
+                      console.log(game);
                       dispatch(setStatus("add"));
                       dispatch(
                         setBet({
+                          na: game?.Na,
                           odds: item.Odds,
                           date: game.STime,
                           market: translations?.Market[game.Name],
                           status: translations?.BetItems[item.Name],
                           itemId: item.Id,
+                          stage: translations?.Stage[stage],
                         })
                       );
                     }}
@@ -51,10 +49,7 @@ const EventWidget = ({ bet }) => {
               )}
 
               {i % 2 != 0 && (
-                <div
-                  className="flex items-center justify-end mb-1 z-10"
-                  key={i}
-                >
+                <div className="flex items-center justify-end mb-1" key={i}>
                   <div className="mr-4 text-xs">
                     {translations?.BetItems[item.Name]}
                   </div>
@@ -63,10 +58,12 @@ const EventWidget = ({ bet }) => {
                       dispatch(setStatus("add"));
                       dispatch(
                         setBet({
+                          na: game?.Na,
                           odds: item.Odds,
                           date: game.STime,
                           market: translations?.Market[game.Name],
                           status: translations?.BetItems[item.Name],
+                          stage: translations?.Stage[stage],
                         })
                       );
                     }}
@@ -78,6 +75,12 @@ const EventWidget = ({ bet }) => {
               )}
             </>
           ))}
+
+          <div className="absolute -z-0 w-full top-2 flex items-center justify-center">
+            <div className="w-1/4 z-10 text-center text-sm">
+              {translations.Bets[bet.BetName]}
+            </div>
+          </div>
         </div>
       </div>
 
@@ -96,10 +99,12 @@ const EventWidget = ({ bet }) => {
                 dispatch(setStatus("add"));
                 dispatch(
                   setBet({
+                    na: game?.Na,
                     odds: b.Odds,
                     date: game.STime,
                     market: translations?.Market[game.Name],
                     status: translations?.BetItems[b.Name],
+                    stage: translations?.Stage[game?.StageForBetItem],
                   })
                 );
                 setBetFormModal(true);

@@ -1,15 +1,17 @@
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setDt, setDtTrigger } from "@/store/features/game/gameSlice";
 import EventDateModal from "@/components/layout/event/EventDateModel";
-import getDates from "@/utils/getDates";
 import { format } from "date-fns";
 import Slider from "react-slick";
 import "./slider.css";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import Axios from "@/utils/axios";
 const EventDates = () => {
   const dispatch = useDispatch();
   const { tab, dt } = useSelector((state) => state.game);
-  const dates = getDates();
+
+  const [dates, setDates] = useState([]);
 
   const settings = {
     speed: 300,
@@ -48,6 +50,13 @@ const EventDates = () => {
       },
     ],
   };
+
+  useEffect(() => {
+    Axios({ url: "/api/ox/getearlytradedt" }).then((res) => {
+      setDates(res.data.info);
+      console.log(dates);
+    });
+  }, []);
   return (
     <>
       {(tab == "getearlytrade" || tab == "getjackpot") && (
@@ -59,14 +68,20 @@ const EventDates = () => {
                   <div
                     onClick={async () => {
                       await dispatch(setDtTrigger(true));
-                      await dispatch(setDt(date));
+                      await dispatch(
+                        setDt(format(new Date(date), "yyyy-MM-dd"))
+                      );
                     }}
                     className={`flex flex-col items-center justify-center py-2 space-y-1 flex-nowrap mx-2 cursor-pointer ${
-                      dt == date ? "text-primary" : ""
+                      dt == format(new Date(date), "yyyy-MM-dd")
+                        ? "text-primary"
+                        : ""
                     }`}
                     key={i}
                   >
-                    <div className="w-max">{date}</div>
+                    <div className="w-max">
+                      {format(new Date(date), "yyyy-MM-dd")}
+                    </div>
                     <div className="font-extralight">
                       {format(new Date(date), "EE")}
                     </div>

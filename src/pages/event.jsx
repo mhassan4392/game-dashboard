@@ -33,10 +33,7 @@ const Event = () => {
       )}
 
       {!loading && (
-        <Tabs
-          defaultTab={bets && bets[0] ? bets[0].Stage : 0}
-          className="mt-1 grow h-full flex flex-col overflow-hidden"
-        >
+        <Tabs className="mt-1 grow h-full flex flex-col overflow-hidden">
           <TabsButtons className="flex items-center bg-dark-light mb-1">
             {bets.map((bet) => (
               <TabButton
@@ -50,17 +47,17 @@ const Event = () => {
             ))}
           </TabsButtons>
           <TabsItems className="flex-grow h-full scrollbar overflow-y-auto overflow-x-hidden">
-            {/* {!loading && ( */}
             <>
               {bets.map((bet, i) => (
                 <TabItem
+                  defaultTab={bet.Stage == 1}
                   key={i}
                   tab={bet.Stage}
                   className="bg-[#2d799b] bg-opacity-25 md:bg-dark"
                 >
                   {bet.Items.map((b, i) => (
                     <div key={i}>
-                      <EventWidget bet={b} />
+                      <EventWidget bet={b} stage={bet.Stage} />
                     </div>
                   ))}
                 </TabItem>

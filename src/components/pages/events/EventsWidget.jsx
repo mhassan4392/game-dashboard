@@ -121,11 +121,13 @@ const EventsWidget = ({ game }) => {
                   dispatch(setStatus("add"));
                   dispatch(
                     setBet({
+                      na: game?.Na,
                       odds: game.Items[0].Odds,
                       date: game.STime,
                       market: translations?.Market[game?.Name],
                       status: translations?.BetItems[game?.Items[0].Name],
                       itemId: game?.Items[0].Id,
+                      stage: translations?.Stage[game?.StageForBetItem],
                     })
                   );
                   setBetFormModal(true);
@@ -147,11 +149,13 @@ const EventsWidget = ({ game }) => {
                   dispatch(setStatus("add"));
                   dispatch(
                     setBet({
+                      na: game?.Na,
                       odds: game.Items[1].Odds,
                       date: game.STime,
                       market: translations?.Market[game?.Name],
                       status: translations?.BetItems[game?.Items[0].Name],
                       itemId: game?.Items[1].Id,
+                      stage: translations?.Stage[game?.StageForBetItem],
                     })
                   );
                   setBetFormModal(true);
@@ -172,11 +176,13 @@ const EventsWidget = ({ game }) => {
               dispatch(setStatus("add"));
               dispatch(
                 setBet({
+                  na: game?.Na,
                   odds: game.Items[0].Odds,
                   date: game.STime,
                   market: translations?.Market[game?.Name],
                   status: translations?.BetItems[game?.Items[0].Name],
                   itemId: game?.Items[0].Id,
+                  stage: translations?.Stage[game?.StageForBetItem],
                 })
               );
             }}
@@ -200,11 +206,13 @@ const EventsWidget = ({ game }) => {
               dispatch(setStatus("add"));
               dispatch(
                 setBet({
+                  na: game?.Na,
                   odds: game.Items[1].Odds,
                   date: game.STime,
                   market: translations?.Market[game?.Name],
                   status: translations?.BetItems[game?.Items[1].Name],
                   itemId: game?.Items[1].Id,
+                  stage: translations?.Stage[game?.StageForBetItem],
                 })
               );
             }}
