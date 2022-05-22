@@ -111,7 +111,7 @@ const Events = () => {
 
   // touch down handler on mobile screens
   let oldScroll = 0;
-  const onTouchMove = (e) => {
+  const onTouchEnd = (e) => {
     let newScroll = scrollElRef.current.scrollTop;
     console.log(newScroll);
     const isvisible = isVisible(visibleRef);
@@ -132,7 +132,7 @@ const Events = () => {
         className="flex-grow h-full scrollbar overflow-hidden overflow-x-hidden overflow-y-auto"
         ref={scrollElRef}
         onWheel={wheelHandler}
-        onTouchEnd={onTouchMove}
+        onTouchEnd={onTouchEnd}
       >
         {loading && !games.length && (
           <div className={`flex items-center justify-center h-4/5`}>
