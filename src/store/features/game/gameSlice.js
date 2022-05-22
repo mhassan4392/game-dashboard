@@ -119,11 +119,23 @@ const gameSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
+      .addCase(getEarlytradeDates.pending, (state) => {
+        state.dates = [];
+      })
       .addCase(getEarlytradeDates.fulfilled, (state, action) => {
         state.dates = action.payload;
       })
+      .addCase(getEarlytradeDates.rejected, (state) => {
+        state.dates = [];
+      })
+      .addCase(getJackpottradeDates.pending, (state) => {
+        state.dates = [];
+      })
       .addCase(getJackpottradeDates.fulfilled, (state, action) => {
         state.dates = action.payload;
+      })
+      .addCase(getJackpottradeDates.rejected, (state) => {
+        state.dates = [];
       });
   },
 });
