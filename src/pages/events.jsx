@@ -16,15 +16,26 @@ import { format } from "date-fns";
 import isVisible from "@/utils/isVisible";
 
 const Events = () => {
+  // scrolling element reference
+  const scrollElRef = useRef(null);
+
+  // scroll more games visible or not
   const visibleRef = useRef();
+
+  // if component is mounted or not
   const isMounted = useRef(false);
+
+  // data from store
   const { loading, country, games, tabs, tab, dt, dtTrigger } = useSelector(
     (state) => state.game
   );
+
   const dispatch = useDispatch();
 
+  // is scroll more games visible or not
   const [visible, setVisible] = useState(true);
 
+  // run when date time changed
   useEffect(() => {
     const run = async () => {
       await dispatch(resetGames());
@@ -35,6 +46,7 @@ const Events = () => {
     }
   }, [dt]);
 
+  // run when tab changed
   useEffect(() => {
     const run = async () => {
       await dispatch(setDtTrigger(false));
@@ -49,6 +61,7 @@ const Events = () => {
     }
   }, [tab]);
 
+  // run when country changed
   useEffect(() => {
     const run = async () => {
       await dispatch(resetGames());
@@ -60,15 +73,7 @@ const Events = () => {
     }
   }, [country]);
 
-  const scrollDiv = async (e) => {
-    const isvisible = isVisible(visibleRef);
-    if (isvisible && e.deltaY > 0 && !loading) {
-      setVisible(true);
-    } else {
-      setVisible(false);
-    }
-  };
-
+  // run when scroll more games visible
   useEffect(() => {
     const run = async () => {
       await dispatch(getGames());
@@ -78,6 +83,7 @@ const Events = () => {
     }
   }, [visible]);
 
+  // initial run
   useEffect(() => {
     const run = async () => {
       if (isMounted.current) {
@@ -93,6 +99,30 @@ const Events = () => {
     run();
   }, []);
 
+  // wheel handler
+  const wheelHandler = async (e) => {
+    const isvisible = isVisible(visibleRef);
+    if (isvisible && e.deltaY > 0 && !loading) {
+      setVisible(true);
+    } else {
+      setVisible(false);
+    }
+  };
+
+  // touch down handler on mobile screens
+  let oldScroll = 0;
+  const onTouchMove = (e) => {
+    let newScroll = scrollElRef.current.scrollTop;
+    console.log(newScroll);
+    const isvisible = isVisible(visibleRef);
+    if (isvisible && newScroll > oldScroll && !loading) {
+      setVisible(true);
+    } else {
+      setVisible(false);
+    }
+    oldScroll = newScroll;
+  };
+
   return (
     <>
       <div className="lg:hidden">
@@ -100,7 +130,9 @@ const Events = () => {
       </div>
       <div
         className="flex-grow h-full scrollbar overflow-hidden overflow-x-hidden overflow-y-auto"
-        onWheel={scrollDiv}
+        ref={scrollElRef}
+        onWheel={wheelHandler}
+        onTouchEnd={onTouchMove}
       >
         {loading && !games.length && (
           <div className={`flex items-center justify-center h-4/5`}>
