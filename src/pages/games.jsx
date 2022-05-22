@@ -4,6 +4,7 @@ import { TabsItems, TabItem } from "@/components/tabs";
 import GamesWidget from "@/components/games/GamesWidget";
 import MobileBanner from "@/components/banner/MobileBanner";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import {
   getGames,
   resetGames,
@@ -29,6 +30,9 @@ const Games = () => {
 
   const dispatch = useDispatch();
 
+  // location for changing
+  const location = useLocation();
+
   // is scroll more games visible or not
   const [visible, setVisible] = useState(true);
 
@@ -43,7 +47,7 @@ const Games = () => {
     }
   }, [dt]);
 
-  // run when tab changed
+  // run when tab and location changed changed
   useEffect(() => {
     const run = async () => {
       await dispatch(setDtTrigger(false));
@@ -56,7 +60,7 @@ const Games = () => {
     if (isMounted.current) {
       run();
     }
-  }, [tab]);
+  }, [tab, location]);
 
   // run when country changed
   useEffect(() => {
@@ -69,6 +73,8 @@ const Games = () => {
       run();
     }
   }, [country]);
+
+  // location change
 
   // run when scroll more games visible
   useEffect(() => {
@@ -86,7 +92,7 @@ const Games = () => {
       if (isMounted.current) {
         await dispatch(getGames());
       } else {
-        await dispatch(setTab("gettodays"));
+        await dispatch(setTab(tab));
         await dispatch(resetGames());
         await dispatch(getGames());
         isMounted.current = true;
@@ -136,7 +142,7 @@ const Games = () => {
         <TabsItems className="">
           {tabs.map((tab) => (
             <div key={tab.id}>
-              <TabItem tab={tab.title}>
+              <TabItem tab={tab.api}>
                 <div>
                   {games.map((game, i) => (
                     <div key={i}>
