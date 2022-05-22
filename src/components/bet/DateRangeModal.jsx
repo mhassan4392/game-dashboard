@@ -44,40 +44,42 @@ const DateRangeModal = ({ onClose }) => {
         <div>Select Date</div>
         <BiChevronDown />
       </div>
-      <Modal
-        open={dateModal}
-        onOutsideClick={() => setDateModal(false)}
-        overlay={false}
-        className="!bg-dark w-max"
-        containerClass="bg-black bg-opacity-75"
-        size="none"
-      >
-        {/* <Modal.Header>Header</Modal.Header> */}
-        <Modal.Body className="p-0 overflow-hidden">
-          <DateRangePicker
-            onChange={(item) => setState([item.selection])}
-            showSelectionPreview={true}
-            moveRangeOnFirstSelection={false}
-            months={1}
-            ranges={state}
-            //   direction="horizontal"
-          />
-        </Modal.Body>
-        <Modal.Footer>
-          <div className="flex items-center justify-center">
-            <button
-              onClick={async () => {
-                await dispatch(resetOrders());
-                setDateModal(false);
-                await dispatch(getOrders());
-              }}
-              className="bg-gradient-to-r from-primary to-secondary hover:from-secondary hover:to-primary transition-all duration-300 px-6 py-2 rounded-xl text-white"
-            >
-              Apply
-            </button>
-          </div>
-        </Modal.Footer>
-      </Modal>
+      <div>
+        <Modal
+          open={dateModal}
+          onOutsideClick={() => setDateModal(false)}
+          overlay={false}
+          className="!bg-dark w-max"
+          containerClass="bg-black bg-opacity-75 !z-[100000] !overflow-hidden"
+          size="none"
+        >
+          {/* <Modal.Header>Header</Modal.Header> */}
+          <Modal.Body className="p-0 overflow-hidden">
+            <DateRangePicker
+              onChange={(item) => setState([item.selection])}
+              showSelectionPreview={true}
+              moveRangeOnFirstSelection={false}
+              months={1}
+              ranges={state}
+              //   direction="horizontal"
+            />
+          </Modal.Body>
+          <Modal.Footer>
+            <div className="flex items-center justify-center">
+              <button
+                onClick={async () => {
+                  await dispatch(resetOrders());
+                  setDateModal(false);
+                  await dispatch(getOrders());
+                }}
+                className="bg-gradient-to-r from-primary to-secondary hover:from-secondary hover:to-primary transition-all duration-300 px-6 py-2 rounded-xl text-white"
+              >
+                Apply
+              </button>
+            </div>
+          </Modal.Footer>
+        </Modal>
+      </div>
     </>
   );
 };

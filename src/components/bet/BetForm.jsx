@@ -20,8 +20,6 @@ const BetForm = ({ modal, onClose }) => {
     (state) => state.bet
   );
 
-  console.log(bet);
-
   const { translations } = useSelector((state) => state.lan);
   const dispatch = useDispatch();
   const betAmounts = [

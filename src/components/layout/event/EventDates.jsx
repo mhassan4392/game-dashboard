@@ -7,11 +7,13 @@ import Slider from "react-slick";
 import "./slider.css";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import Axios from "@/utils/axios";
+import {
+  getEarlytradeDates,
+  getJackpottradeDates,
+} from "../../../store/features/game/gameSlice";
 const EventDates = () => {
   const dispatch = useDispatch();
-  const { tab, dt } = useSelector((state) => state.game);
-
-  const [dates, setDates] = useState([]);
+  const { tab, dt, dates } = useSelector((state) => state.game);
 
   const settings = {
     speed: 300,
@@ -52,11 +54,15 @@ const EventDates = () => {
   };
 
   useEffect(() => {
-    Axios({ url: "/api/ox/getearlytradedt" }).then((res) => {
-      setDates(res.data.info);
-      console.log(dates);
-    });
-  }, []);
+    const run = async () => {
+      if (tab == "getearlytrade") {
+        await dispatch(getEarlytradeDates());
+      } else if (tab == "getjackpot") {
+        await dispatch(getJackpottradeDates());
+      }
+    };
+    run();
+  }, [tab]);
   return (
     <>
       {(tab == "getearlytrade" || tab == "getjackpot") && (

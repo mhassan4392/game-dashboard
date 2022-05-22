@@ -13,7 +13,7 @@ const EventWidget = ({ bet, stage }) => {
         open={betFormModal}
         onClose={() => setBetFormModal(false)}
       />
-      <div className="hidden md:flex items-start justify-between pt-2 pb-1 px-1 md:px-4 border-b border-opacity-20 border-secondary w-screen md:w-full space-x-1 md:space-x-4">
+      <div className="hidden lg:flex items-start justify-between pt-2 pb-1 px-1 md:px-4 border-b border-opacity-20 border-secondary w-screen md:w-full space-x-1 md:space-x-4">
         <div className="text-xs text-[#25f09a] mt-3 basis-[15%]">
           {translations.BetsStatus[bet.Status]}
         </div>
@@ -21,10 +21,9 @@ const EventWidget = ({ bet, stage }) => {
           {bet.Items.map((item, i) => (
             <>
               {i % 2 == 0 && (
-                <div className="flex items-center mb-1 z-1" key={i}>
+                <div className="flex items-center mb-1" key={i}>
                   <div
                     onClick={(e) => {
-                      console.log(game);
                       dispatch(setStatus("add"));
                       dispatch(
                         setBet({
@@ -76,8 +75,8 @@ const EventWidget = ({ bet, stage }) => {
             </>
           ))}
 
-          <div className="absolute -z-0 w-full top-2 flex items-center justify-center">
-            <div className="w-1/4 z-10 text-center text-sm">
+          <div className="absolute w-1/4 justify-self-center top-2 flex items-center justify-center">
+            <div className="text-center text-sm">
               {translations.Bets[bet.BetName]}
             </div>
           </div>
@@ -85,7 +84,7 @@ const EventWidget = ({ bet, stage }) => {
       </div>
 
       {/* sm screen */}
-      <div className="border-l-2 border-primary space-y-2 py-4 text-xs text-light md:hidden px-4 mb-3">
+      <div className="border-l-2 border-primary space-y-2 py-4 text-xs text-light lg:hidden px-4 mb-3">
         <div className="flex items-center justify-between color">
           <div>{translations.Bets[bet.BetName]}</div>
           <div className="text-[#25f09a]">

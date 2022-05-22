@@ -25,6 +25,7 @@ const initialState = {
   modal: false,
   loading: false,
   error: null,
+  dates: [],
 };
 
 export const getGames = createAsyncThunk(
@@ -39,6 +40,30 @@ export const getGames = createAsyncThunk(
         dt: game.dt,
       };
       const res = await Axios.post(`/api/ox/${game.tab}`, dat);
+      return res.data.info;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const getEarlytradeDates = createAsyncThunk(
+  "game/getEarlytradeDates",
+  async (data, { rejectWithValue, getState }) => {
+    try {
+      const res = await Axios.get("/api/ox/getearlytradedt");
+      return res.data.info;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const getJackpottradeDates = createAsyncThunk(
+  "game/getJackpottradeDates",
+  async (data, { rejectWithValue, getState }) => {
+    try {
+      const res = await Axios.get("/api/ox/getjackpottradedt");
       return res.data.info;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -93,6 +118,12 @@ const gameSlice = createSlice({
       .addCase(getGames.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+      })
+      .addCase(getEarlytradeDates.fulfilled, (state, action) => {
+        state.dates = action.payload;
+      })
+      .addCase(getJackpottradeDates.fulfilled, (state, action) => {
+        state.dates = action.payload;
       });
   },
 });

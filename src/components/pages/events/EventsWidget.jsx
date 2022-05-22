@@ -84,7 +84,7 @@ const EventsWidget = ({ game }) => {
         </div>
 
         {/* on sm screen */}
-        <div className="space-y-2 md:hidden basis-2/3 overflow-hidden">
+        <div className="space-y-2 lg:hidden basis-2/3 overflow-hidden">
           <div className="flex items-center justify-between">
             <div className="flex items-center justify-center basis-1/3"></div>
             <div className="flex relative items-center justify-between border border-secondary border-opacity-25 bg-dark-light h-10 basis-1/3">
@@ -169,7 +169,7 @@ const EventsWidget = ({ game }) => {
         </div>
 
         {/* on md screen */}
-        <div className="text-xs items-center justify-around pl-2 hidden md:flex">
+        <div className="text-xs items-center justify-around pl-2 hidden lg:flex">
           <div
             onClick={(e) => {
               e.stopPropagation();
