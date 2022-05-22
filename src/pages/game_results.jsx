@@ -113,7 +113,6 @@ const GameResults = () => {
   let oldScroll = 0;
   const onTouchEnd = (e) => {
     let newScroll = scrollElRef.current.scrollTop;
-    console.log(newScroll);
     const isvisible = isVisible(visibleRef);
     if (isvisible && newScroll > oldScroll && !loading) {
       setVisible(true);
