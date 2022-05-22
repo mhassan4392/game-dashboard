@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Spinner from "@/components/spinner/Spinner";
 import { TabsItems, TabItem } from "@/components/tabs";
-import GameResultsWidget from "@/components/pages/gameresults/GameResultsWidget";
+import GamesWidget from "@/components/games/GamesWidget";
 import MobileBanner from "@/components/banner/MobileBanner";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -15,7 +15,7 @@ import {
 import { format } from "date-fns";
 import isVisible from "@/utils/isVisible";
 
-const GameResults = () => {
+const Games = () => {
   // scroll more games visible or not
   const visibleRef = useRef();
 
@@ -118,6 +118,7 @@ const GameResults = () => {
 
   return (
     <>
+      {/* mobile banner */}
       <div className="lg:hidden">
         <MobileBanner />
       </div>
@@ -126,6 +127,7 @@ const GameResults = () => {
         onWheel={wheelHandler}
         onTouchEnd={onTouchEnd}
       >
+        {/* spinner when games are empty */}
         {loading && !games.length && (
           <div className={`flex items-center justify-center h-4/5`}>
             <Spinner />
@@ -138,7 +140,7 @@ const GameResults = () => {
                 <div>
                   {games.map((game, i) => (
                     <div key={i}>
-                      <GameResultsWidget game={game} />
+                      <GamesWidget game={game} />
                     </div>
                   ))}
                 </div>
@@ -147,6 +149,7 @@ const GameResults = () => {
           ))}
         </TabsItems>
         <div ref={visibleRef} className="s-screen w-full h-2"></div>
+        {/* spinner */}
         {loading && games.length > 0 && (
           <div className={`flex items-center justify-center`}>
             <Spinner />
@@ -157,4 +160,4 @@ const GameResults = () => {
   );
 };
 
-export default GameResults;
+export default Games;

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { setStatus, setBet } from "@/store/features/bet/betSlice";
 import { useSelector, useDispatch } from "react-redux";
 import BetFormModal from "@/components/bet/BetFormModal";
-const EventWidget = ({ bet, stage }) => {
+const GameWidget = ({ bet, stage }) => {
   const dispatch = useDispatch();
   const { translations } = useSelector((state) => state.lan);
   const { game } = useSelector((state) => state.game);
@@ -128,4 +128,4 @@ const EventWidget = ({ bet, stage }) => {
   );
 };
 
-export default EventWidget;
+export default GameWidget;

@@ -2,9 +2,11 @@ import { Outlet } from "react-router";
 import { Tabs, TabsButtons, TabButton } from "@/components/tabs";
 import { useSelector, useDispatch } from "react-redux";
 import { setTab } from "@/store/features/game/gameSlice";
-import EventDates from "../components/layout/event/EventDates";
-const GameResultLayout = () => {
+import GameDates from "@/components/layout/game/GameDates";
+
+const GameLayout = () => {
   const dispatch = useDispatch();
+  // data from store
   const { translations } = useSelector((state) => state.lan);
   const { tabs } = useSelector((state) => state.game);
 
@@ -30,7 +32,10 @@ const GameResultLayout = () => {
               </TabButton>
             ))}
           </TabsButtons>
-          <EventDates />
+
+          {/* game dates */}
+          <GameDates />
+          {/* outlet */}
           <div className="h-full flex flex-col grow overflow-hidden">
             <Outlet />
           </div>
@@ -40,4 +45,4 @@ const GameResultLayout = () => {
   );
 };
 
-export default GameResultLayout;
+export default GameLayout;

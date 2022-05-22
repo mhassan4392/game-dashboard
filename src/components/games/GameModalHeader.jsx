@@ -1,37 +1,9 @@
 import { BsX } from "react-icons/bs";
 import { TabButton, TabsButtons } from "@/components/tabs";
 import { useSelector } from "react-redux";
+import countryFlags from "@/utils/countryFlags";
 
-import CN from "@/assets/images/country/flags/svg/cn.svg";
-import DE from "@/assets/images/country/flags/svg/de.svg";
-import FR from "@/assets/images/country/flags/svg/fr.svg";
-import HK from "@/assets/images/country/flags/svg/hk.svg";
-import ID from "@/assets/images/country/flags/svg/id.svg";
-import IT from "@/assets/images/country/flags/svg/it.svg";
-import JP from "@/assets/images/country/flags/svg/jp.svg";
-import KR from "@/assets/images/country/flags/svg/kr.svg";
-import MY from "@/assets/images/country/flags/svg/my.svg";
-import RU from "@/assets/images/country/flags/svg/ru.svg";
-import SG from "@/assets/images/country/flags/svg/sg.svg";
-import TH from "@/assets/images/country/flags/svg/th.svg";
-import US from "@/assets/images/country/flags/svg/us.svg";
-const images = {
-  CN,
-  DE,
-  FR,
-  HK,
-  ID,
-  IT,
-  JP,
-  KR,
-  MY,
-  RU,
-  SG,
-  TH,
-  US,
-};
-
-const EventModalHeader = ({ onXClick }) => {
+const GameModalHeader = ({ onXClick }) => {
   const { translations } = useSelector((state) => state.lan);
   const { bets } = useSelector((state) => state.bet);
   const { game } = useSelector((state) => state.game);
@@ -40,7 +12,7 @@ const EventModalHeader = ({ onXClick }) => {
       <div className="flex items-center justify-between px-4">
         <div className="truncate pl-10 flex items-center py-3 space-x-2">
           <div>
-            <img src={images[game?.Na] || ""} className="w-5" alt="" />
+            <img src={countryFlags[game?.Na] || ""} className="w-5" alt="" />
           </div>
           <p className="truncate text-sm">{game?.STime || ""}</p>
         </div>
@@ -105,4 +77,4 @@ const EventModalHeader = ({ onXClick }) => {
   );
 };
 
-export default EventModalHeader;
+export default GameModalHeader;

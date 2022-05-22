@@ -1,46 +1,17 @@
 import { useState } from "react";
-import EventModal from "./EventModal";
+import GameModal from "./GameModal";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setGame } from "@/store/features/game/gameSlice";
 import { setStatus, setBet } from "@/store/features/bet/betSlice";
-
+import countryFlags from "@/utils/countryFlags";
 import BetFormModal from "@/components/bet/BetFormModal";
 
-import CN from "@/assets/images/country/flags/svg/cn.svg";
-import DE from "@/assets/images/country/flags/svg/de.svg";
-import FR from "@/assets/images/country/flags/svg/fr.svg";
-import HK from "@/assets/images/country/flags/svg/hk.svg";
-import ID from "@/assets/images/country/flags/svg/id.svg";
-import IT from "@/assets/images/country/flags/svg/it.svg";
-import JP from "@/assets/images/country/flags/svg/jp.svg";
-import KR from "@/assets/images/country/flags/svg/kr.svg";
-import MY from "@/assets/images/country/flags/svg/my.svg";
-import RU from "@/assets/images/country/flags/svg/ru.svg";
-import SG from "@/assets/images/country/flags/svg/sg.svg";
-import TH from "@/assets/images/country/flags/svg/th.svg";
-import US from "@/assets/images/country/flags/svg/us.svg";
-const images = {
-  CN,
-  DE,
-  FR,
-  HK,
-  ID,
-  IT,
-  JP,
-  KR,
-  MY,
-  RU,
-  SG,
-  TH,
-  US,
-};
-
-const EventsWidget = ({ game }) => {
+const GamesWidget = ({ game }) => {
   const [betFormModal, setBetFormModal] = useState(false);
   const { translations } = useSelector((state) => state.lan);
   const dispatch = useDispatch();
-  const [eventModal, setEventModal] = useState(false);
+  const [gameModal, setGameModal] = useState(false);
 
   const navigate = useNavigate();
 
@@ -50,7 +21,7 @@ const EventsWidget = ({ game }) => {
     const lgWidth = 1024;
     const bodyWidth = document.body.clientWidth;
     if (bodyWidth < lgWidth) {
-      setEventModal(true);
+      setGameModal(true);
     } else {
       navigate(`/events/${game.Id}`);
     }
@@ -61,10 +32,10 @@ const EventsWidget = ({ game }) => {
         open={betFormModal}
         onClose={() => setBetFormModal(false)}
       />
-      <EventModal
-        open={eventModal}
+      <GameModal
+        open={gameModal}
         id={game.Id}
-        onClose={() => setEventModal(false)}
+        onClose={() => setGameModal(false)}
       />
       <div
         onClick={handleClick}
@@ -72,7 +43,7 @@ const EventsWidget = ({ game }) => {
       >
         <div className="text-xs flex flex-row lg:flex-col justify-between mb-2 space-y-1 lg:mb-0 basis-1/3 overflow-hidden px-2 md:px-0">
           <div className="flex items-center space-x-2 order-2 lg:order-1 justify-end lg:justify-start basis-1/3">
-            <img src={images[game.Na]} className="w-5" alt="" />
+            <img src={countryFlags[game.Na]} className="w-5" alt="" />
             <span className="truncate">{game?.STime}</span>
           </div>
           <div className="flex flex-row lg:flex-col order-1 lg:order-2 overflow-hidden basis-2/3">
@@ -237,4 +208,4 @@ const EventsWidget = ({ game }) => {
   );
 };
 
-export default EventsWidget;
+export default GamesWidget;

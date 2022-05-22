@@ -8,12 +8,12 @@ import {
   TabsButtons,
   TabsItems,
 } from "@/components/tabs";
-import EventWidget from "@/components/pages/events/EventWidget";
-import EventHeader from "@/components/pages/events/EventHeader";
+import GameWidget from "@/components/games/GameWidget";
+import GameHeader from "@/components/games/GameHeader";
 import { getBets } from "@/store/features/bet/betSlice";
 import { useSelector, useDispatch } from "react-redux";
 
-const Event = () => {
+const Game = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const { translations } = useSelector((state) => state.lan);
@@ -24,8 +24,9 @@ const Event = () => {
   return (
     <div className="flex h-full grow flex-col overflow-hidden">
       {/* Header */}
-      {!loading && <EventHeader />}
+      {!loading && <GameHeader />}
 
+      {/* spinner */}
       {loading && (
         <div className="h-full flex items-center justify-center grow">
           <Spinner />
@@ -57,7 +58,7 @@ const Event = () => {
                 >
                   {bet.Items.map((b, i) => (
                     <div key={i}>
-                      <EventWidget bet={b} stage={bet.Stage} />
+                      <GameWidget bet={b} stage={bet.Stage} />
                     </div>
                   ))}
                 </TabItem>
@@ -70,4 +71,4 @@ const Event = () => {
   );
 };
 
-export default Event;
+export default Game;

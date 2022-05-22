@@ -8,7 +8,7 @@ import { BsCalendarDate, BsX } from "react-icons/bs";
 import { BiChevronDown } from "react-icons/bi";
 import { setDtTrigger, setDt } from "@/store/features/game/gameSlice";
 import getDates from "@/utils/getDates";
-const EventDateModal = () => {
+const GameDatesModal = () => {
   const [dateModal, setDateModal] = useState(false);
   const dispatch = useDispatch();
 
@@ -18,6 +18,7 @@ const EventDateModal = () => {
 
   return (
     <>
+      {/* Game Date Display Start */}
       <div
         onClick={() => setDateModal(true)}
         className="flex items-center justify-between bg-gradient-to-r from-primary to-secondary hover:from-secondary hover:to-primary py-1 px-2 text-white text-sm cursor-pointer mx-2 rounded"
@@ -29,6 +30,9 @@ const EventDateModal = () => {
         </div>
         <BiChevronDown />
       </div>
+      {/* Game Date Display Ebd */}
+
+      {/* Game Dates Model Start */}
       <Modal
         open={dateModal}
         onOutsideClick={() => setDateModal(false)}
@@ -64,8 +68,9 @@ const EventDateModal = () => {
           ))}
         </Modal.Body>
       </Modal>
+      {/* Game Dates Modal End */}
     </>
   );
 };
 
-export default EventDateModal;
+export default GameDatesModal;

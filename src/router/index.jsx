@@ -2,37 +2,32 @@ import { Route, Routes, Navigate } from "react-router-dom";
 
 // layouts
 import Layout from "@/layouts/layout";
-import EventLayout from "@/layouts/event";
-import GameResultLayout from "@/layouts/gameresult";
+import GameLayout from "@/layouts/game";
 
 // pages
-import Events from "@/pages/events";
-import Event from "@/pages/event";
-import GameResults from "@/pages/game_results";
-import GameResult from "@/pages/game_result";
+import Games from "@/pages/games";
+import Game from "@/pages/game";
 import Rules from "@/pages/rules";
 import Announcement from "@/pages/announcement";
 import Lootbox from "@/pages/lootbox";
-import Test from "../pages/text";
 
 const Router = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Navigate to="/events" />} replace />
-        <Route path="/events" element={<EventLayout />}>
-          <Route index element={<Events />} />
-          <Route path="/events/:id" element={<Event />} />
+        <Route path="/events" element={<GameLayout />}>
+          <Route index element={<Games />} />
+          <Route path="/events/:id" element={<Game />} />
         </Route>
-        <Route path="/game-results" element={<GameResultLayout />}>
-          <Route index element={<GameResults />} />
-          <Route path="/game-results/:id" element={<GameResult />} />
+        <Route path="/game-results" element={<GameLayout />}>
+          <Route index element={<Games />} />
+          <Route path="/game-results/:id" element={<Game />} />
         </Route>
         <Route path="/rules" element={<Rules />} />
         <Route path="/announcement" element={<Announcement />} />
         <Route path="/lootbox" element={<Lootbox />} />
       </Route>
-      <Route path="test" element={<Test />} />
     </Routes>
   );
 };

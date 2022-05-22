@@ -14,7 +14,6 @@ import { MdLanguage } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { Menu, MenuItem, MenuButton, MenuDivider } from "@szhsin/react-menu";
 import RulesModal from "@/components/pages/rules/RulesModal";
-import GameResultsModal from "@/components/pages/gameresults/GameResultsModal";
 import CurrencyModal from "@/components/layout/modals/CurrencyModal";
 import LanguageModal from "@/components/layout/modals/LanguageModal";
 import GamesModal from "@/components/layout/modals/GamesModal";
@@ -27,7 +26,6 @@ const MobileSettingsMenu = () => {
   const [rulesModal, setRulesModal] = useState(false);
   const [currencyModal, setCurrencyModal] = useState(false);
   const [languageModal, setLanguageModal] = useState(false);
-  const [gameResultsModal, setGameResultsModal] = useState(false);
   const [betHistoryModal, setBetHistoryModal] = useState(false);
 
   const { user } = useSelector((state) => state.user);
@@ -132,21 +130,21 @@ const MobileSettingsMenu = () => {
       </div>
 
       {/* Modals */}
+      {/* Games Modal */}
       <GamesModal open={gamesModal} onClose={() => setGamesModal(false)} />
+      {/* rules modal */}
       <RulesModal open={rulesModal} onClose={() => setRulesModal(false)} />
+      {/* currency modal */}
       <CurrencyModal
         open={currencyModal}
         onClose={() => setCurrencyModal(false)}
       />
+      {/* language modal */}
       <LanguageModal
         open={languageModal}
         onClose={() => setLanguageModal(false)}
       />
-      <GameResultsModal
-        open={gameResultsModal}
-        onClose={() => setGameResultsModal(false)}
-        gamesModal={setGamesModal}
-      />
+      {/* bet history modal */}
       <BetHistoryModal
         open={betHistoryModal}
         onClose={() => setBetHistoryModal(false)}
