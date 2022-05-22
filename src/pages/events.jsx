@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, memo } from "react";
+import { useEffect, useRef, useState } from "react";
 import Spinner from "@/components/spinner/Spinner";
 import { TabsItems, TabItem } from "@/components/tabs";
 import EventsWidget from "@/components/pages/events/EventsWidget";
@@ -16,9 +16,6 @@ import { format } from "date-fns";
 import isVisible from "@/utils/isVisible";
 
 const Events = () => {
-  // scrolling element reference
-  const scrollElRef = useRef(null);
-
   // scroll more games visible or not
   const visibleRef = useRef();
 
@@ -110,16 +107,13 @@ const Events = () => {
   };
 
   // touch down handler on mobile screens
-  let oldScroll = 0;
-  const onTouchEnd = (e) => {
-    let newScroll = scrollElRef.current.scrollTop;
+  const onTouchEnd = () => {
     const isvisible = isVisible(visibleRef);
-    if (isvisible && newScroll > oldScroll && !loading) {
+    if (isvisible && !loading) {
       setVisible(true);
     } else {
       setVisible(false);
     }
-    oldScroll = newScroll;
   };
 
   return (
@@ -129,7 +123,6 @@ const Events = () => {
       </div>
       <div
         className="flex-grow h-full scrollbar overflow-hidden overflow-x-hidden overflow-y-auto"
-        ref={scrollElRef}
         onWheel={wheelHandler}
         onTouchEnd={onTouchEnd}
       >
