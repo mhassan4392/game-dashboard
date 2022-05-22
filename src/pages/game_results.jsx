@@ -15,7 +15,7 @@ import {
 import { format } from "date-fns";
 import isVisible from "@/utils/isVisible";
 
-const Events = () => {
+const GameResults = () => {
   // scrolling element reference
   const scrollElRef = useRef(null);
 
@@ -165,4 +165,4 @@ const Events = () => {
   );
 };
 
-export default memo(Events);
+export default GameResults;

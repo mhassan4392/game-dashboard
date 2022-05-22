@@ -165,4 +165,4 @@ const Events = () => {
   );
 };
 
-export default memo(Events);
+export default Events;
