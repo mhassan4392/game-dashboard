@@ -30,6 +30,9 @@ const MobileSettingsMenu = () => {
 
   const { user } = useSelector((state) => state.user);
   const { translations, lan } = useSelector((state) => state.lan);
+  const {
+    config: { MenuConfig: TopMenu },
+  } = useSelector((state) => state.config);
   return (
     <>
       <div className="mobile-menu text-sm">
@@ -53,56 +56,62 @@ const MobileSettingsMenu = () => {
             <div className="flex items-center justify-between w-full">
               <div className="flex items-center">
                 <AiOutlineClockCircle className="mr-2 text-primary" />
-                <span>BET HISTORY</span>
+                <span>{translations.RightSide["bethistory"]}</span>
               </div>
               <div>
                 <AiOutlineRight />
               </div>
             </div>
           </MenuItem>
-          <MenuItem>
-            <Link
-              to="/events"
-              className="flex items-center justify-between w-full"
+          {TopMenu[0] && (
+            <MenuItem>
+              <Link
+                to="/events"
+                className="flex items-center justify-between w-full"
+              >
+                <div className="flex items-center">
+                  <AiOutlineThunderbolt className="mr-2 text-primary" />
+                  <span>{translations.TopMenu[0]}</span>
+                </div>
+                <div>
+                  <AiOutlineRight />
+                </div>
+              </Link>
+            </MenuItem>
+          )}
+          {TopMenu[1] && (
+            <MenuItem>
+              <NavLink
+                className="flex items-center justify-between w-full"
+                to="/game-results"
+              >
+                <div className="flex items-center">
+                  <GiTrophyCup className="mr-2 text-primary" />
+                  <span>{translations.TopMenu[1]}</span>
+                </div>
+                <div>
+                  <AiOutlineRight />
+                </div>
+              </NavLink>
+            </MenuItem>
+          )}
+          {TopMenu[2] && (
+            <MenuItem
+              onClick={() => {
+                setRulesModal(true);
+              }}
             >
-              <div className="flex items-center">
-                <AiOutlineThunderbolt className="mr-2 text-primary" />
-                <span>{translations.TopMenu[0]}</span>
+              <div className="flex items-center justify-between w-full">
+                <div className="flex items-center">
+                  <AiOutlineOrderedList className="mr-2 text-primary" />
+                  <span>{translations.TopMenu[2]}</span>
+                </div>
+                <div>
+                  <AiOutlineRight />
+                </div>
               </div>
-              <div>
-                <AiOutlineRight />
-              </div>
-            </Link>
-          </MenuItem>
-          <MenuItem>
-            <NavLink
-              className="flex items-center justify-between w-full"
-              to="/game-results"
-            >
-              <div className="flex items-center">
-                <GiTrophyCup className="mr-2 text-primary" />
-                <span>{translations.TopMenu[1]}</span>
-              </div>
-              <div>
-                <AiOutlineRight />
-              </div>
-            </NavLink>
-          </MenuItem>
-          <MenuItem
-            onClick={() => {
-              setRulesModal(true);
-            }}
-          >
-            <div className="flex items-center justify-between w-full">
-              <div className="flex items-center">
-                <AiOutlineOrderedList className="mr-2 text-primary" />
-                <span>{translations.TopMenu[2]}</span>
-              </div>
-              <div>
-                <AiOutlineRight />
-              </div>
-            </div>
-          </MenuItem>
+            </MenuItem>
+          )}
           <MenuDivider className="!bg-primary !bg-opacity-20 !mx-2" />
           <MenuItem onClick={() => setCurrencyModal(true)}>
             <div className="flex items-center justify-between w-full">

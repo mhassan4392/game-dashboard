@@ -10,6 +10,10 @@ const GameLayout = () => {
   // data from store
   const { translations } = useSelector((state) => state.lan);
   const { tabs, tab } = useSelector((state) => state.game);
+  const { config } = useSelector((state) => state.config);
+  const {
+    MenuConfig: { SecondMenu },
+  } = config;
 
   return (
     <div className="bg-black h-full">
@@ -20,21 +24,25 @@ const GameLayout = () => {
         <>
           <TabsButtons className="flex items-end bg-dark-light px-4 mb-1 flex-nowrap scrollbar-x shrink-0">
             {tabs.map((tab, i) => (
-              <TabButton
-                tab={tab.api}
-                key={i}
-                activeClass="tab-active"
-                className="px-3 py-4 mx-2 text-sm flex flex-col items-center"
-                as="Link"
-                to={
-                  location.pathname.includes("game-results")
-                    ? "/game-results"
-                    : "/events"
-                }
-                onClick={() => dispatch(setTab(tab.api))}
-              >
-                <span>{translations.SecondMenu[tab.id]}</span>
-              </TabButton>
+              <>
+                {SecondMenu[tab.id] && (
+                  <TabButton
+                    tab={tab.api}
+                    key={i}
+                    activeClass="tab-active"
+                    className="px-3 py-4 mx-2 text-sm flex shrink-0 flex-col items-center"
+                    as="Link"
+                    to={
+                      location.pathname.includes("game-results")
+                        ? "/game-results"
+                        : "/events"
+                    }
+                    onClick={() => dispatch(setTab(tab.api))}
+                  >
+                    <span>{translations.SecondMenu[tab.id]}</span>
+                  </TabButton>
+                )}
+              </>
             ))}
           </TabsButtons>
 

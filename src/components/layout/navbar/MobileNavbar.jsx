@@ -10,8 +10,13 @@ import { useSelector } from "react-redux";
 
 const MobileNavbar = () => {
   const [gamesModal, setGamesModal] = useState(false);
-
   const { user } = useSelector((state) => state.user);
+  const {
+    config: {
+      MenuConfig: { TopMenu },
+    },
+  } = useSelector((state) => state.config);
+
   return (
     <>
       <div className="lg:hidden flex items-center justify-between bg-dark-light h-full py-2">
@@ -21,26 +26,30 @@ const MobileNavbar = () => {
         </div>
         <div className="flex items-center">
           <div className="flex items-center bg-dark rounded-full overflow-hidden">
-            <NavLink
-              to="/events"
-              className={({ isActive }) =>
-                `px-3 py-0.5 rounded-full bg-dark ${
-                  isActive ? "bg-gradient-to-r from-primary to-secondary" : ""
-                }`
-              }
-            >
-              <EventsIcon />
-            </NavLink>
-            <NavLink
-              to="/lootbox"
-              className={({ isActive }) =>
-                `px-3 py-0.5 rounded-full bg-dark ${
-                  isActive ? "bg-gradient-to-r from-primary to-secondary" : ""
-                }`
-              }
-            >
-              <LootboxIcon />
-            </NavLink>
+            {TopMenu[0] && (
+              <NavLink
+                to="/events"
+                className={({ isActive }) =>
+                  `px-3 py-0.5 rounded-full bg-dark ${
+                    isActive ? "bg-gradient-to-r from-primary to-secondary" : ""
+                  }`
+                }
+              >
+                <EventsIcon />
+              </NavLink>
+            )}
+            {TopMenu[4] && (
+              <NavLink
+                to="/lootbox"
+                className={({ isActive }) =>
+                  `px-3 py-0.5 rounded-full bg-dark ${
+                    isActive ? "bg-gradient-to-r from-primary to-secondary" : ""
+                  }`
+                }
+              >
+                <LootboxIcon />
+              </NavLink>
+            )}
           </div>
           <div className="pr-2 pl-3 ml-3 border-l border-secondary py-0 border-opacity-25">
             <AiOutlineAppstore

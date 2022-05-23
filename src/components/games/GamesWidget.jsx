@@ -1,6 +1,6 @@
 import { useState } from "react";
 import GameModal from "./GameModal";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setGame } from "@/store/features/game/gameSlice";
 import { setStatus, setBet } from "@/store/features/bet/betSlice";
@@ -14,6 +14,7 @@ const GamesWidget = ({ game }) => {
   const [gameModal, setGameModal] = useState(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleClick = (e) => {
     dispatch(setGame(game));
@@ -23,7 +24,11 @@ const GamesWidget = ({ game }) => {
     if (bodyWidth < lgWidth) {
       setGameModal(true);
     } else {
-      navigate(`/events/${game.Id}`);
+      if (location.pathname.includes("game-results")) {
+        navigate(`/game-results/${game.Id}`);
+      } else {
+        navigate(`/events/${game.Id}`);
+      }
     }
   };
   return (
@@ -55,8 +60,8 @@ const GamesWidget = ({ game }) => {
         </div>
 
         {/* on sm screen */}
-        <div className="space-y-2 lg:hidden basis-2/3 overflow-hidden">
-          <div className="flex items-center justify-between">
+        <div className="space-y-2 py-1 lg:hidden basis-2/3 overflow-hidden">
+          {/* <div className="flex items-center justify-between">
             <div className="flex items-center justify-center basis-1/3"></div>
             <div className="flex relative items-center justify-between border border-secondary border-opacity-25 bg-dark-light h-10 basis-1/3">
               <p className="text-2xl border-r border-secondary border-opacity-25 basis-1/2 h-full flex items-center justify-center pr-2">
@@ -72,13 +77,15 @@ const GamesWidget = ({ game }) => {
               </div>
             </div>
             <div className="flex items-center justify-center basis-1/3"></div>
-          </div>
+          </div> */}
 
           <div className="flex items-center justify-between">
             <p className="text-xs truncate basis-1/3 text-center">
               {translations?.BetItems[game?.Items[0].Name]}
             </p>
-            <p className="text-sm font-bold basis-1/3 text-center">Winner</p>
+            <p className="text-sm font-bold basis-1/3 text-center">
+              {translations?.Stage[game?.StageForBetItem]}
+            </p>
             <p className="text-xs truncate basis-1/3 text-center">
               {translations?.BetItems[game?.Items[1].Name]}
             </p>
@@ -103,7 +110,7 @@ const GamesWidget = ({ game }) => {
                   );
                   setBetFormModal(true);
                 }}
-                className="border border-secondary py-1 bg-dark-light w-20 font-bold border-opacity-40"
+                className="border border-secondary py-1 bg-dark-light w-20 font-bold border-opacity-40 hover:bg-secondary hover:bg-opacity-30 transition-all duration-200"
               >
                 {game.Items[0].Odds}
               </p>
@@ -131,7 +138,7 @@ const GamesWidget = ({ game }) => {
                   );
                   setBetFormModal(true);
                 }}
-                className="border border-secondary py-1 bg-dark-light w-20 font-bold border-opacity-40"
+                className="border border-secondary py-1 bg-dark-light w-20 font-bold border-opacity-40 hover:bg-secondary hover:bg-opacity-30 transition-all duration-200"
               >
                 {game.Items[1].Odds}
               </p>

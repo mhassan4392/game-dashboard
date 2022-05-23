@@ -9,12 +9,16 @@ import {
 import EmptyBet from "@/components/bet/EmptyBet";
 import PendingOrders from "@/components/bet/PendingOrders";
 import SettledOrder from "@/components/bet/SettledOrders";
+import { useSelector } from "react-redux";
 
 const BetHistoryMenu = ({ open, onClose }) => {
+  const {
+    translations: { RightSide },
+  } = useSelector((state) => state.lan);
   return (
     <Tabs className="h-full flex flex-col">
       <MobileModel
-        label="Bet History"
+        label={RightSide["bethistory"]}
         onBackClick={onClose}
         open={open}
         modalBodyClass="p-0"
@@ -65,14 +69,14 @@ const BetHistoryMenu = ({ open, onClose }) => {
                   className="basis-1/2 px-2 py-4 text-sm text-center"
                   tab="pending"
                 >
-                  Pending
+                  {RightSide["pending"]}
                 </TabButton>
                 <TabButton
                   activeClass="tab-active"
                   className="basis-1/2 px-2 py-4 text-sm text-center"
                   tab="settled"
                 >
-                  Settled
+                  {RightSide["settled"]}
                 </TabButton>
               </TabsButtons>
               <TabsItems className="flex-grow scrollbar overflow-y-auto">

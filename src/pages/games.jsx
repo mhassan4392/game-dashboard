@@ -15,6 +15,7 @@ import {
 
 import { format } from "date-fns";
 import isVisible from "@/utils/isVisible";
+import { AnimatePresence, motion } from "framer-motion";
 
 const Games = () => {
   // scroll more games visible or not
@@ -128,6 +129,7 @@ const Games = () => {
       <div className="lg:hidden">
         <MobileBanner />
       </div>
+      {/* scroll content */}
       <div
         className="flex-grow h-full scrollbar overflow-hidden overflow-x-hidden overflow-y-auto"
         onWheel={wheelHandler}
@@ -141,17 +143,24 @@ const Games = () => {
         )}
         <TabsItems className="">
           {tabs.map((tab) => (
-            <div key={tab.id}>
-              <TabItem tab={tab.api}>
-                <div>
-                  {games.map((game, i) => (
-                    <div key={i}>
-                      <GamesWidget game={game} />
-                    </div>
-                  ))}
-                </div>
-              </TabItem>
-            </div>
+            <AnimatePresence exitBeforeEnter>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                key={tab.id}
+              >
+                <TabItem tab={tab.api}>
+                  <div>
+                    {games.map((game, i) => (
+                      <div key={i}>
+                        <GamesWidget game={game} />
+                      </div>
+                    ))}
+                  </div>
+                </TabItem>
+              </motion.div>
+            </AnimatePresence>
           ))}
         </TabsItems>
         <div ref={visibleRef} className="s-screen w-full h-2"></div>

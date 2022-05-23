@@ -10,6 +10,11 @@ import { useSelector } from "react-redux";
 const BrowserNavbar = () => {
   const { user } = useSelector((state) => state.user);
   const { translations } = useSelector((state) => state.lan);
+  const {
+    config: {
+      MenuConfig: { TopMenu },
+    },
+  } = useSelector((state) => state.config);
 
   //   links
   const links = [
@@ -30,16 +35,20 @@ const BrowserNavbar = () => {
         <div className="flex flex-grow items-center justify-between">
           <div className="">
             {links.map((link) => (
-              <NavLink
-                className="py-5 inline-block text-[#b8d0ed] hover:text-primary transition-colors duration-200 navbar-link relative"
-                key={link.path}
-                to={link.path}
-              >
-                <span className="design"></span>
-                <span className="border-r border-secondary border-opacity-25 px-5 inline-block">
-                  {translations.TopMenu[link.id]}
-                </span>
-              </NavLink>
+              <>
+                {TopMenu[link.id] && (
+                  <NavLink
+                    className="py-5 inline-block text-[#b8d0ed] hover:text-primary transition-colors duration-200 navbar-link relative"
+                    key={link.path}
+                    to={link.path}
+                  >
+                    <span className="design"></span>
+                    <span className="border-r border-secondary border-opacity-25 px-5 inline-block">
+                      {translations.TopMenu[link.id]}
+                    </span>
+                  </NavLink>
+                )}
+              </>
             ))}
           </div>
 

@@ -37,7 +37,7 @@ const GameWidget = ({ bet, stage }) => {
                         })
                       );
                     }}
-                    className="border cursor-pointer rounded border-secondary border-opacity-50 w-20 md:w-24 text-sm md:text-lg flex items-center justify-center h-10 bg-dark-light "
+                    className="border cursor-pointer rounded border-secondary border-opacity-50 w-20 md:w-24 text-sm md:text-lg flex items-center justify-center h-10 bg-dark-light hover:bg-secondary hover:bg-opacity-30 transition-all duration-200"
                   >
                     {item.Odds}
                   </div>
@@ -66,7 +66,7 @@ const GameWidget = ({ bet, stage }) => {
                         })
                       );
                     }}
-                    className="border cursor-pointer rounded border-secondary border-opacity-50 w-20 md:w-24 text-sm md:text-lg flex items-center justify-center h-10 bg-dark-light "
+                    className="border cursor-pointer rounded border-secondary border-opacity-50 w-20 md:w-24 text-sm md:text-lg flex items-center justify-center h-10 bg-dark-light hover:bg-secondary hover:bg-opacity-30 transition-all duration-200"
                   >
                     {item.Odds}
                   </div>
@@ -109,14 +109,14 @@ const GameWidget = ({ bet, stage }) => {
                 setBetFormModal(true);
               }}
               key={i}
-              className="mb-2 cursor-pointer border border-[#2d4264] shadow-lg shadow-[#142131] flex items-center justify-between bg-[#142131] basis-[45%] py-1 px-2 rounded"
+              className="mb-2 cursor-pointer border border-[#2d4264] shadow-lg shadow-[#142131] flex items-center justify-between bg-[#142131] basis-[45%] py-2 px-2 rounded hover:bg-secondary hover:bg-opacity-30 transition-all duration-200"
             >
               <div>
-                <div className="truncate">
+                {/* <div className="truncate">
                   {i % 2 == 0
                     ? game?.Items[0].Name || ""
                     : game?.Items[1].Name || ""}
-                </div>
+                </div> */}
                 <div>{translations?.BetItems[b?.Name]}</div>
               </div>
               <div className="text-white text-sm">{b.Odds}</div>
