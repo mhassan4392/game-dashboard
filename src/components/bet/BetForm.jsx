@@ -113,7 +113,7 @@ const BetForm = ({ modal, onClose }) => {
             <h3 className="text-white text-sm">{bet.market}</h3>
             <h4 className="text-xs">{bet.status}</h4>
             <div className="text-xs">
-              <p>2022 Mid-Season Invitational</p>
+              {bet.betname && <p>{bet.betname}</p>}
               {/* <p>{bet.date}</p> */}
             </div>
           </div>
@@ -142,8 +142,10 @@ const BetForm = ({ modal, onClose }) => {
               <div className="relative">
                 <span className="absolute left-2 top-0.5">¥</span>
                 <input
-                  onChange={(e) => dispatch(setAmount(Number(e.target.value)))}
-                  type="text"
+                  onChange={(e) =>
+                    dispatch(setAmount(Number(e.target.value || "")))
+                  }
+                  type="number"
                   name=""
                   value={amount}
                   className="w-full py-1 h-6 bg-transparent border border-primary border-opacity-30 pl-5 outline-none"
@@ -176,7 +178,9 @@ const BetForm = ({ modal, onClose }) => {
             </div>
             <div className="flex items-center justify-between">
               <h2>{translations?.RightSide["potentialwinnings"]}</h2>
-              <h2 className="text-primary text-lg">¥ 0.00</h2>
+              <h2 className="text-primary text-lg">
+                ¥ {(Number(amount) * Number(bet.odds)).toFixed(2)}
+              </h2>
             </div>
           </div>
 

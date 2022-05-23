@@ -34,6 +34,7 @@ const GameWidget = ({ bet, stage }) => {
                           status: translations?.BetItems[item.Name],
                           itemId: item.Id,
                           stage: translations?.Stage[stage],
+                          betname: translations?.Bets[bet.BetName],
                         })
                       );
                     }}
@@ -63,6 +64,7 @@ const GameWidget = ({ bet, stage }) => {
                           market: translations?.Market[game.Name],
                           status: translations?.BetItems[item.Name],
                           stage: translations?.Stage[stage],
+                          betname: translations?.Bets[bet.BetName],
                         })
                       );
                     }}
@@ -104,6 +106,7 @@ const GameWidget = ({ bet, stage }) => {
                     market: translations?.Market[game.Name],
                     status: translations?.BetItems[b.Name],
                     stage: translations?.Stage[game?.StageForBetItem],
+                    betname: translations.Bets[bet.BetName],
                   })
                 );
                 setBetFormModal(true);

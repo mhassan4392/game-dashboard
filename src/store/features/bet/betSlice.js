@@ -87,6 +87,7 @@ const gameSlice = createSlice({
         state.saveLoading = false;
         state.saveError = false;
         state.saveSuccess = "Bet Added Successfully";
+        state.amount = "";
       })
       .addCase(saveBet.rejected, (state, action) => {
         state.saveLoading = false;
