@@ -31,7 +31,9 @@ const MobileSettingsMenu = () => {
   const { user } = useSelector((state) => state.user);
   const { translations, lan } = useSelector((state) => state.lan);
   const {
-    config: { MenuConfig: TopMenu },
+    config: {
+      MenuConfig: { TopMenu },
+    },
   } = useSelector((state) => state.config);
   return (
     <>
