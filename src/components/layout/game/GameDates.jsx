@@ -20,40 +20,40 @@ const GameDates = () => {
   // settings for slider
   const settings = {
     speed: 300,
-    slidesToShow: 7,
+    slidesToShow: 4,
     slidesToScroll: 1,
     nextArrow: <FiChevronRight />,
     prevArrow: <FiChevronLeft />,
-    responsive: [
-      {
-        breakpoint: 1400,
-        settings: {
-          slidesToShow: 7,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 1300,
-        settings: {
-          slidesToShow: 6,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 1100,
-        settings: {
-          slidesToShow: 5,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 900,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 2,
-        },
-      },
-    ],
+    // responsive: [
+    //   {
+    //     breakpoint: 1400,
+    //     settings: {
+    //       slidesToShow: 7,
+    //       slidesToScroll: 1,
+    //     },
+    //   },
+    //   {
+    //     breakpoint: 1300,
+    //     settings: {
+    //       slidesToShow: 6,
+    //       slidesToScroll: 1,
+    //     },
+    //   },
+    //   {
+    //     breakpoint: 1100,
+    //     settings: {
+    //       slidesToShow: 5,
+    //       slidesToScroll: 1,
+    //     },
+    //   },
+    //   {
+    //     breakpoint: 900,
+    //     settings: {
+    //       slidesToShow: 4,
+    //       slidesToScroll: 2,
+    //     },
+    //   },
+    // ],
   };
 
   // initial run and when tab changes
