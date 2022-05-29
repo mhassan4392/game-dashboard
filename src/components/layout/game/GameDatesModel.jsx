@@ -12,9 +12,7 @@ const GameDatesModal = () => {
   const [dateModal, setDateModal] = useState(false);
   const dispatch = useDispatch();
 
-  const { dt } = useSelector((state) => state.game);
-
-  const dates = getDates();
+  const { dt, dates } = useSelector((state) => state.game);
 
   return (
     <>
@@ -55,14 +53,16 @@ const GameDatesModal = () => {
               onClick={async () => {
                 setDateModal(false);
                 await dispatch(setDtTrigger(true));
-                await dispatch(setDt(date));
+                await dispatch(setDt(format(new Date(date), "yyyy-MM-dd")));
               }}
               key={i}
               className={`flex items-center justify-between py-3 px-3 hover:bg-secondary hover:bg-opacity-20 cursor-pointer ${
                 date == dt ? "bg-secondary bg-opacity-25 text-primary" : ""
               }`}
             >
-              <div className="text-sm">{date}</div>
+              <div className="text-sm">
+                {format(new Date(date), "yyyy-MM-dd")}
+              </div>
               <div className="text-xs">{format(new Date(date), "EE")}</div>
             </div>
           ))}
