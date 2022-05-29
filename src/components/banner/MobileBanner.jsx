@@ -5,23 +5,14 @@ import "./index.scss";
 import Axios from "@/utils/axios";
 
 const MobileBanner = () => {
-  const [bannerText, setBannerText] = useState("");
-
   // reference for banner container
   const ref = useRef(null);
 
+  const [messages, setMessages] = useState([]);
+
   useEffect(() => {
     Axios({ url: "/api/ox/get5msg", method: "POST" }).then((res) => {
-      const d = res.data.map((d) => {
-        return d[0] + " " + d[1];
-      });
-      let text = "";
-      for (let a in d) {
-        text += d[a];
-        text += " ";
-      }
-
-      setBannerText(text);
+      setMessages(res.data || []);
     });
   }, []);
   return (
@@ -33,20 +24,25 @@ const MobileBanner = () => {
       {/* Banner Text */}
       <div className="grow h-full relative block overflow-hidden" ref={ref}>
         <div className="grid items-center h-full w-full">
-          {bannerText && (
-            <p
-              className="bg-transparent text-xs lg:sm banner-content min-w-max"
-              style={{
-                transform: `translateX(${
-                  ref.current?.clientWidth
-                    ? ref.current.clientWidth + "px"
-                    : "100%"
-                })`,
-              }}
-            >
-              {bannerText}
-            </p>
-          )}
+          <p
+            className="bg-transparent text-xs lg:sm banner-content min-w-max"
+            style={{
+              transform: `translateX(${
+                ref.current?.clientWidth
+                  ? ref.current.clientWidth + "px"
+                  : "100%"
+              })`,
+            }}
+          >
+            <div className="flex items-center space-x-20">
+              {messages.map((message, i) => (
+                <span key={i} className="flex items-center space-x-2">
+                  <span>{message[0]}</span>
+                  <span>{message[1]}</span>
+                </span>
+              ))}
+            </div>
+          </p>
         </div>
       </div>
     </div>

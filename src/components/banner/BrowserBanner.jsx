@@ -6,7 +6,6 @@ import "./index.scss";
 import Axios from "@/utils/axios";
 
 const BrowserBanner = () => {
-  const [bannerText, setBannerText] = useState("");
   // reference for banner container
   const ref = useRef(null);
 
@@ -14,6 +13,8 @@ const BrowserBanner = () => {
   const [clock, setClock] = useState(format(new Date(), "HH:mm:ss"));
   //   date
   var [date] = useState(format(new Date(), "yyyy-MM-dd"));
+
+  const [messages, setMessages] = useState([]);
 
   // update clock every minute
   useEffect(() => {
@@ -24,15 +25,7 @@ const BrowserBanner = () => {
   }, []);
   useEffect(() => {
     Axios({ url: "/api/ox/get5msg", method: "POST" }).then((res) => {
-      const d = res.data.map((d) => {
-        return d[0] + " " + d[1];
-      });
-      let text = "";
-      for (let a in d) {
-        text += d[a];
-        text += " ";
-      }
-      setBannerText(text);
+      setMessages(res.data);
     });
   }, []);
   return (
@@ -48,20 +41,26 @@ const BrowserBanner = () => {
           ref={ref}
         >
           <div className="grid items-center h-full w-full">
-            {bannerText && (
-              <p
-                className="bg-transparent text-xs lg:sm banner-content min-w-max"
-                style={{
-                  transform: `translateX(${
-                    ref.current?.clientWidth
-                      ? ref.current.clientWidth + "px"
-                      : "100%"
-                  })`,
-                }}
-              >
-                {bannerText}
-              </p>
-            )}
+            <p
+              className="bg-transparent text-xs lg:sm banner-content min-w-max"
+              style={{
+                transform: `translateX(${
+                  ref.current?.clientWidth
+                    ? ref.current.clientWidth + "px"
+                    : "100%"
+                })`,
+              }}
+            >
+              {/* {bannerText} */}
+              <div className="flex items-center space-x-20">
+                {messages.map((message, i) => (
+                  <span key={i} className="flex items-center space-x-2">
+                    <span>{message[0]}</span>
+                    <span>{message[1]}</span>
+                  </span>
+                ))}
+              </div>
+            </p>
           </div>
         </div>
         {/* Date and Clock */}
