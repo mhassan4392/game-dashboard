@@ -26,6 +26,8 @@ const Layout = () => {
   const key = searchParams.get("key") || localStorage.getItem("key") || null;
   const name = searchParams.get("name") || localStorage.getItem("name") || "";
 
+console.log(key, pLan, name)
+
   const dispatch = useDispatch();
 
   const [loading, setLoading] = useState(true);

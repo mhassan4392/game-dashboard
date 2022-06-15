@@ -18,7 +18,7 @@ export const getBets = createAsyncThunk(
   "bet/getBets",
   async (data, { rejectWithValue }) => {
     try {
-      const res = await Axios.post(`/api/ox/getbets/${data.id}`, {});
+      const res = await Axios.post(`/apiz/ox/getbets/${data.id}`, {});
       return res.data.info;
     } catch (error) {
       return rejectWithValue(error.message);
